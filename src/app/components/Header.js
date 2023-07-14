@@ -4,20 +4,22 @@ import Image from 'next/image';
 import 'tailwindcss/tailwind.css';
 import {GiHamburgerMenu} from "react-icons/gi"
 import {SiThesoundsresource} from 'react-icons/si'
-import {AiOutlineClose, AiOutlineSearch} from 'react-icons/ai'
-import {TiMicrophone} from "react-icons/ti"
+import {BsSearch} from 'react-icons/bs'
+import {LiaMicrophoneSolid} from "react-icons/lia"
 import {MdLibraryMusic} from "react-icons/md"
 import {FcDataConfiguration} from "react-icons/fc"
 import {BsBell} from "react-icons/bs"
+import {AiOutlineCloseCircle} from "react-icons/ai"
 import Link from 'next/link';
+
 
 
 function Header() {
   return (
     <>
-    <div className='flex justify-between items-center px-14 h-14 bg-[#212121] opacity-95 sticky top-0 -z-50'>
+    <div className='flex justify-between items-center px-6 h-14 bg-[#090931] opacity-95 sticky top-0 -z-50'>
       <div className='flex gap-8 items-center text-2x1'>
-        <div>
+        <div className='ml-0'>
           <GiHamburgerMenu/>
         </div>
          <Link href="/">
@@ -29,21 +31,21 @@ function Header() {
       </div>
       <div className='flex items-center justify-center gap-5'>
         <form action=''>
-          <div className='flex bg-zinc-900 items-center h-10 px-4 pr-0'>
+          <div className='flex bg-zinc-900 items-center h-9 px-4 pr-0 rounded'>
           <div className='flex gap-4 items-center pr-5'>
-            <div>
-              <AiOutlineSearch className='text-xl'/>
+            <label for="search-floating" >
+              <BsSearch className='absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4'/>
+            </label>
+            <input id='search-floating' type='text' className='w-96 bg-zinc-900 focus:outline-none border-none h-9' />
+            <AiOutlineCloseCircle className='text-xl cursor-pointer'/>
             </div>
-            <input type='text' className='w-96 bg-zinc-900 focus:outline-none border-none'/>
-            <AiOutlineClose className='text-xl cursor-pointer'/>
-            </div>
-            <button className='h-10 w-16 flex items-center justify-center bg-zinc-800'>
-            <AiOutlineSearch className='text-xl'/>
+            <button className='h-10 w-16 flex items-center justify-center  bg-zinc-800 rounded'>
+            <BsSearch className='text-xl'/>
             </button>
              </div>
         </form>
         <div className='text-xl p-3 bg-zinc-900 rounded-full'>
-          <TiMicrophone className=''/>
+          <LiaMicrophoneSolid className=''/>
         </div> 
       </div>
       <div className='flex gap-5 items-center text-xl'>
