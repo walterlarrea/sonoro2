@@ -10,6 +10,7 @@ import {MdLibraryMusic} from "react-icons/md"
 import {FcDataConfiguration} from "react-icons/fc"
 import {BsBell} from "react-icons/bs"
 import {AiOutlineCloseCircle} from "react-icons/ai"
+import {VscColorMode} from "react-icons/vsc"
 import Link from 'next/link';
 
 
@@ -49,11 +50,10 @@ function Header() {
         </div> 
       </div>
       <div className='flex gap-5 items-center text-xl'>
-      <MdLibraryMusic/>
-      <FcDataConfiguration/>
+      <VscColorMode/>
       <div className='relative'>
       <BsBell/>
-       <span className='absolute bottom-2 left-2 text-xs bg-red-300 rounded-full px-1'>
+       <span className='absolute bottom-2 left-2 text-xs bg-red-600 rounded-full px-1'>
        +9
        </span>
        </div>
