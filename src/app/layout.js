@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
 
 
     <html lang="en">
-      <body>
+      <body >
 
       
         <div className='max-h-screen overflow-hidden flex flex-col'>
