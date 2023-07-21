@@ -1,48 +1,42 @@
-'use client';
 
 import React from "react";
-import MusiCard from "./components/MusiCard";
+
+import Header from "./components/Header";
+import Sidebar from "./components/Sidebar";
+
+import SongCard from './components/songCard';
+const Home = () => {
 
 
-
-
-
-function Home() {
   return (
+<div className='max-h-screen overflow-hidden flex flex-col'>
+            <Header />
+            <div className='flex-grow overflow-y-auto mx-4'>
+              <div className='flex h-full'>
+                <Sidebar />
+                <div className='flex-grow'>
+{/* Comienza componente index */}
 
-
-  <div className=" grid grid-cols-5 grid-rows-5 gap-1">
-    <div className="m-0">
-    <MusiCard/>
+                <div className="grid grid-cols-5 grid-rows-5 gap-5">
+      <div className="m-0">
+      <SongCard/>
+      </div>
+      {/* Resto de los componentes MusiCard */}
+     <SongCard/>
+     <SongCard/>
+     <SongCard/>
+     <SongCard/>
+     <SongCard/>
     </div>
-    <div className="m-0"><MusiCard/></div>
-    <div className="m-0"><MusiCard/></div>
-    <div className="m-0"><MusiCard/></div>
-    <div className="col-start-4 row-start-2 m-0"><MusiCard/></div>
-    <div className="col-start-3 row-start-2 m-0"><MusiCard/></div>
-    <div className="col-start-2 row-start-2 m-0"><MusiCard/></div>
-    <div className="col-start-1 row-start-2 m-0"><MusiCard/></div>
-    <div className="col-start-1 row-start-3 m-0"><MusiCard/></div>
-    <div className="col-start-2 row-start-3 m-0"><MusiCard/></div>
-    <div className="col-start-3 row-start-3 m-0"><MusiCard/></div>
-    <div className="col-start-4 row-start-3 m-0"><MusiCard/></div>
-    <div className="col-start-4 row-start-4 m-0 "><MusiCard/></div>
-    <div className="col-start-2 row-start-4 m-0"><MusiCard/></div>
-    <div className="col-start-1 row-start-4 m-0"><MusiCard/></div>
-    <div className="col-start-1 row-start-5 m-0"><MusiCard/></div>
-    <div className="col-start-2 row-start-5 m-0 "><MusiCard/></div>
-    <div className="col-start-3 row-start-5 m-0"><MusiCard/></div>
-    <div className="col-start-3 row-start-4 m-0"><MusiCard/></div>
-    <div className="col-start-4 row-start-5 m-0"><MusiCard/></div>
-    <div className="col-start-5 row-start-1 m-0"><MusiCard/></div>
-    <div className="col-start-5 row-start-2 m-0"><MusiCard/></div>
-    <div className="col-start-5 row-start-3 m-0"><MusiCard/></div>
-    <div className="col-start-5 row-start-4 m-0"><MusiCard/></div>
 
-    
-    
-   </div>
+{/* Termina componente index  */}
+                </div>
+              </div>
+            </div>
+          </div>
+   
   );
-}
+};
+
 
 export default Home;
