@@ -32,3 +32,16 @@ export const getAlbum = async (albumId) => {
     return { error: error.message };
   }
 }
+
+export const getCurrentUser = async () => {
+  try {
+    const response = await axios.get(`https://api.spotify.com/v1/me`, {
+      headers: { "Authorization": getToken() }
+    })
+
+    return response.data
+  } catch (error) {
+    console.error(error)
+    return { error: error.message };
+  }
+}
