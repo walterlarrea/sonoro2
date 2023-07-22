@@ -39,7 +39,7 @@ const Album = () => {
       <div className="absolute z-10 flex flex-col justify-end w-full bg-gradient-to-b from-gray-900 p-3 text-[1.25em]">
         TEMONES en este album:
         {album.tracks.items.map(t =>
-          <span>
+          <span key={t.id}>
             {t.name}
           </span>
         )}

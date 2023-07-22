@@ -8,7 +8,6 @@ const Profile = () => {
   useEffect(() => {
     const userProfile = async () => {
       const response = await getCurrentUser();
-      console.log('perfil', response)
       setProfile(response);
     }
     userProfile();
