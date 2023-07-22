@@ -2,8 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from "next/navigation";
 import { getNewReleases } from '@/services/spotifyService';
-import AlbumCard from '../components/AlbumCard';
-import RootLayout from '../layout';
+import AlbumCard from '@/components/AlbumCard';
 
 const NewReleases = () => {
   const router = useRouter()
@@ -26,7 +25,7 @@ const NewReleases = () => {
   }
 
   return (
-    <RootLayout>
+    <div>
       <h2 className='text-[2em] mt-5'>Últimos lanzamientos</h2>
       <div style={{
         display: 'grid',
@@ -47,7 +46,7 @@ const NewReleases = () => {
           </div>
         )}
       </div>
-    </RootLayout>
+    </div>
   )
 };
 

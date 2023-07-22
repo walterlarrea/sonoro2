@@ -1,7 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { getCurrentUser } from '@/services/spotifyService';
-import RootLayout from '../layout';
 
 const Profile = () => {
   const [profile, setProfile] = useState(null)
@@ -24,12 +23,12 @@ const Profile = () => {
   }
 
   return (
-    <RootLayout>
+    <div>
       <h2 className='text-[2em] mt-5'>Mi perfil</h2>
 
       <div>Nombre: {profile.display_name}</div>
       <div>E-mail: {profile.email}</div>
-    </RootLayout>
+    </div>
   )
 };
 
