@@ -9,7 +9,7 @@ const Login = () => {
   return (
     <>
       <nav className="fixed top-0 right-0 bg-gray-800 p-4">
-      <ul className="space-y-4 text-white">
+      <ul className="space-y-2 text-white">
      
         <li>
           <a href="#music" className="text-blue-300 hover:text-blue-100">Volver</a>

@@ -1,4 +1,5 @@
-import { PlayIcon } from "@heroicons/react/24/solid";
+import { PlayIcon,StarIcon } from "@heroicons/react/24/solid";
+
 import Image from "next/image";
 import React from "react";
 
@@ -15,8 +16,9 @@ export default function SongCard() {
 						height={300}
 						alt={"Playlist Image"}
 					/>
-					<div className="absolute bottom-3 right-3 hidden flex-row items-center gap-2 group-hover:flex">
+					<div className="absolute bottom-3 right-3 hidden flex-col items-center gap-2 group-hover:flex">
 						<PlayIcon className="h-10 w-10 rounded-full bg-green-500 p-2 text-black" />
+						<StarIcon className="h-10 w-10 rounded-full bg-yellow-500 p-2 text-black" />
 					</div>
 				</div>
 				<h1 className="mt-5 truncate text-lg font-bold text-white">La vela muerta</h1>
