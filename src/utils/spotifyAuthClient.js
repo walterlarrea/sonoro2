@@ -15,8 +15,8 @@ export async function getAccessToken(clientId, code) {
     body: params
   });
 
-  const { access_token } = await result.json();
-  return access_token;
+  const response = await result.json();
+  return response;
 }
 
 export async function redirectToAuthCodeFlow(clientId) {
@@ -34,6 +34,22 @@ export async function redirectToAuthCodeFlow(clientId) {
   params.append("code_challenge", challenge);
 
   document.location = `https://accounts.spotify.com/authorize?${params.toString()}`;
+}
+
+export async function refreshAccessToken(clientId, refreshToken) {
+  const params = new URLSearchParams();
+  params.append("grant_type", "refresh_token");
+  params.append("client_id", clientId);
+  params.append("refresh_token", refreshToken);
+
+  const result = await fetch("https://accounts.spotify.com/api/token", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: params
+  });
+
+  const response = await result.json();
+  return response;
 }
 
 function generateCodeVerifier(length) {
