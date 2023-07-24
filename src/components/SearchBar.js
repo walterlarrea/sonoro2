@@ -38,7 +38,7 @@ const SearchBar = () => {
 
   return (
     <div className="text-center">
-      <div className="mb-8">
+      <div className="mb-8 whitespace-nowrap">
         <form onSubmit={handleSearch}>
 
           <input
@@ -50,8 +50,7 @@ const SearchBar = () => {
               text-zinc-900
               rounded-s-full
               align-middle
-              px-4
-              "
+              px-4"
             type='search'
             name='search-bar'
             placeholder='Albums, Artistas, Temas'
