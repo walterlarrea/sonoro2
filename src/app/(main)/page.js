@@ -7,7 +7,7 @@ const Home = () => {
 
   return (
 
-    <div className="grid grid-cols-5 grid-rows-5 gap-5">
+    <div className="grid grid-cols-5 grid-rows-auto gap-5">
       <div className="m-0">
         <SongCard />
       </div>
