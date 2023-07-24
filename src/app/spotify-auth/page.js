@@ -2,14 +2,16 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation';
 import { useSearchParams } from 'next/navigation'
-import { getAccessToken, redirectToAuthCodeFlow } from '@/utils/spotifyAuth';
+import { getAccessToken, refreshAccessToken, redirectToAuthCodeFlow } from '@/utils/spotifyAuthClient';
+import { getStore, setStore } from '@/services/localStore';
 
 const AccesoApi = () => {
   const router = useRouter()
   const params = useSearchParams()
-  const clientId = "c4ebe3bd87fe4a0493dd6d14ee608734";
   const code = params.get("code") || undefined;
   const error = params.get("error") || undefined;
+  const clientId = "c4ebe3bd87fe4a0493dd6d14ee608734";
+  const refreshToken = getStore('sonoro-refresh')
 
   useEffect(() => {
     if (error) {
@@ -19,12 +21,23 @@ const AccesoApi = () => {
     }
 
     const apiAuth = async () => {
+      if (refreshToken) {
+        const authResponse = await refreshAccessToken(clientId, refreshToken);
+        if (authResponse.access_token) {
+          setStore("sonoro-session", authResponse.access_token)
+          setStore("sonoro-refresh", authResponse.refresh_token)
+          router.push('/')
+          return
+        }
+      }
+
       if (!code) {
         redirectToAuthCodeFlow(clientId);
       } else {
-        const accessToken = await getAccessToken(clientId, code);
-        if (accessToken) {
-          localStorage.setItem("sonoro-session", accessToken)
+        const authResponse = await getAccessToken(clientId, code);
+        if (authResponse.access_token) {
+          setStore("sonoro-session", authResponse.access_token)
+          setStore("sonoro-refresh", authResponse.refresh_token)
           router.push('/')
         }
       }
