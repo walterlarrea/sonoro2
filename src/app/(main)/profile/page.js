@@ -56,8 +56,50 @@ const Profile = () => {
     <div className='m-4'>
       <h2 className='text-[2em] mt-5'>Mi perfil</h2>
 
-      <div>Nombre: {profile.display_name}</div>
-      <div>E-mail: {profile.email}</div>
+
+
+      <div className="bg-white max-w-full shadow overflow-hidden sm:rounded-lg">
+      <div className="border-t border-gray-200">
+        <dl>
+          <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt className="text-sm font-medium text-gray-500">
+            {profile.display_name}
+            </dt>
+            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              Nicolás García
+            </dd>
+          </div>
+          <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt className="text-sm font-medium text-gray-500">
+             Email
+            </dt>
+            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            {profile.email}
+            </dd>
+          </div>
+          <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt className="text-sm font-medium text-gray-500">
+             Telefono
+            </dt>
+            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              094272390
+            </dd>
+          </div>
+          <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt className="text-sm font-medium text-gray-500">
+              Sobre ti:
+            </dt>
+            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              Soy programeitor
+            </dd>
+          </div>
+       
+        </dl>
+      </div>
+    </div>
+
+
+    
 
       <button
         onClick={handleLogout}
