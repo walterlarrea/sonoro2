@@ -1,0 +1,19 @@
+:root {
+  --header-height: 84px;
+  --grid-layout-main-gap: 8px;
+}
+
+.grid-layout {
+  display: grid;
+  grid-template-columns: 280px auto;
+  margin: var(--grid-layout-main-gap);
+  max-height: 100vh;
+}
+
+.grid-main-space {
+  max-height: calc(100vh - calc(var(--header-height) + var(--grid-layout-main-gap) + var(--grid-layout-main-gap)));
+}
+
+.custom-header {
+  height: var(--header-height);
+}
