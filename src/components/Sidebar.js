@@ -3,15 +3,21 @@ import Navbar from "./Navbar";
 
 export default function SideBar() {
   return (
-    <div className="flex-col text-sm hidden md:flex w-64 mr-3">
+    <div className="flex-col text-sm hidden md:flex w-full gap-[8px]">
 
-      <Navbar background={'bg-white'} column={true} />
+      <Navbar column={true} />
 
-      <div className="mt-5 rounded-t bg-white bg-opacity-10 p-4 w-64 mr-3" >
-        <div className="flex flex-row justify-center items-center space-x-3 text-zinc-100 ">
-          <h2>Tu lista</h2>
-          <SidebarPlaylist />
-        </div>
+      <div className="
+      flex 
+      flex-row 
+      justify-center 
+      items-center 
+      rounded-lg
+      text-zinc-100 
+      bg-zinc-900 
+      p-4">
+        <h2>Tu lista</h2>
+        <SidebarPlaylist />
       </div>
 
     </div>

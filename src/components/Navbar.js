@@ -2,7 +2,6 @@ import Link from "next/link";
 import { HomeIcon, HeartIcon, MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 
 const Navbar = ({ background, column, row }) => {
-  const bg = background ? background : 'transparent'
   const flexDir = column ?
     'flex-col' // space-y-3'
     : 'flex-row' // space-x-3'
@@ -14,9 +13,9 @@ const Navbar = ({ background, column, row }) => {
       className={`
         flex 
         ${flexDir} 
-        rounded-md 
-        ${bg} 
-        bg-opacity-10 
+        rounded-lg 
+        text-zinc-100 
+        bg-zinc-900 
         pe-3
         pb-3
         whitespace-nowrap

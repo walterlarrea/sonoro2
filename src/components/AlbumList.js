@@ -5,16 +5,22 @@ import AlbumCard from "./AlbumCard"
 const AlbumList = ({ albums, withAccess }) => {
   const router = useRouter()
 
-  const handleClick = (albumId) => () => {
+  const handleClickCard = (albumId) => () => {
     if (withAccess) {
       router.push(`/albums/${albumId}`)
+    }
+  }
+  const handleClickPlay = (albumId) => () => {
+    if (withAccess) {
+      // router.push(`/albums/${albumId}`)
+      console.log('PLAY')
     }
   }
 
   return (
     <div style={{
       display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minMax(270px, 1fr))',
+      gridTemplateColumns: 'repeat(auto-fit, minMax(145px, 1fr))',
       justifyItems: 'center',
       gap: '1em',
     }}
@@ -22,10 +28,11 @@ const AlbumList = ({ albums, withAccess }) => {
     >
 
       {albums && albums?.items?.map(a =>
-        <div key={a.id} style={{ minWidth: '270px', width: '100%' }} className="m-0">
+        <div key={a.id} className="m-0 w-full min-w-[145px]">
           <AlbumCard
             album={a}
-            onClick={handleClick(a.id)}
+            onClickCard={handleClickCard(a.id)}
+            onClickPlay={handleClickPlay(a.id)}
           />
         </div>
       )}
