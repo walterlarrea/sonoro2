@@ -100,12 +100,25 @@ const Profile = () => {
 
 
     
-
+<div className=''></div>
       <button
         onClick={handleLogout}
         className={logoutButtonClassNames.current}>
         Cerrar sesión
       </button>
+
+      <button
+        className={logoutButtonClassNames.current}>
+        Editar perfil
+      </button>
+
+      <button
+        className={logoutButtonClassNames.current}>
+        Premium 
+      </button>
+
+
+      
     </div>
   )
 };
