@@ -1,0 +1,18 @@
+{
+  "aside": {
+      "home": "Home",
+      "search": "Search",
+      "ultimate": "Latest releases"
+  },
+  "profile": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "about": "About me"
+  },
+  "search": {
+    "button": "Search",
+    "placeholder": "Albums, Artists, Tracks"
+}
+
+}

@@ -1,0 +1,21 @@
+{
+    "aside": {
+        "home": "Inicio",
+        "search": "Buscar",
+        "ultimate": "Últimos lanzamientos"
+    },
+    "profile": {
+        "name": "Nombre",
+        "email": "Email",
+        "phone": "Telefono",
+        "about": "Sobre mi"
+    },
+    "search": {
+        "button": "Buscar",
+        "placeholder": "Albums, Artistas, Temas"
+    },
+    "login": {
+        "button": "Buscar",
+        "placeholder": "Albums, Artistas, Temas"
+    }
+  }

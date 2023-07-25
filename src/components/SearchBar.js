@@ -3,10 +3,11 @@ import { searchResults } from "@/services/spotifyService";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import AlbumList from "./AlbumList";
+import { useTranslation } from "next-i18next";
 
 const SearchBar = () => {
+  const {t} = useTranslation();
   const [searchText, setSearchText] = useState(null);
-
   const { data: results, error, refetch, isLoading } = useQuery({
     queryKey: ['searchData'],
     queryFn: () => searchResults(searchText),
@@ -53,7 +54,7 @@ const SearchBar = () => {
               px-4"
             type='search'
             name='search-bar'
-            placeholder='Albums, Artistas, Temas'
+            placeholder={t('search.placeholder')}
             onChange={(e) => setSearchText(e.target.value)}
           />
           <button
@@ -72,7 +73,7 @@ const SearchBar = () => {
             onClick={refetch}
             type='submit'
           >
-            Buscar
+            {t('search.button')}
           </button>
         </form>
       </div>
