@@ -56,10 +56,10 @@ export const searchResults = async (searchText, types, market, genre, limit, off
   const params = new URLSearchParams();
   params.append("q", searchText);
   params.append("type", types || ['album']);
-  if (market) {
+  if (market !== undefined) {
     params.append("market", market);
   }
-  if (genre) {
+  if (genre !== undefined) {
     params.append("genre", genre);
   }
   params.append("limit", limit || 20);
@@ -82,7 +82,7 @@ export const searchResults = async (searchText, types, market, genre, limit, off
 export const getRecommendations = async ({ genres, market, limit, offset }) => {
   const params = new URLSearchParams();
   params.append('seed_genres', genres);
-  if (market) {
+  if (market !== undefined) {
     params.append("market", market);
   }
   params.append("limit", limit || 20);
@@ -91,6 +91,28 @@ export const getRecommendations = async ({ genres, market, limit, offset }) => {
   try {
     const response = await axios.get(
       `https://api.spotify.com/v1/recommendations?${params}`,
+      {
+        headers: { "Authorization": getToken() }
+      })
+
+    return response.data
+  } catch (error) {
+    console.error(error)
+    return error.response;
+  }
+}
+
+export const getUserSavedSongs = async ({ market, limit, offset }) => {
+  const params = new URLSearchParams();
+  if (market !== undefined) {
+    params.append("market", market);
+  }
+  params.append("limit", limit || 20);
+  params.append("offset", offset || 0);
+
+  try {
+    const response = await axios.get(
+      `https://api.spotify.com/v1/me/tracks?${params}`,
       {
         headers: { "Authorization": getToken() }
       })

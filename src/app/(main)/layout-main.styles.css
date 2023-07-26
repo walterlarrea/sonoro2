@@ -1,7 +1,7 @@
 :root {
-  --header-height: 84px;
-  --nav-horizontal-height: 49px;
   --grid-layout-main-gap: 8px;
+  --nav-horizontal-height: 49px;
+  --header-height: 84px;
 }
 
 .grid-layout {
@@ -19,7 +19,7 @@
 }
 
 .grid-main-space {
-  max-height: calc(100vh - calc(var(--header-height) + var(--grid-layout-main-gap) + var(--grid-layout-main-gap)));
+  max-height: calc(100vh - calc(var(--header-height) + var(--grid-layout-main-gap)));
 }
 
 .custom-header {
