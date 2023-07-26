@@ -2,7 +2,7 @@
 import './globals.css'
 import React from 'react';
 import { appWithTranslation } from 'next-i18next';
-import i18n from './(main)/i18n';
+import i18n from '@/config/i18n'//'./config/i18n';
 
 export const metadata = {
   title: 'Sonoro',
