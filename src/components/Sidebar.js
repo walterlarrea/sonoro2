@@ -1,5 +1,6 @@
 import SidebarPlaylist from "./SidebarPlaylist";
 import Navbar from "./Navbar";
+import SidebarSavedSongs from "./SidebarSavedSongs";
 
 export default function SideBar() {
   return (
@@ -9,14 +10,15 @@ export default function SideBar() {
 
       <div className="
       flex 
-      flex-row 
+      flex-col 
       justify-center 
       items-center 
       rounded-lg
       text-zinc-100 
       bg-zinc-900 
-      p-4">
-        <h2>Tu lista</h2>
+      p-[8px]">
+        <h2 className="mb-3">Tus listas</h2>
+        <SidebarSavedSongs />
         <SidebarPlaylist />
       </div>
 
