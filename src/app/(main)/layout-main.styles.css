@@ -6,9 +6,11 @@
   --secundary: rgb(215, 68, 68);
   --white:#fff;
   --card-background:#f2f2f0;
-  --text:#403f37;              
+        
     
 }
+
+
 
 .grid-layout {
   display: grid;

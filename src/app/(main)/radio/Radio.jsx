@@ -10,6 +10,7 @@ const Radio = ({image, name, url}) => {
         <Heart />
         <img  className='radio_img'  src={image} alt='logo radio'/>
         <h2 className='radio_name' >{name}</h2>
+        
         <audio className='radio_audio' src={url} controls/>
     </div>
   )

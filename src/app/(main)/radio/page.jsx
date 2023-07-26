@@ -9,7 +9,7 @@ import data from "@/utils/radio.json";
 const RadioContainer = (props) => {
   return (
     <section className='radio_section'>
-        <h1 className='radio_title'>ESTACIONES DE RADIO</h1>
+        <h1 className='radio_title'></h1>
         <div className='radio_container'>
          {data.map( radio=>
                <Radio 

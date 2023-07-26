@@ -1,6 +1,6 @@
 .radio{
     background-color: var(--card-background);
-    width: 240px;
+    width: 260px;
     padding: 20px 16px;
     border-radius: 12px;
     position: relative;
@@ -10,15 +10,17 @@
 
 .radio_name{
     text-align: center;
-    font-size: 14px;
+    font-size: 15px;
     margin: 14px;
-    color: var(--text);
+    color: black;
+    font-weight: bold;
+    
     
 }
 
 .radio_img{
     border-radius: 12px;
-    display:block ;
+    display:block;
     margin: auto;
     
 }
@@ -27,8 +29,14 @@
     
     display: flex;
     margin: auto;
-    width: 220px;
+    width: 200px;
 }
 
+audio::-webkit-media-controls-panel {
+    background-color: #f2f2f0;
+  }
 
-
+  audio::-webkit-media-controls-play-button {
+    background-color: white;
+    border-radius: 50%;
+  }

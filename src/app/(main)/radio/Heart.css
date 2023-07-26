@@ -1,6 +1,19 @@
 .heart{
-    color: black;
+    color: red;
     cursor: pointer;
+    font-size: 22px;
+    
+    
+    
+    
+    
+    position: absolute;
+    top: 267px;
+    right: 8.3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
     
 }
 
