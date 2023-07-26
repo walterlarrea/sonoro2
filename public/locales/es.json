@@ -17,5 +17,13 @@
     "login": {
         "button": "Buscar",
         "placeholder": "Albums, Artistas, Temas"
+    },
+    "register": {
+        "name": "Nombre",
+        "email": "Email",
+        "password": "Contraseña",
+        "password-repeat": "Repetir contraseña",
+        "phone": "Telefono"
     }
+
   }

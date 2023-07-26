@@ -1,8 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import { HomeIcon, HeartIcon, MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import { HomeIcon, HeartIcon, MagnifyingGlassIcon, RadioIcon } from "@heroicons/react/24/solid";
 import { useTranslation } from "react-i18next";
-
 
 
 const Navbar = ({ background, column, row }) => {
@@ -47,6 +46,13 @@ const {t} = useTranslation();
         href='/new-releases'>
         <HeartIcon className="h-6 w-6 me-4 inline-block" />
         {t('aside.ultimate')}
+      </Link>
+
+      <Link
+        className={linkClassNames}
+        href='/radio'>
+        <RadioIcon className="h-6 w-6 me-4 inline-block" />
+        Radio
       </Link>
 
     </nav>
