@@ -9,7 +9,7 @@ export const metadata = {
   description: 'bla bla bla',
 }
 
- function RootLayout({ children }) {
+function RootLayout({ children }) {
 
 
   return (

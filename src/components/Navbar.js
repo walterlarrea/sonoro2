@@ -55,13 +55,6 @@ const Navbar = ({ background, column, row }) => {
         Radio
       </Link>
 
-      <Link
-        className={linkClassNames}
-        href='/radio'>
-        <RadioIcon className="h-6 w-6 me-4 inline-block" />
-        Radio
-      </Link>
-
     </nav>
   )
 }
