@@ -1,10 +1,7 @@
-import SidebarPlaylist from "./SidebarPlaylist";
-import Navbar from "./Navbar";
-import SidebarSavedSongs from "./SidebarSavedSongs";
-
 import React from 'react';
 import { appWithTranslation } from 'next-i18next'; // Asegúrate de importar appWithTranslation
 import Navbar from './Navbar'; // Importa el componente Navbar aquí
+import SidebarPlaylist from "./SidebarPlaylist";
 import SidebarSavedSongs from "./SidebarSavedSongs";
 
 const SideBar = () => {

@@ -17,8 +17,8 @@ i18n.use(initReactI18next).init({
   lng: 'en', // lenguaje por defecto
   fallbackLng: 'es', // si no encuentra ningun lenguaje va usar este.
   interpolation: {
-    escapeValue: false, 
+    escapeValue: false,
   },
-}); 
+});
 
 export default i18n;
