@@ -1,5 +1,11 @@
 :root {
   --grid-layout-main-gap: 8px;
+  --main:rgb(195, 46, 46);
+  --secundary: rgb(215, 68, 68);
+  --white:#fff;
+  --card-background:#f2f2f0;
+  --text:#403f37;              
+    
   --nav-horizontal-height: 49px;
   --header-height: 84px;
 }
