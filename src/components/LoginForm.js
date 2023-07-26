@@ -8,7 +8,7 @@ export default function LoginForm({ setTypeScreen }) {
 <form className="space-y-4 md:space-y-6" action="#">
       <div>
         <label htmlFor="email" className="block mb-2 text-sm font-medium  dark:text-white">
-          Tu email
+          {t('login.email')}
         </label>
         <input
           type="email"
@@ -21,7 +21,7 @@ export default function LoginForm({ setTypeScreen }) {
       </div>
       <div>
         <label htmlFor="password" className="block mb-2 text-sm font-medium  dark:text-white">
-          Contraseña
+        {t('login.password')}
         </label>
         <input
           type="password"
@@ -45,7 +45,7 @@ export default function LoginForm({ setTypeScreen }) {
           </div>
           <div className="ml-3 text-sm">
             <label htmlFor="remember" className="text-gray-500 ">
-              Recuerdame
+            {t('login.rem')}
             </label>
           </div>
         </div>

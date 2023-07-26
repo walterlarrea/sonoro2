@@ -15,8 +15,9 @@
         "placeholder": "Albums, Artistas, Temas"
     },
     "login": {
-        "button": "Buscar",
-        "placeholder": "Albums, Artistas, Temas"
+        "email": "Correo electronico",
+        "password": "Contraseña",
+        "rem": "Recordame"
     },
     "register": {
         "name": "Nombre",

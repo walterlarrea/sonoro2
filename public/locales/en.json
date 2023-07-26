@@ -14,6 +14,11 @@
     "button": "Search",
     "placeholder": "Albums, Artists, Tracks"
 },
+"login": {
+  "email": "Your email",
+  "password": "Password",
+  "rem": "Remember"
+},
 "register": {
   "name": "Name",
   "email": "Email",
