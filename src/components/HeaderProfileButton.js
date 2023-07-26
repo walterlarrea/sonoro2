@@ -74,7 +74,7 @@ const HeaderProfileButton = () => {
           className={userButtonClassNames.current}>
           <img
             className={imgClassNames.current}
-            src={currentUser?.images?.length > 0 ? currentUser.images[0].url : '/images/userIcon-dark.png'}
+            src={currentUser?.images?.length > 0 ? currentUser?.images[0]?.url : '/images/userIcon-dark.png'}
             alt='Profile picture' />
           {currentUser.display_name}
         </button>
