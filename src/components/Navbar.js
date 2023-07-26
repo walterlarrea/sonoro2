@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 
 const Navbar = ({ background, column, row }) => {
-const {t} = useTranslation();
+  const { t } = useTranslation();
 
 
   const flexDir = column ?
@@ -46,6 +46,13 @@ const {t} = useTranslation();
         href='/new-releases'>
         <HeartIcon className="h-6 w-6 me-4 inline-block" />
         {t('aside.ultimate')}
+      </Link>
+
+      <Link
+        className={linkClassNames}
+        href='/radio'>
+        <RadioIcon className="h-6 w-6 me-4 inline-block" />
+        Radio
       </Link>
 
       <Link
