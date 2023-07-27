@@ -1,7 +1,5 @@
-// 'use client'
 import './globals.css'
-// import { appWithTranslation } from 'next-i18next';
-// import i18n from '@/config/i18n'//'./config/i18n';
+import Translator from '@/config/i18nProvider';
 
 export const metadata = {
   title: 'Sonoro',
@@ -14,11 +12,12 @@ function RootLayout({ children }) {
   return (
     <html lang="es">
       <body>
-        {children}
+        <Translator>
+          {children}
+        </Translator>
       </body>
     </html>
   );
 }
 
-// export default appWithTranslation(RootLayout)
 export default RootLayout
