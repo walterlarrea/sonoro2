@@ -35,7 +35,7 @@ const TrackCard = ({ track, onClick }) => {
         </div>
 
         <img
-          src={track.album.images[0].url}
+          src={track.album?.images[0]?.url}
           alt={`Cover of the ${track.album_type} ${track.name}`}
           className="rounded-md"
         />

@@ -34,7 +34,7 @@ const AlbumCard = ({ album, onClickCard, onClickPlay }) => (
       </div>
 
       <img
-        src={album.images[0].url}
+        src={album?.images[0]?.url}
         alt={`Cover of the ${album.album_type} ${album.name}`}
         className="rounded-md"
       />

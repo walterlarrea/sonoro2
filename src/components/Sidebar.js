@@ -1,8 +1,12 @@
+import React from 'react';
+import { appWithTranslation } from 'next-i18next'; // Asegúrate de importar appWithTranslation
+import Navbar from './Navbar'; // Importa el componente Navbar aquí
 import SidebarPlaylist from "./SidebarPlaylist";
-import Navbar from "./Navbar";
 import SidebarSavedSongs from "./SidebarSavedSongs";
 
-export default function SideBar() {
+const SideBar = () => {
+
+
   return (
     <div className="flex-col text-sm hidden md:flex w-full gap-[8px]">
 
@@ -25,3 +29,5 @@ export default function SideBar() {
     </div>
   );
 }
+
+export default appWithTranslation(SideBar)

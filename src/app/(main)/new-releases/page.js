@@ -1,9 +1,12 @@
 'use client';
+
 import { useState, useEffect } from 'react';
 import { getNewReleases } from '@/services/spotifyService';
 import AlbumList from '@/components/AlbumList';
+import { useTranslation } from 'next-i18next';
 
 const NewReleases = () => {
+  const {t} = useTranslation();
   const [albums, setAlbums] = useState(null)
 
   useEffect(() => {
@@ -24,7 +27,7 @@ const NewReleases = () => {
 
   return (
     <div>
-      <h2 className='text-[2em] mt-5'>Últimos lanzamientos</h2>
+      <h2 className='text-[2em] mt-5'> </h2>
       <AlbumList albums={albums} withAccess={true} />
     </div>
   )

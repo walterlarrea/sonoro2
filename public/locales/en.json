@@ -1,0 +1,31 @@
+{
+  "aside": {
+      "home": "Home",
+      "search": "Search",
+      "ultimate": "Latest releases"
+  },
+  "profile": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "about": "About me"
+  },
+  "search": {
+    "button": "Search",
+    "placeholder": "Albums, Artists, Tracks"
+},
+"login": {
+  "email": "Your email",
+  "password": "Password",
+  "rem": "Remember"
+},
+"register": {
+  "name": "Name",
+  "email": "Email",
+  "password": "Password",
+  "password-repeat": "Repeat password",
+  "phone": "Phone"
+}
+
+}
+

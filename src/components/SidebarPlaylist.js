@@ -12,7 +12,7 @@ const SidebarPlaylist = () => {
           className={`flex cursor-pointer items-center space-x-3 text-gray-400 hover:text-white`}
         >
           <Image
-            src={data.images[0].url}
+            src={data?.images[0]?.url}
             alt={data.name}
             width={40}
             height={40}

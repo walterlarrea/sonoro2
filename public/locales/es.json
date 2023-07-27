@@ -1,0 +1,30 @@
+{
+    "aside": {
+        "home": "Inicio",
+        "search": "Buscar",
+        "ultimate": "Últimos lanzamientos"
+    },
+    "profile": {
+        "name": "Nombre",
+        "email": "Email",
+        "phone": "Telefono",
+        "about": "Sobre mi"
+    },
+    "search": {
+        "button": "Buscar",
+        "placeholder": "Albums, Artistas, Temas"
+    },
+    "login": {
+        "email": "Correo electronico",
+        "password": "Contraseña",
+        "rem": "Recordame"
+    },
+    "register": {
+        "name": "Nombre",
+        "email": "Email",
+        "password": "Contraseña",
+        "password-repeat": "Repetir contraseña",
+        "phone": "Telefono"
+    }
+
+  }

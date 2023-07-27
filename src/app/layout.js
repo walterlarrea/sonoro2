@@ -1,19 +1,23 @@
 import './globals.css'
+import Translator from '@/config/i18nProvider';
 
 export const metadata = {
   title: 'Sonoro',
   description: 'bla bla bla',
 }
 
-export default function RootLayout({ children }) {
+function RootLayout({ children }) {
+
 
   return (
     <html lang="es">
       <body>
-        {children}
+        <Translator>
+          {children}
+        </Translator>
       </body>
     </html>
   );
 }
 
-
+export default RootLayout
