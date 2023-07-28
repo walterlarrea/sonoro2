@@ -34,7 +34,7 @@ const SongListItem = ({ track, listNumber, handleClick }) => {
           ">
           {track.album.images &&
             <img
-              src={track.album.images[2].url}
+              src={track.album?.images[2]?.url}
               alt={track.name}
               className="
                 w-[3rem]

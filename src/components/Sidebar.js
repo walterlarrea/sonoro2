@@ -1,3 +1,4 @@
+
 import SidebarPlaylist from "./SidebarPlaylist";
 
 
@@ -7,6 +8,8 @@ import SidebarSavedSongs from "./SidebarSavedSongs";
 
 import React from 'react';
 import { appWithTranslation } from 'next-i18next'; // Asegúrate de importar appWithTranslation
+
+
 
 
 const SideBar = () => {

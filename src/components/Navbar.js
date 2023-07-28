@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 
 const Navbar = ({ background, column, row }) => {
-const {t} = useTranslation();
+  const { t } = useTranslation();
 
 
   const flexDir = column ?

@@ -1,25 +1,23 @@
-'use client'
 import './globals.css'
-import React from 'react';
-import { appWithTranslation } from 'next-i18next';
-import i18n from './(main)/i18n';
+import Translator from '@/config/i18nProvider';
 
 export const metadata = {
   title: 'Sonoro',
   description: 'bla bla bla',
 }
 
- function RootLayout({ children }) {
+function RootLayout({ children }) {
 
 
   return (
     <html lang="es">
       <body>
-        {children}
+        <Translator>
+          {children}
+        </Translator>
       </body>
     </html>
   );
 }
 
-export default appWithTranslation(RootLayout)
-
+export default RootLayout
