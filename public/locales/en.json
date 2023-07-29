@@ -17,14 +17,33 @@
 "login": {
   "email": "Your email",
   "password": "Password",
-  "rem": "Remember"
+  "rem": "Remember",
+  "registerEnter": "Register me",
+  "backHome": "Return",
+  "haveAccountAnswer": "You do not have an account?",
+  "recoveryPassword": "Forgot your password?",
+  "enterButton": "Enter"
 },
 "register": {
   "name": "Name",
   "email": "Email",
   "password": "Password",
   "password-repeat": "Repeat password",
-  "phone": "Phone"
+  "phone": "Phone",
+  "haveUser": "I have user",
+  "registerButton": "Register me"
+},
+"sidebar": {
+    "userList": "Your lists"
+},
+"sidebarSavedSongs": {
+    "userLikeSongs": "Songs you like",
+    "list":"List.",
+    "song":"song",
+    "songs":"songs"    
+},
+"radio": {
+  "title": "Radio stations"
 }
 
 }

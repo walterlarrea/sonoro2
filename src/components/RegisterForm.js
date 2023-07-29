@@ -54,11 +54,11 @@ export default function RegisterForm({ setTypeScreen }) {
 </form>
 
 <button  className="px-4 py-2 mt-4 text-white bg-blue-300 hover:bg-blue-600 focus:outline-none focus:bg-blue-600 rounded shadow">
-      Registrarse
+{t('register.registerButton')}
     </button>
 
 
-    <a onClick={() => setTypeScreen(1)} class="mt-6 underline hover:text-blue-600">Ya tengo mi usuario.</a>
+    <a onClick={() => setTypeScreen(1)} class="mt-6 underline hover:text-blue-600">{t('register.haveUser')}</a>
    
 
 </>

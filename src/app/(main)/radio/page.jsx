@@ -4,12 +4,13 @@ import React from 'react' //se puede borrar
 import "./page.css"
 import { Radio } from './Radio'
 import data from "@/utils/radio.json";
-
+import { useTranslation, UseTranslation } from 'next-i18next';
 
 const RadioContainer = (props) => {
+  const {t} = useTranslation();
   return (
     <section className='radio_section'>
-        <h1 className='radio_title'>ESTACIONES DE RADIO</h1>
+        <h1 className='radio_title'>{t('radio.title')}</h1>
         <div className='radio_container'>
          {data.map( radio=>
                <Radio 
