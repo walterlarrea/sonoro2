@@ -32,7 +32,16 @@
         "password-repeat": "Repetir contraseña",
         "phone": "Telefono",
         "haveUser": "Tengo un usuario.",
-        "registerButton": "Registrarme"
+        "registerButton": "Registrarme",
+        "nameRequired": "El campo nombre es obligatorio.",
+        "emailInvalid": "Formato de email incorrecto.",
+        "emailRequired": "El campo email es obligatorio.",
+        "passwordMinLength": "La contraseña es demasiado corta",
+        "passwordRequired": "El campo contraseña es obligatorio.",
+        "phoneRequired": "Tu numero de telefono es obligatorio.",
+        "passwordMatch":"Ambas contraseñas deben ser iguales.",
+        "rpasswordRequired" : "Debe repetir la contraseña aquí."
+        
     },
     "sidebar": {
         "userList": "Tus listas"

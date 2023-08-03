@@ -18,7 +18,7 @@ export default function RegisterForm({ setTypeScreen }) {
     name: Yup.string().required(t('register.nameRequired')),
     email: Yup.string().email(t('register.emailInvalid')).required(t('register.emailRequired')),
     password: Yup.string().min(6, t('register.passwordMinLength')).required(t('register.passwordRequired')),
-    //rpassword: Yup.string().oneOf([Yup.ref('password'), null], t('register.passwordMatch')).required(t('register.rpasswordRequired')),
+    rpassword: Yup.string().oneOf([Yup.ref('password'), null], t('register.passwordMatch')).required(t('register.rpasswordRequired')),
     phone: Yup.string().required(t('register.phoneRequired'))
   });
 

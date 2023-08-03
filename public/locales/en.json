@@ -31,7 +31,16 @@
   "password-repeat": "Repeat password",
   "phone": "Phone",
   "haveUser": "I have user",
-  "registerButton": "Register me"
+  "registerButton": "Register me",
+  "nameRequired": "The field name is required.",
+  "emailInvalid": "Wrong email format",
+  "emailRequired": "The field email is required",
+  "passwordMinLength": "The password is to short",
+  "passwordRequired": "The password field is required.",
+  "phoneRequired": "Your phone number is required.",
+  "passwordMatch": "Both passwords must be the same.",
+  "rpasswordRequired" : "You need to repeat the password here"
+  
 },
 "sidebar": {
     "userList": "Your lists"
