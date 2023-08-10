@@ -1,5 +1,7 @@
 import './globals.css'
 import Translator from '@/config/i18nProvider';
+import { TrackProvider } from '@/context/trackProvider';
+import { ThemeProvider } from '@/context/themeProvider';
 
 export const metadata = {
   title: 'Sonoro',
@@ -13,7 +15,11 @@ function RootLayout({ children }) {
     <html lang="es">
       <body>
         <Translator>
-          {children}
+          <ThemeProvider>
+            <TrackProvider>
+              {children}
+            </TrackProvider>
+          </ThemeProvider>
         </Translator>
       </body>
     </html>
