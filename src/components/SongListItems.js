@@ -1,7 +1,6 @@
 import { HeartIcon, PlayIcon } from "@heroicons/react/24/solid";
 
 const SongListItem = ({ track, listNumber, handleClick }) => {
-  console.log(track)
   const millisToMinutesAndSeconds = (millis) => {
     var minutes = Math.floor(millis / 60000);
     var seconds = ((millis % 60000) / 1000).toFixed(0);
