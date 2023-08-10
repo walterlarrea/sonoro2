@@ -1,14 +1,13 @@
+'use client';
 import { PlayIcon } from "@heroicons/react/24/solid";
+// import { useRouter } from "next/navigation";
 import { useTrackProvider } from "@/context/trackProvider";
-import { useRouter } from "next/navigation";
 
 const TrackCard = ({ track, onClick }) => {
-  const router = useRouter();
   const [current_track, setTrack] = useTrackProvider();
 
   const handlePlayTrack = () => {
     setTrack(track);
-    router.push('/player');
   }
 
   return (

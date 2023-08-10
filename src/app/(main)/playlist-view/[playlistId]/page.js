@@ -1,11 +1,11 @@
 'use client';
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { ClockIcon } from "@heroicons/react/24/solid";
 import { getPlaylistDetail } from "@/services/spotifyService";
+import { ClockIcon } from "@heroicons/react/24/solid";
 import SongListItem from "@/components/SongListItems";
 
-const PlayList = () => {
+const Playlist = () => {
   const router = useParams()
   const playlistId = router["playlistId"]
   const [playlist, setPlaylist] = useState(null);
@@ -29,6 +29,13 @@ const PlayList = () => {
     return (
       <div>
         Cargando...
+      </div>
+    )
+  }
+  if (playlist.error) {
+    return (
+      <div>
+        Ocurrió un error: {playlist.error}
       </div>
     )
   }
@@ -62,4 +69,4 @@ const PlayList = () => {
   )
 };
 
-export default PlayList;
+export default Playlist;

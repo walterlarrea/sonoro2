@@ -2,6 +2,8 @@
 import { useState, useEffect } from 'react';
 import { useParams } from "next/navigation";
 import { getAlbum } from '@/services/spotifyService';
+import { ClockIcon } from "@heroicons/react/24/solid";
+import SongListItem from "@/components/SongListItems";
 
 const Album = () => {
   const router = useParams()
@@ -9,13 +11,20 @@ const Album = () => {
   const [album, setAlbum] = useState(null)
 
   useEffect(() => {
-    const album = async () => {
+    const albumDetails = async () => {
       if (albumId) {
         const response = await getAlbum(albumId);
-        setAlbum(response);
+
+        if (response?.status && response.status === 401) {
+          setAlbum(null)
+          return;
+        }
+        const albumObject = response;
+        console.log(albumObject)
+        setAlbum(albumObject);
       }
     }
-    album();
+    albumDetails();
   }, [albumId])
 
   if (!album) {
@@ -34,7 +43,31 @@ const Album = () => {
   }
 
   return (
-    <div className="relative w-content" >
+    <>
+      <table className="w-full">
+        <thead>
+          <tr>
+            <th className="text-start font-normal text-zinc-300 ms-4">#</th>
+            <th className="text-start font-normal text-zinc-300">Título</th>
+            {/* <th className="text-start font-normal text-zinc-300">Álbum</th> */}
+            <th className="text-start font-normal text-zinc-300"></th>
+            <th className="text-start font-normal text-zinc-300">
+              <ClockIcon className="h-6 w-6" />
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {album?.tracks &&
+            album.tracks?.items?.map((track, index) =>
+              <SongListItem
+                key={track.id}
+                track={track}
+                listNumber={index}
+              />
+            )}
+        </tbody>
+      </table>
+      {/* <div className="relative w-content" >
 
       <div className="absolute z-10 flex flex-col justify-end w-full bg-gradient-to-b from-gray-900 p-3 text-[1.25em]">
         TEMONES en este album:
@@ -50,7 +83,8 @@ const Album = () => {
         alt={`Cover of the ${album.album_type} ${album.name}`}
         className='relative top-0 left-0 min-w-full w-full min-h-screen aspect-square'
       />
-    </div>
+    </div> */}
+    </>
   )
 }
 
