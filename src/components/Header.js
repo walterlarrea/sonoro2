@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import HeaderProfileButton from "./HeaderProfileButton";
 import Navbar from "./Navbar";
+import HeaderPlaybackButton from "./HeaderPlaybackButton";
 
 export default function Header() {
   const router = useRouter()
@@ -18,6 +19,7 @@ export default function Header() {
         </div>
 
         <div className="mx-5">
+          <HeaderPlaybackButton />
           <HeaderProfileButton />
         </div>
       </div>

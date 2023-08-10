@@ -1,25 +1,47 @@
 'use-client';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { getUserPlaylists } from "@/services/spotifyService";
+import { useEffect } from "react";
+import SidebarItem from "./SidebarItem";
 
 const SidebarPlaylist = () => {
-  const playlist = [] // Some kind of fetch or useEffect here
+  const router = useRouter()
+  const [playlists, setPlaylists] = useState(null);
+
+  useEffect(() => {
+    const getSavedSongs = async () => {
+      const response = await getUserPlaylists({});
+
+      if (response?.status && response.status === 401) {
+        setPlaylists(null)
+        return;
+      }
+      const userPlaylists = response;
+      setPlaylists(userPlaylists);
+    };
+    getSavedSongs();
+  }, [])
+
+  if (!playlists) {
+    return (
+      <>
+        Cargando...
+      </>
+    )
+  }
 
   return (
     <>
-      {playlist.map((data) => (
-        <div
+      {playlists?.items?.length > 0 && playlists?.items?.map((data) => (
+        <SidebarItem
           key={data.id}
-          className={`flex cursor-pointer items-center space-x-3 text-gray-400 hover:text-white`}
-        >
-          <Image
-            src={data?.images[0]?.url}
-            alt={data.name}
-            width={40}
-            height={40}
-            className={"h-10 w-10 rounded-md"}
-          />
-          <p className="truncate">{data.name}</p>
-        </div>
+          title={data.name}
+          description={data.owner?.display_name}
+          thumbnailSource={data.images?.[0]?.url}
+          handleClick={() => router.push(`/playlist-view/${data.id}`)}
+        />
       ))}
     </>
   )

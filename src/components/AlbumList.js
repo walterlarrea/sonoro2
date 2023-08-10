@@ -10,12 +10,6 @@ const AlbumList = ({ albums, withAccess }) => {
       router.push(`/albums/${albumId}`)
     }
   }
-  const handleClickPlay = (albumId) => () => {
-    if (withAccess) {
-      // router.push(`/albums/${albumId}`)
-      console.log('PLAY')
-    }
-  }
 
   return (
     <div style={{
@@ -32,7 +26,6 @@ const AlbumList = ({ albums, withAccess }) => {
           <AlbumCard
             album={a}
             onClickCard={handleClickCard(a.id)}
-            onClickPlay={handleClickPlay(a.id)}
           />
         </div>
       )}

@@ -30,7 +30,16 @@ export async function redirectToAuthCodeFlow(clientId) {
   params.append("response_type", "code");
   params.append("redirect_uri", getURL('/spotify-auth'));
   params.append("scope",
-    "user-read-private user-read-email user-library-read user-library-modify");
+    `streaming
+    user-read-private 
+    user-read-email 
+    user-library-read 
+    user-library-modify
+    playlist-read-private
+    playlist-read-collaborative
+    user-read-playback-state
+    user-modify-playback-state
+    user-read-currently-playing`);
   params.append("code_challenge_method", "S256");
   params.append("code_challenge", challenge);
 
