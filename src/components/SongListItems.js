@@ -1,7 +1,6 @@
 import { HeartIcon, PlayIcon } from "@heroicons/react/24/solid";
 
 const SongListItem = ({ track, listNumber, handleClick }) => {
-  console.log(track)
   const millisToMinutesAndSeconds = (millis) => {
     var minutes = Math.floor(millis / 60000);
     var seconds = ((millis % 60000) / 1000).toFixed(0);
@@ -32,7 +31,7 @@ const SongListItem = ({ track, listNumber, handleClick }) => {
           gap-[16px]
           bg-transparent 
           ">
-          {track.album.images &&
+          {track.album?.images &&
             <img
               src={track.album?.images[2]?.url}
               alt={track.name}
@@ -51,9 +50,11 @@ const SongListItem = ({ track, listNumber, handleClick }) => {
         </div>
       </td>
 
-      <td className="items-center text-[0.9rem] text-zinc-300">
-        {track.album?.name}
-      </td>
+      {track.album &&
+        <td className="items-center text-[0.9rem] text-zinc-300">
+          {track.album?.name}
+        </td>
+      }
       <td>
         <HeartIcon
           className="h-6 w-6 me-4 inline-block hover:scale-[110%] text-green-500" />

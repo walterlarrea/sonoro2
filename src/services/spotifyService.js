@@ -1,5 +1,5 @@
 import { getStore, removeStore } from "@/services/localStore";
-import axios from "axios"
+import axios from "axios";
 
 const getToken = () => {
   const token = getStore("sonoro-session");
@@ -117,6 +117,47 @@ export const getUserSavedSongs = async ({ market, limit, offset }) => {
         headers: { "Authorization": getToken() }
       })
 
+    return response.data
+  } catch (error) {
+    console.error(error)
+    return error.response;
+  }
+}
+
+export const getUserPlaylists = async ({ limit, offset }) => {
+  const params = new URLSearchParams();
+  params.append("limit", limit || 20);
+  params.append("offset", offset || 0);
+
+  try {
+    const response = await axios.get(
+      `https://api.spotify.com/v1/me/playlists?${params}`,
+      {
+        headers: { "Authorization": getToken() }
+      })
+
+    return response.data
+  } catch (error) {
+    console.error(error)
+    return error.response;
+  }
+}
+
+export const getPlaylistDetail = async ({ playlistId, market, fields }) => {
+  const params = new URLSearchParams();
+  if (market !== undefined) {
+    params.append("market", market);
+  }
+  if (fields !== undefined) {
+    params.append("fields", fields);
+  }
+
+  try {
+    const response = await axios.get(
+      `https://api.spotify.com/v1/playlists/${playlistId}?${params}`,
+      {
+        headers: { "Authorization": getToken() }
+      })
     return response.data
   } catch (error) {
     console.error(error)

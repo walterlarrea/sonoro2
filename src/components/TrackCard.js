@@ -1,6 +1,14 @@
+'use client';
 import { PlayIcon } from "@heroicons/react/24/solid";
+// import { useRouter } from "next/navigation";
+import { useTrackProvider } from "@/context/trackProvider";
 
 const TrackCard = ({ track, onClick }) => {
+  const [current_track, setTrack] = useTrackProvider();
+
+  const handlePlayTrack = () => {
+    setTrack(track);
+  }
 
   return (
     <div className="
@@ -23,7 +31,9 @@ const TrackCard = ({ track, onClick }) => {
         items-center 
         gap-2 
         group-hover:block">
-          <PlayIcon className="
+          <PlayIcon
+            onClick={handlePlayTrack}
+            className="
           h-12 
           w-12 
           p-3 

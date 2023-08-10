@@ -25,7 +25,7 @@ export default function MainLayout({ children }) {
             p-3'>
           {children}
         </div>
-      </div >
-    </QueryClientProvider >
+      </div>
+    </QueryClientProvider>
   );
 }

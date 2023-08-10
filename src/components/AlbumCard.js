@@ -1,18 +1,26 @@
 import { PlayIcon } from "@heroicons/react/24/solid";
+import { useTrackProvider } from "@/context/trackProvider";
 
-const AlbumCard = ({ album, onClickCard, onClickPlay }) => (
-  <div className="
+const AlbumCard = ({ album, onClickCard }) => {
+  const [current_track, setTrack] = useTrackProvider();
+
+  const handlePlayAlbum = () => {
+    setTrack(album);
+  }
+
+  return (
+    <div className="
     group
     rounded-lg 
     p-3 
     h-full 
     bg-zinc-900 
     hover:bg-zinc-800"
-    onClick={onClickCard}>
+      onClick={onClickCard}>
 
-    <div className="relative">
+      <div className="relative">
 
-      <div className="
+        <div className="
         absolute 
         bottom-3 
         right-3 
@@ -21,8 +29,8 @@ const AlbumCard = ({ album, onClickCard, onClickPlay }) => (
         items-center 
         gap-2 
         group-hover:block"
-        onClick={onClickPlay}>
-        <PlayIcon className="
+          onClick={handlePlayAlbum}>
+          <PlayIcon className="
           h-12 
           w-12 
           p-3 
@@ -31,27 +39,28 @@ const AlbumCard = ({ album, onClickCard, onClickPlay }) => (
           hover:bg-green-400
           text-black
           hover:scale-[107%]" />
+        </div>
+
+        <img
+          src={album?.images[0]?.url}
+          alt={`Cover of the ${album.album_type} ${album.name}`}
+          className="rounded-md"
+        />
       </div>
 
-      <img
-        src={album?.images[0]?.url}
-        alt={`Cover of the ${album.album_type} ${album.name}`}
-        className="rounded-md"
-      />
-    </div>
-
-    <div className="
+      <div className="
       text-center
       font-bold
       w-full 
       h-1/3 
       text-[1.2em]
       mt-3">
-      <span>
-        {album.name}
-      </span>
+        <span>
+          {album.name}
+        </span>
+      </div>
     </div>
-  </div>
-);
+  );
+}
 
 export default AlbumCard;
