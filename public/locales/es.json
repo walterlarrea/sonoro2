@@ -17,14 +17,44 @@
     "login": {
         "email": "Correo electronico",
         "password": "Contraseña",
-        "rem": "Recordame"
+        "rem": "Recordame",
+        "loginEnter": "Tengo un usuario.",
+        "registerEnter": "Registrarme",
+        "backHome": "Volver",
+        "haveAccountAnswer": "No tienes una cuenta?",
+        "recoveryPassword": "Olvidaste la contraseña?",
+        "enterButton": "Ingresar"
     },
     "register": {
         "name": "Nombre",
         "email": "Email",
         "password": "Contraseña",
         "password-repeat": "Repetir contraseña",
-        "phone": "Telefono"
+        "phone": "Telefono",
+        "haveUser": "Tengo un usuario.",
+        "registerButton": "Registrarme",
+        "nameRequired": "El campo nombre es obligatorio.",
+        "emailInvalid": "Formato de email incorrecto.",
+        "emailRequired": "El campo email es obligatorio.",
+        "passwordMinLength": "La contraseña es demasiado corta",
+        "passwordRequired": "El campo contraseña es obligatorio.",
+        "phoneRequired": "Tu numero de telefono es obligatorio.",
+        "passwordMatch":"Ambas contraseñas deben ser iguales.",
+        "rpasswordRequired" : "Debe repetir la contraseña aquí."
+        
+    },
+    "sidebar": {
+        "userList": "Tus listas"
+    },
+    "sidebarSavedSongs": {
+        "userLikeSongs": "Canciones que te gustan",
+        "list":"Lista.",
+        "song":"canción",
+        "songs":"canciónes"
+    },
+    "radio": {
+      "title": "Estaciones de radio"
     }
+    
 
   }

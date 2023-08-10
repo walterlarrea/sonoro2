@@ -2,10 +2,12 @@
 import React, { useState } from "react";
 import RegisterForm from "../../components/RegisterForm";
 import LoginForm from "../../components/LoginForm";
+import { useTranslation } from "next-i18next";
 
 
 const Login = () => {
   const [typeScreen, setTypeScreen] = useState(0);
+  const {t} = useTranslation(); 
 
   return (
     <>
@@ -13,9 +15,9 @@ const Login = () => {
         <ul className="space-y-2 text-white">
 
           <li>
-            <a href="#music" className="text-blue-300 hover:text-blue-100">Volver</a>
+            <a href="/" className="text-blue-300 hover:text-blue-100">{t('login.backHome')}</a>
           </li>
-          {/* Add more navigation items as needed */}
+         
         </ul>
       </nav>
       <div className="bg-gray-900 flex flex-col items-center justify-center h-screen">

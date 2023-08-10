@@ -50,7 +50,7 @@ export default function LoginForm({ setTypeScreen }) {
           </div>
         </div>
         <a href="#" className="ml-2 text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">
-           Olvidaste la contraseña?
+        {t('login.recoveryPassword')}
         </a>
       </div>
       <button
@@ -59,12 +59,12 @@ export default function LoginForm({ setTypeScreen }) {
 
         className="w-full text-white bg-blue-300 hover:bg-blue-600 focus:outline-none focus:bg-blue-600 rounded shadow"
       >
-        Entrar
+        {t('login.enterButton')}
       </button>
       <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-        No tienes una cuenta?{' '}
+      {t('login.haveAccountAnswer')}{' '}
         <a onClick={() => setTypeScreen(0)} className="font-medium text-primary-600 hover:underline dark:text-primary-500">
-          Registrarse
+        {t('login.registerEnter')}
         </a>
       </p>
     </form>
