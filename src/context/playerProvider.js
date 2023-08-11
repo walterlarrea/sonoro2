@@ -3,9 +3,21 @@ import { createContext, useContext, useState } from "react";
 
 const Context = createContext();
 
+const track = {
+  name: "",
+  album: {
+    images: [
+      { url: "" }
+    ]
+  },
+  artists: [
+    { name: "" }
+  ]
+}
+
 export function PlayerProvider({ children }) {
   const [player, setPlayer] = useState(undefined);
-  const [activeContext, setActiveContext] = useState(null);
+  const [activeContext, setActiveContextState] = useState({ trackPlaying: null });
   const [isActive, setIsActive] = useState(false);
   const [isPlaying, setPlayingState] = useState(false);
 
@@ -14,6 +26,14 @@ export function PlayerProvider({ children }) {
       player.togglePlay();
       setPlayingState(newState)
     }
+  }
+
+  const setActiveContext = (newContext) => {
+    if (newContext.type === 'track') {
+      setActiveContextState({ type: 'track', trackPlaying: newContext })
+      return
+    }
+    setActiveContextState(newContext)
   }
 
   const contextValue = {

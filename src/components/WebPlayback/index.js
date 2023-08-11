@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { getStore, setStore } from "@/services/localStore";
 import { usePlayerProvider } from '@/context/playerProvider';
 import { startPlayingAlbumOrPlaylist, startPlayingTrack } from '@/services/playerService';
@@ -74,14 +74,11 @@ function WebPlayback() {
 
   useEffect(() => {
     if (activeContext) {
-      if (activeContext.uri.search('track') >= 0) {
-        startPlayingTrack(activeContext.uri, getStore("device_id"))
+      if (activeContext.type === 'track') {
+        startPlayingTrack(activeContext.trackPlaying.uri, getStore("device_id"))
       }
-      if (activeContext.uri.search('album') >= 0) {
-        startPlayingAlbumOrPlaylist(activeContext.uri, getStore("device_id"))
-      }
-      if (activeContext.uri.search('playlist') >= 0) {
-        startPlayingAlbumOrPlaylist(activeContext.uri, getStore("device_id"))
+      if (activeContext.type === 'album' || activeContext.type === 'playlist') {
+        startPlayingAlbumOrPlaylist(activeContext.uri, getStore("device_id"), activeContext.trackPlaying?.uri)
       }
       setIsPlaying(true)
     }

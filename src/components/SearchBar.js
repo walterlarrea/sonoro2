@@ -4,20 +4,24 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import AlbumList from "./AlbumList";
 import { useTranslation } from "next-i18next";
+import TrackList from "./TrackList";
 
 const SearchBar = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const [searchText, setSearchText] = useState(null);
   const { data: results, error, refetch, isLoading } = useQuery({
     queryKey: ['searchData'],
-    queryFn: () => searchResults(searchText),
+    queryFn: () => searchResults({ searchText, types: ['album', 'track', 'artist'] }),
     enabled: false,
   })
 
   const handleSearch = (e) => {
     e.preventDefault();
-
+    if (!searchText || searchText === '') {
+      return
+    }
     refetch();
+    setSearchText(null)
   }
 
   // background-color: transparent;
@@ -78,7 +82,21 @@ const SearchBar = () => {
         </form>
       </div>
 
-      <AlbumList albums={results?.albums} withAccess={true} />
+      {results &&
+        <>
+          <h3
+            className="text-[2rem] text-zinc-100 font-bold">
+            Canciones
+          </h3>
+          <TrackList tracks={results.tracks?.items} />
+
+          <h3
+            className="text-[2rem] text-zinc-100 font-bold">
+            Álbumes
+          </h3>
+          <AlbumList albums={results.albums} withAccess={true} />
+        </>
+      }
 
     </div>
   )

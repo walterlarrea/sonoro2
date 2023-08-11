@@ -59,7 +59,7 @@ export const startPlayingTrack = async (trackUri, deviceId) => {
   }
 }
 
-export const startPlayingAlbumOrPlaylist = async (contextUri, deviceId) => {
+export const startPlayingAlbumOrPlaylist = async (contextUri, deviceId, trackUri) => {
   const params = new URLSearchParams();
   if (deviceId !== undefined && deviceId !== null) {
     params.append("device_id", deviceId);
@@ -67,6 +67,12 @@ export const startPlayingAlbumOrPlaylist = async (contextUri, deviceId) => {
 
   const body = {
     "context_uri": contextUri,
+    "offset": trackUri ? {
+      "uri": trackUri
+    }
+      : {
+        position: 0
+      },
     "position_ms": 0
   }
   const config = {

@@ -1,6 +1,14 @@
-import { HeartIcon, PlayIcon } from "@heroicons/react/24/solid";
+import { usePlayerProvider } from "@/context/playerProvider";
+import { HeartIcon, PlayIcon, PauseIcon } from "@heroicons/react/24/solid";
+import IconPlayButtonSmallTd from "./playerComponents/IconPlayButtonSmallTd";
 
-const SongListItem = ({ track, listNumber, handleClick }) => {
+const SongListItem = ({ track, listNumber, handleClick, handlePlayAlbumPlaylist }) => {
+  const { activeContext: { trackPlaying }, isPlaying, setIsPlaying } = usePlayerProvider();
+
+  const handleTogglePlayPause = () => {
+    setIsPlaying(!isPlaying);
+  }
+
   const millisToMinutesAndSeconds = (millis) => {
     var minutes = Math.floor(millis / 60000);
     var seconds = ((millis % 60000) / 1000).toFixed(0);
@@ -11,6 +19,7 @@ const SongListItem = ({ track, listNumber, handleClick }) => {
     <tr
       onClick={handleClick}
       className="
+        group
         gap-[16px]
         w-full
         h-[4rem]
@@ -22,7 +31,21 @@ const SongListItem = ({ track, listNumber, handleClick }) => {
         rounded-md
         cursor-pointer
         ">
-      <td className="ms-4 justify-center">{listNumber}</td>
+      <td>
+        <div className="flex m-auto w-8 justify-center align-center">
+          <IconPlayButtonSmallTd
+            thisIsActive={trackPlaying?.id === track?.id}
+            thisIsPlaying={isPlaying}
+            togglePlayPause={handleTogglePlayPause}
+            handleSetTrack={handlePlayAlbumPlaylist}
+          />
+          {trackPlaying?.id !== track?.id &&
+            <span className="block group-hover:hidden">
+              {listNumber}
+            </span>
+          }
+        </div>
+      </td>
       <td>
         <div className="
           flex
@@ -44,7 +67,7 @@ const SongListItem = ({ track, listNumber, handleClick }) => {
           <div className="flex flex-col gap-[2px] justify-center min-w-[48px]">
             <h4 className="font-bold">{track.name}</h4>
             <span className="text-[0.9rem] text-zinc-300">
-              {track.artists?.map(artist => artist.name)}
+              {track.artists?.map(artist => artist.name).join(', ')}
             </span>
           </div>
         </div>
