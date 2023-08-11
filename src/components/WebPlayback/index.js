@@ -1,9 +1,8 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
 import { getStore, setStore } from "@/services/localStore";
-import { useTrackProvider } from '@/context/trackProvider';
+import { usePlayerProvider } from '@/context/playerProvider';
 import { startPlayingAlbumOrPlaylist, startPlayingTrack } from '@/services/playerService';
-import { PlayCircleIcon } from '@heroicons/react/24/solid';
 
 const track = {
   name: "",
@@ -18,10 +17,15 @@ const track = {
 }
 
 function WebPlayback() {
-  const [player, setPlayer] = useState(undefined);
-  const [is_paused, setPaused] = useState(false);
-  const [is_active, setActive] = useState(false);
-  const [current_track, setTrack] = useTrackProvider();
+  const {
+    player,
+    setPlayer,
+    activeContext,
+    isPlaying,
+    setIsPlaying,
+    isActive,
+    setIsActive,
+  } = usePlayerProvider();
   const token = useRef(getStore("sonoro-session"));
 
   useEffect(() => {
@@ -57,10 +61,10 @@ function WebPlayback() {
           return;
         }
 
-        setPaused(state.paused);
+        setIsPlaying(!(state.paused));
 
         player.getCurrentState().then(state => {
-          (!state) ? setActive(false) : setActive(true)
+          (!state) ? setIsActive(false) : setIsActive(true)
         });
       }));
 
@@ -69,21 +73,21 @@ function WebPlayback() {
   }, []);
 
   useEffect(() => {
-    if (current_track) {
-      if (current_track.uri.search('track') >= 0) {
-        startPlayingTrack(current_track.uri, getStore("device_id"))
+    if (activeContext) {
+      if (activeContext.uri.search('track') >= 0) {
+        startPlayingTrack(activeContext.uri, getStore("device_id"))
       }
-      if (current_track.uri.search('album') >= 0) {
-        startPlayingAlbumOrPlaylist(current_track.uri, getStore("device_id"))
+      if (activeContext.uri.search('album') >= 0) {
+        startPlayingAlbumOrPlaylist(activeContext.uri, getStore("device_id"))
       }
-      if (current_track.uri.search('playlist') >= 0) {
-        startPlayingAlbumOrPlaylist(current_track.uri, getStore("device_id"))
+      if (activeContext.uri.search('playlist') >= 0) {
+        startPlayingAlbumOrPlaylist(activeContext.uri, getStore("device_id"))
       }
-      setPaused(false)
+      setIsPlaying(true)
     }
-  }, [current_track])
+  }, [activeContext])
 
-  if (!is_active) {
+  if (!isActive) {
     return (
       <>
         No activo
@@ -92,8 +96,8 @@ function WebPlayback() {
 
   return (
     <>
-      <button className="btn-spotify" onClick={() => { player.togglePlay() }} >
-        {is_paused ? "PLAY" : "PAUSE"}
+      <button className="btn-spotify" onClick={() => { setIsPlaying(!isPlaying) }} >
+        {isPlaying ? "PAUSE" : "PLAY"}
       </button>
       {/* <div className="container">
         <div className="main-wrapper">

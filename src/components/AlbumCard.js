@@ -1,11 +1,11 @@
-import { PlayIcon } from "@heroicons/react/24/solid";
-import { useTrackProvider } from "@/context/trackProvider";
+import { usePlayerProvider } from "@/context/playerProvider";
+import IconPlayButtonBig from "./playerComponents/IconPlayButtonBig";
 
 const AlbumCard = ({ album, onClickCard }) => {
-  const [current_track, setTrack] = useTrackProvider();
+  const { activeContext, setActiveContext, isPlaying } = usePlayerProvider();
 
   const handlePlayAlbum = () => {
-    setTrack(album);
+    setActiveContext(album);
   }
 
   return (
@@ -19,28 +19,12 @@ const AlbumCard = ({ album, onClickCard }) => {
       onClick={onClickCard}>
 
       <div className="relative">
-
-        <div className="
-        absolute 
-        bottom-3 
-        right-3 
-        hidden 
-        flex-col 
-        items-center 
-        gap-2 
-        group-hover:block"
-          onClick={handlePlayAlbum}>
-          <PlayIcon className="
-          h-12 
-          w-12 
-          p-3 
-          rounded-full 
-          bg-green-500 
-          hover:bg-green-400
-          text-black
-          hover:scale-[107%]" />
-        </div>
-
+        <IconPlayButtonBig
+          track={album}
+          thisIsActive={activeContext?.id === album?.id}
+          thisIsPlaying={isPlaying}
+          handleSetTrack={handlePlayAlbum}
+        />
         <img
           src={album?.images[0]?.url}
           alt={`Cover of the ${album.album_type} ${album.name}`}

@@ -1,6 +1,6 @@
 import './globals.css'
 import Translator from '@/config/i18nProvider';
-import { TrackProvider } from '@/context/trackProvider';
+import { PlayerProvider } from '@/context/playerProvider';
 import { ThemeProvider } from '@/context/themeProvider';
 
 export const metadata = {
@@ -16,9 +16,9 @@ function RootLayout({ children }) {
       <body>
         <Translator>
           <ThemeProvider>
-            <TrackProvider>
+            <PlayerProvider>
               {children}
-            </TrackProvider>
+            </PlayerProvider>
           </ThemeProvider>
         </Translator>
       </body>

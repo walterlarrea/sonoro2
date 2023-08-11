@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
 import { getStore } from "@/services/localStore";
-import { useTrackProvider } from '@/context/trackProvider';
+import { useTrackProvider } from '@/context/playerProvider';
 import { startPlayingTrack } from '@/services/playerService';
 
 const track = {
