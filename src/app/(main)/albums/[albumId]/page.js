@@ -1,12 +1,14 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { useParams } from "next/navigation";
+import { usePlayerProvider } from "@/context/playerProvider";
 import { getAlbum } from '@/services/spotifyService';
 import { ClockIcon } from "@heroicons/react/24/solid";
 import SongListItem from "@/components/SongListItems";
 
 const Album = () => {
   const router = useParams()
+  const { setActiveContext } = usePlayerProvider();
   const albumId = router["albumId"]
   const [album, setAlbum] = useState(null)
 
@@ -20,7 +22,7 @@ const Album = () => {
           return;
         }
         const albumObject = response;
-        console.log(albumObject)
+
         setAlbum(albumObject);
       }
     }
@@ -42,12 +44,16 @@ const Album = () => {
     )
   }
 
+  const handlePlayAlbum = (track) => () => {
+    setActiveContext({ ...album, trackPlaying: track });
+  }
+
   return (
     <>
       <table className="w-full">
         <thead>
           <tr>
-            <th className="text-start font-normal text-zinc-300 ms-4">#</th>
+            <th className="text-center font-normal text-zinc-300 ms-4">#</th>
             <th className="text-start font-normal text-zinc-300">Título</th>
             {/* <th className="text-start font-normal text-zinc-300">Álbum</th> */}
             <th className="text-start font-normal text-zinc-300"></th>
@@ -63,6 +69,7 @@ const Album = () => {
                 key={track.id}
                 track={track}
                 listNumber={index}
+                handlePlayAlbumPlaylist={handlePlayAlbum(track)}
               />
             )}
         </tbody>

@@ -52,7 +52,7 @@ export const logout = async () => {
   // removeStore("sonoro-refresh");
 }
 
-export const searchResults = async (searchText, types, market, genre, limit, offset) => {
+export const searchResults = async ({ searchText, types, market, genre, limit, offset }) => {
   const params = new URLSearchParams();
   params.append("q", searchText);
   params.append("type", types || ['album']);

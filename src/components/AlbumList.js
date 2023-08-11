@@ -18,8 +18,7 @@ const AlbumList = ({ albums, withAccess }) => {
       justifyItems: 'center',
       gap: '1em',
     }}
-      className="my-3"
-    >
+      className="my-3">
 
       {albums && albums?.items?.map(a =>
         <div key={a.id} className="m-0 w-full min-w-[145px]">

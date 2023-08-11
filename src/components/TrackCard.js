@@ -1,13 +1,17 @@
 'use client';
-import { PlayIcon } from "@heroicons/react/24/solid";
 // import { useRouter } from "next/navigation";
-import { useTrackProvider } from "@/context/trackProvider";
+import { usePlayerProvider } from "@/context/playerProvider";
+import IconPlayButtonBig from "./playerComponents/IconPlayButtonBig";
 
 const TrackCard = ({ track, onClick }) => {
-  const [current_track, setTrack] = useTrackProvider();
+  const { activeContext: { trackPlaying }, setActiveContext, isPlaying, setIsPlaying } = usePlayerProvider();
 
   const handlePlayTrack = () => {
-    setTrack(track);
+    setActiveContext(track);
+  }
+
+  const handleTogglePlayPause = () => {
+    setIsPlaying(!isPlaying);
   }
 
   return (
@@ -21,29 +25,12 @@ const TrackCard = ({ track, onClick }) => {
       onClick={onClick}>
 
       <div className="relative">
-
-        <div className="
-        absolute 
-        bottom-3 
-        right-3 
-        hidden 
-        flex-col 
-        items-center 
-        gap-2 
-        group-hover:block">
-          <PlayIcon
-            onClick={handlePlayTrack}
-            className="
-          h-12 
-          w-12 
-          p-3 
-          rounded-full 
-          bg-green-500 
-          hover:bg-green-400
-          text-black
-          hover:scale-[107%]" />
-        </div>
-
+        <IconPlayButtonBig
+          thisIsActive={trackPlaying?.id === track?.id}
+          thisIsPlaying={isPlaying}
+          togglePlayPause={handleTogglePlayPause}
+          handleSetTrack={handlePlayTrack}
+        />
         <img
           src={track.album?.images[0]?.url}
           alt={`Cover of the ${track.album_type} ${track.name}`}
