@@ -1,3 +1,4 @@
+'use client';
 import { usePlayerProvider } from "@/context/playerProvider";
 
 const Player = () => {
