@@ -1,15 +1,19 @@
+import { usePlayerProvider } from "@/context/playerProvider";
 import { PlayIcon, PauseIcon } from "@heroicons/react/24/solid";
+import PlayPauseButton from "./PlayPauseButton";
 
-const IconPlayButtonSmallTd = ({ thisIsActive, thisIsPlaying, togglePlayPause, handleSetTrack }) => {
+const IconPlayButtonSmallTd = ({ thisIsActive, handleSetTrack }) => {
+  const { isPlaying, setIsPlaying } = usePlayerProvider();
+
   const containerStyle = `
   block 
   md:${thisIsActive ? 'block' : 'hidden'} 
   group-hover:block`
-  const IconStyle = `h-[1rem]`
+  const iconStyle = `h-[1rem]`
 
   const handleClick = () => {
     if (thisIsActive) {
-      togglePlayPause();
+      setIsPlaying(!isPlaying);
       return
     }
 
@@ -17,13 +21,13 @@ const IconPlayButtonSmallTd = ({ thisIsActive, thisIsPlaying, togglePlayPause, h
   }
 
   return (
-    <button onClick={handleClick} className={containerStyle}>
-      {(thisIsActive && thisIsPlaying) ?
-        <PauseIcon className={IconStyle} />
-        :
-        <PlayIcon className={IconStyle} />
-      }
-    </button>
+    <PlayPauseButton
+      thisIsActive={thisIsActive}
+      isPlaying={isPlaying}
+      handleClick={handleClick}
+      containerStyle={containerStyle}
+      iconStyle={iconStyle}
+    />
   )
 }
 

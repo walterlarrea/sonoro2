@@ -1,19 +1,17 @@
 import { usePlayerProvider } from "@/context/playerProvider";
-import { HeartIcon, PlayIcon, PauseIcon } from "@heroicons/react/24/solid";
+import { HeartIcon } from "@heroicons/react/24/solid";
 import IconPlayButtonSmallTd from "./playerComponents/IconPlayButtonSmallTd";
 
 const SongListItem = ({ track, listNumber, handleClick, handlePlayAlbumPlaylist }) => {
-  const { activeContext: { trackPlaying }, isPlaying, setIsPlaying } = usePlayerProvider();
-
-  const handleTogglePlayPause = () => {
-    setIsPlaying(!isPlaying);
-  }
+  const { activeContext: { trackPlaying } } = usePlayerProvider();
+  const currentlyPlayingThisTrack = trackPlaying?.id === track?.id;
 
   const millisToMinutesAndSeconds = (millis) => {
     var minutes = Math.floor(millis / 60000);
     var seconds = ((millis % 60000) / 1000).toFixed(0);
     return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
   }
+
 
   return (
     <tr
@@ -34,13 +32,15 @@ const SongListItem = ({ track, listNumber, handleClick, handlePlayAlbumPlaylist 
       <td>
         <div className="flex m-auto w-8 justify-center align-center">
           <IconPlayButtonSmallTd
-            thisIsActive={trackPlaying?.id === track?.id}
-            thisIsPlaying={isPlaying}
-            togglePlayPause={handleTogglePlayPause}
+            thisIsActive={currentlyPlayingThisTrack}
             handleSetTrack={handlePlayAlbumPlaylist}
           />
-          {trackPlaying?.id !== track?.id &&
-            <span className="block group-hover:hidden">
+          {!currentlyPlayingThisTrack &&
+            <span
+              className={`
+            hidden 
+            md:block 
+            group-hover:hidden`}>
               {listNumber}
             </span>
           }
