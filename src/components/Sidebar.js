@@ -10,7 +10,7 @@ import { appWithTranslation, useTranslation } from 'next-i18next'; // Asegúrate
 
 const SideBar = () => {
 
-const {t} = useTranslation();
+  const { t } = useTranslation();
   return (
     <div className="flex-col text-sm hidden md:flex w-full gap-[8px]">
 

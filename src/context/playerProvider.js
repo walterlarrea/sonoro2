@@ -20,10 +20,11 @@ export function PlayerProvider({ children }) {
   const [activeContext, setActiveContextState] = useState({ trackPlaying: null });
   const [isActive, setIsActive] = useState(false);
   const [isPlaying, setPlayingState] = useState(false);
+  const [localVolume, setPlayerLocalVolume] = useState(0.3);
 
   const setIsPlaying = (newState) => {
     if (player) {
-      player.togglePlay();
+      player?.togglePlay();
       setPlayingState(newState)
     }
   }
@@ -36,6 +37,13 @@ export function PlayerProvider({ children }) {
     setActiveContextState(newContext)
   }
 
+  const setLocalVolume = (newVolumeValue) => {
+    if (typeof newVolumeValue === 'number' && newVolumeValue >= 0 && newVolumeValue <= 1) {
+      player?.setVolume(newVolumeValue)
+      setPlayerLocalVolume(newVolumeValue)
+    }
+  }
+
   const contextValue = {
     player,
     setPlayer,
@@ -45,6 +53,8 @@ export function PlayerProvider({ children }) {
     setIsActive,
     isPlaying,
     setIsPlaying,
+    localVolume,
+    setLocalVolume,
   }
 
   return (
