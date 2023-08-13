@@ -10,14 +10,14 @@ const SideBar = () => {
   const { t } = useTranslation();
   return (
     // <div className="hidden md:flex flex-col text-sm w-full gap-[8px]">
-    <div className="hidden md:grid grid-cols-1 text-sm w-full gap-[8px] overflow-y-auto">
+    <div className="hidden md:grid grid-cols-1 grid-rows-[min-content] text-sm w-full gap-[8px] overflow-y-auto">
 
       <Navbar column={true} />
 
       <div className="
       inline-flex 
       flex-col 
-      justify-center 
+      justify-start 
       items-center 
       rounded-lg
       text-zinc-100 
