@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import TrackList from "./TrackList";
 import { getRecommendations } from "@/services/spotifyService";
+import LoadingEqualizer from "./Loader/LoadingEqualizer";
 
 const HomeFiltersPage = () => {
   const genres = ['jazz', 'tango', 'classical', 'rock-n-roll'];
-  const [tracksByGenre, setTracksByGenre] = useState({});
+  const [tracksByGenre, setTracksByGenre] = useState(null);
 
   useEffect(() => {
     const fetchTracksByGenre = async () => {
@@ -22,6 +23,12 @@ const HomeFiltersPage = () => {
     }
     fetchTracksByGenre();
   }, [])
+
+  if (!tracksByGenre) {
+    return (
+      <LoadingEqualizer />
+    )
+  }
 
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);

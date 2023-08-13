@@ -5,6 +5,7 @@ import { usePlayerProvider } from "@/context/playerProvider";
 import { getAlbum } from '@/services/spotifyService';
 import { ClockIcon } from "@heroicons/react/24/solid";
 import SongListItem from "@/components/SongListItems";
+import LoadingEqualizer from '@/components/Loader/LoadingEqualizer';
 
 const Album = () => {
   const router = useParams()
@@ -31,9 +32,7 @@ const Album = () => {
 
   if (!album) {
     return (
-      <div>
-        Cargando...
-      </div>
+      <LoadingEqualizer />
     )
   }
   if (album.error) {

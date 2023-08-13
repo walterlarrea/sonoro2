@@ -4,6 +4,7 @@ import { getUserSavedSongs } from "@/services/spotifyService";
 import { ClockIcon } from "@heroicons/react/24/solid";
 import SongListItem from "@/components/SongListItems";
 import { usePlayerProvider } from "@/context/playerProvider";
+import LoadingEqualizer from "@/components/Loader/LoadingEqualizer";
 
 const SavedSongs = () => {
   const { setActiveContext } = usePlayerProvider();
@@ -26,9 +27,7 @@ const SavedSongs = () => {
 
   if (!savedSongsObj) {
     return (
-      <div>
-        Cargando...
-      </div>
+      <LoadingEqualizer />
     )
   }
 
