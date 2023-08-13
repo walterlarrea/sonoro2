@@ -3,10 +3,8 @@ import Link from "next/link";
 import { HomeIcon, HeartIcon, MagnifyingGlassIcon, RadioIcon } from "@heroicons/react/24/solid";
 import { useTranslation } from "react-i18next";
 
-
 const Navbar = ({ background, column, row }) => {
   const { t } = useTranslation();
-
 
   const flexDir = column ?
     'flex-col' // space-y-3'

@@ -27,7 +27,6 @@
   grid-template-columns: auto;
   margin: var(--grid-layout-main-gap);
   margin-top: 0;
-  /* max-height: calc(100vh - calc(var(--header-height) + var(--grid-layout-main-gap))); */
 
   overflow-y: auto;
   flex: 1 1 auto;

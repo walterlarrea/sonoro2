@@ -32,14 +32,20 @@ export const transferPlaybackDevice = async (deviceId) => {
   }
 }
 
-export const startPlayingTrack = async (trackUri, deviceId) => {
+export const startPlayingTrack = async (trackUris, deviceId, trackToPlayUri) => {
   const params = new URLSearchParams();
   if (deviceId !== undefined && deviceId !== null) {
     params.append("device_id", deviceId);
   }
 
   const body = {
-    "uris": [trackUri],
+    "uris": trackUris,
+    "offset": trackToPlayUri ? {
+      "uri": trackToPlayUri
+    }
+      : {
+        position: 0
+      },
     "position_ms": 0
   }
   const config = {
@@ -59,7 +65,7 @@ export const startPlayingTrack = async (trackUri, deviceId) => {
   }
 }
 
-export const startPlayingAlbumOrPlaylist = async (contextUri, deviceId, trackUri) => {
+export const startPlayingAlbumOrPlaylist = async (contextUri, deviceId, trackToPlayUri) => {
   const params = new URLSearchParams();
   if (deviceId !== undefined && deviceId !== null) {
     params.append("device_id", deviceId);
@@ -67,8 +73,8 @@ export const startPlayingAlbumOrPlaylist = async (contextUri, deviceId, trackUri
 
   const body = {
     "context_uri": contextUri,
-    "offset": trackUri ? {
-      "uri": trackUri
+    "offset": trackToPlayUri ? {
+      "uri": trackToPlayUri
     }
       : {
         position: 0

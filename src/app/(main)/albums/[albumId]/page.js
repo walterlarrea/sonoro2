@@ -45,7 +45,7 @@ const Album = () => {
   }
 
   const handlePlayAlbum = (track) => () => {
-    setActiveContext({ ...album, trackPlaying: track });
+    setActiveContext([{ ...album, trackToPlay: track.uri }]);
   }
 
   return (

@@ -5,19 +5,16 @@ import SidebarSavedSongs from "./SidebarSavedSongs";
 import React from 'react';
 import { appWithTranslation, useTranslation } from 'next-i18next'; // Asegúrate de importar appWithTranslation
 
-
-
-
 const SideBar = () => {
 
   const { t } = useTranslation();
   return (
-    <div className="flex-col text-sm hidden md:flex w-full gap-[8px]">
+    <div className="hidden md:flex flex-col text-sm w-full gap-[8px]">
 
       <Navbar column={true} />
 
       <div className="
-      flex 
+      inline-flex 
       flex-col 
       justify-center 
       items-center 

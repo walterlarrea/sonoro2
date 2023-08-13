@@ -5,7 +5,7 @@ const AlbumCard = ({ album, onClickCard }) => {
   const { activeContext, setActiveContext } = usePlayerProvider();
 
   const handlePlayAlbum = () => {
-    setActiveContext(album);
+    setActiveContext([album]);
   }
 
   return (
@@ -20,7 +20,7 @@ const AlbumCard = ({ album, onClickCard }) => {
 
       <div className="relative">
         <IconPlayButtonBig
-          thisIsActive={activeContext?.id === album?.id}
+          thisIsActive={activeContext?.[0].id === album?.id}
           handleSetTrack={handlePlayAlbum}
         />
         <img

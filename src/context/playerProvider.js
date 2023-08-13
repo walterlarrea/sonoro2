@@ -17,30 +17,47 @@ const track = {
 
 export function PlayerProvider({ children }) {
   const [player, setPlayer] = useState(undefined);
-  const [activeContext, setActiveContextState] = useState({ trackPlaying: null });
   const [isActive, setIsActive] = useState(false);
+  const [activeContext, setContext] = useState(null);
+  const [currentPlayingTrack, setCurrentPlayingTrack] = useState(null)
   const [isPlaying, setPlayingState] = useState(false);
-  const [localVolume, setPlayerLocalVolume] = useState(0.3);
+  const [localVolume, setVolume] = useState(0.3);
+
+  const togglePlayPause = () => {
+    player?.togglePlay().then(p =>
+      player.getCurrentState().then(state =>
+        setPlayingState(!(state.paused))
+      )
+    )
+  }
 
   const setIsPlaying = (newState) => {
     if (player) {
-      player?.togglePlay();
+      newState ? player.resume()
+        : player.pause()
       setPlayingState(newState)
     }
   }
 
+  // const isPlaying = () => {
+  //   const playerState = getPlayerState()
+  //   return !(playerState.paused)
+  // }
+
   const setActiveContext = (newContext) => {
-    if (newContext.type === 'track') {
-      setActiveContextState({ type: 'track', trackPlaying: newContext })
-      return
-    }
-    setActiveContextState(newContext)
+    // Acepta un objeto { uri: 'ejemplo:jhd9823yhd3' }
+    setContext(newContext)
   }
+
+  // const activeContext = () => {
+  //   const playerState = getPlayerState()
+  //   return playerState?.context
+  // }
 
   const setLocalVolume = (newVolumeValue) => {
     if (typeof newVolumeValue === 'number' && newVolumeValue >= 0 && newVolumeValue <= 1) {
       player?.setVolume(newVolumeValue)
-      setPlayerLocalVolume(newVolumeValue)
+      setVolume(newVolumeValue)
     }
   }
 
@@ -49,9 +66,12 @@ export function PlayerProvider({ children }) {
     setPlayer,
     activeContext,
     setActiveContext,
+    currentPlayingTrack,
+    setCurrentPlayingTrack,
     isActive,
     setIsActive,
     isPlaying,
+    togglePlayPause,
     setIsPlaying,
     localVolume,
     setLocalVolume,

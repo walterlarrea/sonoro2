@@ -3,7 +3,7 @@ import { PlayIcon, PauseIcon } from "@heroicons/react/24/solid";
 import PlayPauseButton from "./PlayPauseButton";
 
 const IconPlayButtonSmallTd = ({ thisIsActive, handleSetTrack }) => {
-  const { isPlaying, setIsPlaying } = usePlayerProvider();
+  const { isPlaying, togglePlayPause } = usePlayerProvider();
 
   const containerStyle = `
   block 
@@ -13,7 +13,7 @@ const IconPlayButtonSmallTd = ({ thisIsActive, handleSetTrack }) => {
 
   const handleClick = () => {
     if (thisIsActive) {
-      setIsPlaying(!isPlaying);
+      togglePlayPause();
       return
     }
 

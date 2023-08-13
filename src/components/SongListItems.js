@@ -1,17 +1,12 @@
 import { usePlayerProvider } from "@/context/playerProvider";
 import { HeartIcon } from "@heroicons/react/24/solid";
 import IconPlayButtonSmallTd from "./playerComponents/IconPlayButtonSmallTd";
+import { millisToMinutesAndSeconds } from '@/utils/playerUtils';
 
 const SongListItem = ({ track, listNumber, handleClick, handlePlayAlbumPlaylist }) => {
-  const { activeContext: { trackPlaying } } = usePlayerProvider();
-  const currentlyPlayingThisTrack = trackPlaying?.id === track?.id;
+  const { currentPlayingTrack } = usePlayerProvider();
 
-  const millisToMinutesAndSeconds = (millis) => {
-    var minutes = Math.floor(millis / 60000);
-    var seconds = ((millis % 60000) / 1000).toFixed(0);
-    return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
-  }
-
+  const currentlyPlayingThisTrack = currentPlayingTrack?.id === track?.id;
 
   return (
     <tr

@@ -4,10 +4,10 @@ import { usePlayerProvider } from "@/context/playerProvider";
 import IconPlayButtonBig from "./playerComponents/IconPlayButtonBig";
 
 const TrackCard = ({ track, onClick }) => {
-  const { activeContext: { trackPlaying }, setActiveContext } = usePlayerProvider();
+  const { currentPlayingTrack, setActiveContext } = usePlayerProvider();
 
   const handlePlayTrack = () => {
-    setActiveContext(track);
+    setActiveContext([track]);
   }
 
   return (
@@ -22,7 +22,7 @@ const TrackCard = ({ track, onClick }) => {
 
       <div className="relative">
         <IconPlayButtonBig
-          thisIsActive={trackPlaying?.id === track?.id}
+          thisIsActive={currentPlayingTrack?.id === track?.id}
           handleSetTrack={handlePlayTrack}
         />
         <img

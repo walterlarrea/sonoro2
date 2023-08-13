@@ -18,14 +18,12 @@ const track = {
 
 function WebPlayback() {
   const {
-    player,
     setPlayer,
-    activeContext,
-    isPlaying,
-    setIsPlaying,
     isActive,
     setIsActive,
-    localVolume,
+    activeContext,
+    setCurrentPlayingTrack,
+    setIsPlaying,
     setLocalVolume,
   } = usePlayerProvider();
   const token = useRef(getStore("sonoro-session"));
@@ -63,6 +61,7 @@ function WebPlayback() {
           return;
         }
 
+        setCurrentPlayingTrack(state.track_window.current_track)
         setIsPlaying(!(state.paused));
 
         player.getCurrentState().then(state => {
@@ -72,7 +71,7 @@ function WebPlayback() {
 
       const setPlayerInitialStatus = async () => {
         const mainVolume = await player.getVolume()
-        console.log(mainVolume)
+
         setLocalVolume(mainVolume)
       }
       setPlayerInitialStatus()
@@ -82,12 +81,13 @@ function WebPlayback() {
   }, []);
 
   useEffect(() => {
-    if (activeContext) {
-      if (activeContext.type === 'track') {
-        startPlayingTrack(activeContext.trackPlaying.uri, getStore("device_id"))
+    if (activeContext?.[0]?.uri) {
+      if (activeContext[0].uri.search('track') >= 0) {
+        const uriList = activeContext.map(track => track.uri)
+        startPlayingTrack(uriList, getStore("device_id"), activeContext[0]?.trackToPlay)
       }
-      if (activeContext.type === 'album' || activeContext.type === 'playlist') {
-        startPlayingAlbumOrPlaylist(activeContext.uri, getStore("device_id"), activeContext.trackPlaying?.uri)
+      if (activeContext[0].uri.search('album') >= 0 || activeContext[0].uri.search('playlist') >= 0) {
+        startPlayingAlbumOrPlaylist(activeContext[0].uri, getStore("device_id"), activeContext[0].trackToPlay)
       }
       setIsPlaying(true)
     }

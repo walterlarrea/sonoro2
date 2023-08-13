@@ -1,8 +1,8 @@
 import { usePlayerProvider } from "@/context/playerProvider";
 import WebPlayback from "../WebPlayback";
-import IconPlayButtonBig from "./IconPlayButtonBig";
 import VolumeRockerFixed from "./VolumeRockerFixed";
 import PlayPauseButton from "./PlayPauseButton";
+import ProgressBarFixed from "./ProgressBarFixed";
 
 const Player = () => {
   const {
@@ -39,13 +39,14 @@ const Player = () => {
     <div className="relative custom-bottom-player left-0 right-0 bottom-0">
       {isActive &&
         <div className="flex flex-row justify-center">
-          <VolumeRockerFixed />
+          <ProgressBarFixed />
           <PlayPauseButton
             thisIsActive={true}
             isPlaying={isPlaying}
             handleClick={handleClick}
             containerStyle={containerStyle}
             iconStyle={iconStyle} />
+          <VolumeRockerFixed />
         </div>
       }
       <WebPlayback />
