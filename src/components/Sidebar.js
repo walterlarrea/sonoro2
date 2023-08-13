@@ -9,7 +9,8 @@ const SideBar = () => {
 
   const { t } = useTranslation();
   return (
-    <div className="hidden md:flex flex-col text-sm w-full gap-[8px]">
+    // <div className="hidden md:flex flex-col text-sm w-full gap-[8px]">
+    <div className="hidden md:grid grid-cols-1 text-sm w-full gap-[8px] overflow-y-auto">
 
       <Navbar column={true} />
 
@@ -21,7 +22,8 @@ const SideBar = () => {
       rounded-lg
       text-zinc-100 
       bg-zinc-900 
-      p-[8px]">
+      p-[8px] 
+      overflow-y-auto">
         <h2 className="mb-3">{t('sidebar.userList')}</h2>
         <SidebarSavedSongs />
         <SidebarPlaylist />
