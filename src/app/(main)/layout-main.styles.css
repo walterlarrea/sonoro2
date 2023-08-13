@@ -1,13 +1,25 @@
 :root {
   --grid-layout-main-gap: 8px;
-  --main:rgb(195, 46, 46);
+  --main: rgb(195, 46, 46);
   --secundary: rgb(215, 68, 68);
-  --white:#fff;
-  --card-background:#f2f2f0;
-  --text:#403f37;              
-    
-  --nav-horizontal-height: 49px;
+  --white: #fff;
+  --card-background: #f2f2f0;
+  --text: #403f37;
+
+  /* --nav-horizontal-height: 49px; */
   --header-height: 84px;
+  --bottom-player-height: 130px;
+}
+
+.app-layout {
+  display: flex;
+  flex-flow: column;
+  max-height: 100vh;
+  /* max-height: 100dvh; */
+}
+
+.custom-header {
+  flex: 0 1 var(--header-height);
 }
 
 .grid-layout {
@@ -15,7 +27,13 @@
   grid-template-columns: auto;
   margin: var(--grid-layout-main-gap);
   margin-top: 0;
-  max-height: 100vh;
+
+  overflow-y: auto;
+  flex: 1 1 auto;
+}
+
+.custom-bottom-player {
+  flex: 0 1 auto;
 }
 
 @media only screen and (min-width: 768px) {
@@ -23,15 +41,3 @@
     grid-template-columns: 280px auto;
   }
 }
-
-.grid-main-space {
-  max-height: calc(100vh - calc(var(--header-height) + var(--grid-layout-main-gap)));
-}
-
-.custom-header {
-  height: var(--header-height);
-}
-
-/* .custom-nav-horizontal {
-  height: var(--nav-horizontal-height);
-} */

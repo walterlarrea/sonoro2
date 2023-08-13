@@ -2,14 +2,10 @@ import { usePlayerProvider } from "@/context/playerProvider";
 import IconPlayButtonBig from "./playerComponents/IconPlayButtonBig";
 
 const AlbumCard = ({ album, onClickCard }) => {
-  const { activeContext, setActiveContext, isPlaying, setIsPlaying } = usePlayerProvider();
+  const { activeContext, setActiveContext } = usePlayerProvider();
 
   const handlePlayAlbum = () => {
-    setActiveContext(album);
-  }
-
-  const handleTogglePlayPause = () => {
-    setIsPlaying(!isPlaying);
+    setActiveContext([album]);
   }
 
   return (
@@ -24,9 +20,7 @@ const AlbumCard = ({ album, onClickCard }) => {
 
       <div className="relative">
         <IconPlayButtonBig
-          thisIsActive={activeContext?.id === album?.id}
-          thisIsPlaying={isPlaying}
-          togglePlayPause={handleTogglePlayPause}
+          thisIsActive={activeContext?.[0].id === album?.id}
           handleSetTrack={handlePlayAlbum}
         />
         <img

@@ -43,7 +43,7 @@ const Playlist = () => {
   }
 
   const handlePlayPlaylist = (track) => () => {
-    setActiveContext({ ...playlist, trackPlaying: track });
+    setActiveContext([{ ...playlist, trackToPlay: track.uri }]);
   }
 
   return (
