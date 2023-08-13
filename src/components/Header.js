@@ -8,7 +8,7 @@ export default function Header() {
 
   return (
     <header>
-      <div className="sticky custom-header top-0 z-50 flex flex-row items-center justify-between p-3">
+      <div className="custom-header top-0 z-50 flex flex-row items-center justify-between p-3">
         <div
           onClick={() => router.push('/')}
           className="mx-5 cursor-pointer"
@@ -21,7 +21,7 @@ export default function Header() {
           <HeaderProfileButton />
         </div>
       </div>
-      <div className="sticky flex flex-row justify-center items-center md:hidden mx-[8px]">
+      <div className="flex flex-row justify-center items-center md:hidden mx-[8px] mb-[8px]">
         <Navbar background={'bg-white'} row={true} />
       </div>
     </header>

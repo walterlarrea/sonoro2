@@ -18,6 +18,7 @@ const track = {
 
 function WebPlayback() {
   const {
+    player,
     setPlayer,
     isActive,
     setIsActive,
@@ -38,45 +39,45 @@ function WebPlayback() {
 
     window.onSpotifyWebPlaybackSDKReady = () => {
 
-      const player = new window.Spotify.Player({
+      const newPlayer = new window.Spotify.Player({
         name: 'Sonoro Playback',
         getOAuthToken: cb => { cb(token.current); },
         volume: 0.5
       });
 
-      setPlayer(player);
+      setPlayer(newPlayer);
 
-      player.addListener('ready', async ({ device_id }) => {
+      newPlayer.addListener('ready', async ({ device_id }) => {
         console.log('Ready with Device ID', device_id);
 
         setStore("device_id", device_id)
       });
 
-      player.addListener('not_ready', ({ device_id }) => {
+      newPlayer.addListener('not_ready', ({ device_id }) => {
         console.log('Device ID has gone offline', device_id);
       });
 
-      player.addListener('player_state_changed', (state => {
+      newPlayer.addListener('player_state_changed', (state => {
         if (!state) {
           return;
         }
 
         setCurrentPlayingTrack(state.track_window.current_track)
-        setIsPlaying(!(state.paused));
+        // setIsPlaying(true);
 
-        player.getCurrentState().then(state => {
+        newPlayer.getCurrentState().then(state => {
           (!state) ? setIsActive(false) : setIsActive(true)
         });
       }));
 
       const setPlayerInitialStatus = async () => {
-        const mainVolume = await player.getVolume()
+        const mainVolume = await newPlayer.getVolume()
 
         setLocalVolume(mainVolume)
       }
       setPlayerInitialStatus()
 
-      player.connect();
+      newPlayer.connect();
     };
   }, []);
 
@@ -89,6 +90,7 @@ function WebPlayback() {
       if (activeContext[0].uri.search('album') >= 0 || activeContext[0].uri.search('playlist') >= 0) {
         startPlayingAlbumOrPlaylist(activeContext[0].uri, getStore("device_id"), activeContext[0].trackToPlay)
       }
+      player.resume()
       setIsPlaying(true)
     }
   }, [activeContext])
@@ -99,9 +101,6 @@ function WebPlayback() {
 
   return (
     <>
-      {/* <button className="btn-spotify" onClick={() => { setIsPlaying(!isPlaying) }} >
-        {isPlaying ? "PAUSE" : "PLAY"}
-      </button> */}
     </>
   )
 }

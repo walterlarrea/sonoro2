@@ -25,9 +25,7 @@ export function PlayerProvider({ children }) {
 
   const togglePlayPause = () => {
     player?.togglePlay().then(p =>
-      player.getCurrentState().then(state =>
-        setPlayingState(!(state.paused))
-      )
+      setPlayingState(state => !state)
     )
   }
 
@@ -39,20 +37,10 @@ export function PlayerProvider({ children }) {
     }
   }
 
-  // const isPlaying = () => {
-  //   const playerState = getPlayerState()
-  //   return !(playerState.paused)
-  // }
-
   const setActiveContext = (newContext) => {
     // Acepta un objeto { uri: 'ejemplo:jhd9823yhd3' }
     setContext(newContext)
   }
-
-  // const activeContext = () => {
-  //   const playerState = getPlayerState()
-  //   return playerState?.context
-  // }
 
   const setLocalVolume = (newVolumeValue) => {
     if (typeof newVolumeValue === 'number' && newVolumeValue >= 0 && newVolumeValue <= 1) {
