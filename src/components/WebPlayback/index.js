@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { getStore, setStore } from "@/services/localStore";
 import { usePlayerProvider } from '@/context/playerProvider';
 import { startPlayingAlbumOrPlaylist, startPlayingTrack } from '@/services/playerService';
+import { checkUserSession } from '@/utils/liveSession';
 
 const track = {
   name: "",
@@ -85,10 +86,10 @@ function WebPlayback() {
     if (activeContext?.[0]?.uri) {
       if (activeContext[0].uri.search('track') >= 0) {
         const uriList = activeContext.map(track => track.uri)
-        startPlayingTrack(uriList, getStore("device_id"), activeContext[0]?.trackToPlay)
+        checkUserSession(() => startPlayingTrack(uriList, getStore("device_id"), activeContext[0]?.trackToPlay))
       }
       if (activeContext[0].uri.search('album') >= 0 || activeContext[0].uri.search('playlist') >= 0) {
-        startPlayingAlbumOrPlaylist(activeContext[0].uri, getStore("device_id"), activeContext[0].trackToPlay)
+        checkUserSession(() => startPlayingAlbumOrPlaylist(activeContext[0].uri, getStore("device_id"), activeContext[0].trackToPlay))
       }
       player.resume()
       setIsPlaying(true)

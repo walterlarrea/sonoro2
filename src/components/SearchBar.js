@@ -5,13 +5,14 @@ import { useState } from "react";
 import AlbumList from "./AlbumList";
 import { useTranslation } from "next-i18next";
 import TrackList from "./TrackList";
+import { checkUserSession } from "@/utils/liveSession";
 
 const SearchBar = () => {
   const { t } = useTranslation();
   const [searchText, setSearchText] = useState(null);
   const { data: results, error, refetch, isLoading } = useQuery({
     queryKey: ['searchData'],
-    queryFn: () => searchResults({ searchText, types: ['album', 'track', 'artist'] }),
+    queryFn: () => checkUserSession(() => searchResults({ searchText, types: ['album', 'track', 'artist'] })),
     enabled: false,
   })
 

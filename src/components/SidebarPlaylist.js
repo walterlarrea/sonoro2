@@ -5,6 +5,7 @@ import Image from "next/image";
 import { getUserPlaylists } from "@/services/spotifyService";
 import { useEffect } from "react";
 import SidebarItem from "./SidebarItem";
+import { checkUserSession } from "@/utils/liveSession";
 
 const SidebarPlaylist = () => {
   const router = useRouter()
@@ -12,7 +13,7 @@ const SidebarPlaylist = () => {
 
   useEffect(() => {
     const getSavedSongs = async () => {
-      const response = await getUserPlaylists({});
+      const response = await checkUserSession(() => getUserPlaylists({}));
 
       if (response?.status && response.status === 401) {
         setPlaylists(null)

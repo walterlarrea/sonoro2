@@ -14,7 +14,7 @@ export const getNewReleases = async () => {
       headers: { "Authorization": getToken() }
     })
 
-    return response.data
+    return response
   } catch (error) {
     console.error(error)
     return error.response;
@@ -27,7 +27,7 @@ export const getAlbum = async (albumId) => {
       headers: { "Authorization": getToken() }
     })
 
-    return response.data
+    return response
   } catch (error) {
     console.error(error)
     return error.response;
@@ -40,7 +40,7 @@ export const getCurrentUser = async () => {
       headers: { "Authorization": getToken() }
     })
 
-    return response.data
+    return response
   } catch (error) {
     console.error(error)
     return error.response;
@@ -72,7 +72,7 @@ export const searchResults = async ({ searchText, types, market, genre, limit, o
         headers: { "Authorization": getToken() }
       })
 
-    return response.data
+    return response
   } catch (error) {
     console.error(error)
     return error.response;
@@ -95,7 +95,7 @@ export const getRecommendations = async ({ genres, market, limit, offset }) => {
         headers: { "Authorization": getToken() }
       })
 
-    return response.data
+    return response
   } catch (error) {
     console.error(error)
     return error.response;
@@ -117,7 +117,7 @@ export const getUserSavedSongs = async ({ market, limit, offset }) => {
         headers: { "Authorization": getToken() }
       })
 
-    return response.data
+    return response
   } catch (error) {
     console.error(error)
     return error.response;
@@ -136,7 +136,7 @@ export const getUserPlaylists = async ({ limit, offset }) => {
         headers: { "Authorization": getToken() }
       })
 
-    return response.data
+    return response
   } catch (error) {
     console.error(error)
     return error.response;
@@ -158,7 +158,7 @@ export const getPlaylistDetail = async ({ playlistId, market, fields }) => {
       {
         headers: { "Authorization": getToken() }
       })
-    return response.data
+    return response
   } catch (error) {
     console.error(error)
     return error.response;

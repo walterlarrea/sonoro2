@@ -5,6 +5,7 @@ import { ClockIcon } from "@heroicons/react/24/solid";
 import SongListItem from "@/components/SongListItems";
 import { usePlayerProvider } from "@/context/playerProvider";
 import LoadingEqualizer from "@/components/Loader/LoadingEqualizer";
+import { checkUserSession } from "@/utils/liveSession";
 
 const SavedSongs = () => {
   const { setActiveContext } = usePlayerProvider();
@@ -12,7 +13,7 @@ const SavedSongs = () => {
 
   useEffect(() => {
     const getSavedSongs = async () => {
-      const response = await getUserSavedSongs({});
+      const response = await checkUserSession(() => getUserSavedSongs({}));
 
       if (response?.status && response.status === 401) {
         setSavedSongsObj(null)

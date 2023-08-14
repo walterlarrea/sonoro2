@@ -4,12 +4,16 @@ import { useRouter } from 'next/navigation';
 import { getCurrentUser, logout } from '@/services/spotifyService';
 import { useTranslation } from 'react-i18next';
 import LoadingEqualizer from '@/components/Loader/LoadingEqualizer';
+import { checkUserSession } from '@/utils/liveSession';
+import i18n from 'i18next';
+import { getStore, setStore } from '@/services/localStore';
 
 const Profile = () => {
 
   const { t } = useTranslation();
   const router = useRouter();
   const [profile, setProfile] = useState(null)
+  const storedLanguage = getStore('sonoro_language')
 
   const logoutButtonClassNames = useRef(`
     rounded-full 
@@ -32,7 +36,7 @@ const Profile = () => {
 
   useEffect(() => {
     const userProfile = async () => {
-      const response = await getCurrentUser();
+      const response = await checkUserSession(getCurrentUser);
       if (response?.status && response.status === 401) {
         router.push('/spotify-auth')
         return;
@@ -46,6 +50,13 @@ const Profile = () => {
     return (
       <LoadingEqualizer />
     )
+  }
+
+  const handleLanguageChange = (event) => {
+    const selectedLanguage = event.target.value
+
+    console.log(selectedLanguage)
+    i18n.changeLanguage(selectedLanguage).then((t) => setStore('sonoro_language', selectedLanguage))
   }
 
   const handleLogout = () => {
@@ -91,6 +102,17 @@ const Profile = () => {
               </dt>
               <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                 {profile.about || '-'}
+              </dd>
+            </div>
+            <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">
+                {t('profile.language')}
+              </dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                <select onChange={handleLanguageChange} defaultValue={storedLanguage || 'es'}>
+                  <option value='es' >Español</option>
+                  <option value='en' >Inglés</option>
+                </select>
               </dd>
             </div>
             <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">

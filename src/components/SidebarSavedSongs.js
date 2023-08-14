@@ -3,16 +3,17 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getUserSavedSongs } from "@/services/spotifyService";
 import SidebarItem from "./SidebarItem";
-import { UseTranslation, useTranslation } from "next-i18next";
+import { useTranslation } from "next-i18next";
+import { checkUserSession } from "@/utils/liveSession";
 
 const SidebarSavedSongs = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const router = useRouter();
   const [userSavedSongs, setUserSavedSongs] = useState(null);
 
   useEffect(() => {
     const getSavedSongs = async () => {
-      const response = await getUserSavedSongs({});
+      const response = await checkUserSession(() => getUserSavedSongs({}));
 
       if (response?.status && response.status === 401) {
         setUserSavedSongs(null)

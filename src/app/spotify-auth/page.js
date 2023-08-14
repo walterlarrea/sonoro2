@@ -4,14 +4,15 @@ import { useRouter } from 'next/navigation';
 import { useSearchParams } from 'next/navigation'
 import { getAccessToken, refreshAccessToken, redirectToAuthCodeFlow } from '@/utils/spotifyAuthClient';
 import { getStore, setStore } from '@/services/localStore';
+import { CLIENT_ID } from '@/utils/constantes';
 
 const AccesoApi = () => {
   const router = useRouter()
   const params = useSearchParams()
   const code = params.get("code") || undefined;
   const error = params.get("error") || undefined;
-  const clientId = "c4ebe3bd87fe4a0493dd6d14ee608734";
-  const refreshToken = getStore('sonoro-refresh')
+  const refreshToken = getStore('sonoro-refresh');
+  const clientId = CLIENT_ID;
 
   useEffect(() => {
     if (error) {
@@ -35,6 +36,7 @@ const AccesoApi = () => {
         redirectToAuthCodeFlow(clientId);
       } else {
         const authResponse = await getAccessToken(clientId, code);
+
         if (authResponse.access_token) {
           setStore("sonoro-session", authResponse.access_token)
           setStore("sonoro-refresh", authResponse.refresh_token)

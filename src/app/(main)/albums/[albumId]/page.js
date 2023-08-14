@@ -6,6 +6,7 @@ import { getAlbum } from '@/services/spotifyService';
 import { ClockIcon } from "@heroicons/react/24/solid";
 import SongListItem from "@/components/SongListItems";
 import LoadingEqualizer from '@/components/Loader/LoadingEqualizer';
+import { checkUserSession } from '@/utils/liveSession';
 
 const Album = () => {
   const router = useParams()
@@ -16,7 +17,7 @@ const Album = () => {
   useEffect(() => {
     const albumDetails = async () => {
       if (albumId) {
-        const response = await getAlbum(albumId);
+        const response = await checkUserSession(() => getAlbum(albumId));
 
         if (response?.status && response.status === 401) {
           setAlbum(null)
