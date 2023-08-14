@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { getCurrentUser, logout } from '@/services/spotifyService';
 import { useTranslation } from 'react-i18next';
 import LoadingEqualizer from '@/components/Loader/LoadingEqualizer';
+import { checkUserSession } from '@/utils/liveSession';
 
 const Profile = () => {
 
@@ -32,7 +33,7 @@ const Profile = () => {
 
   useEffect(() => {
     const userProfile = async () => {
-      const response = await getCurrentUser();
+      const response = await checkUserSession(getCurrentUser);
       if (response?.status && response.status === 401) {
         router.push('/spotify-auth')
         return;

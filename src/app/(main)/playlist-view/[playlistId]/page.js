@@ -6,6 +6,7 @@ import { getPlaylistDetail } from "@/services/spotifyService";
 import { ClockIcon } from "@heroicons/react/24/solid";
 import SongListItem from "@/components/SongListItems";
 import LoadingEqualizer from "@/components/Loader/LoadingEqualizer";
+import { checkUserSession } from "@/utils/liveSession";
 
 const Playlist = () => {
   const router = useParams()
@@ -15,7 +16,7 @@ const Playlist = () => {
 
   useEffect(() => {
     const getPlaylist = async () => {
-      const response = await getPlaylistDetail({ playlistId });
+      const response = await checkUserSession(() => getPlaylistDetail({ playlistId }));
 
       if (response?.status && response.status === 401) {
         setPlaylist(null)

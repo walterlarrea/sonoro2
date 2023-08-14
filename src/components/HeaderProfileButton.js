@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import { getCurrentUser } from "@/services/spotifyService";
+import { checkUserSession } from "@/utils/liveSession";
 
 const HeaderProfileButton = () => {
   const [currentUser, setCurrentUser] = useState(null)
@@ -52,7 +53,7 @@ const HeaderProfileButton = () => {
 
   useEffect(() => {
     const getUser = async () => {
-      const response = await getCurrentUser()
+      const response = await checkUserSession(getCurrentUser)
 
       if (response?.status && response.status === 401) {
         setCurrentUser(null)

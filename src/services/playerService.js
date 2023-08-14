@@ -58,7 +58,7 @@ export const startPlayingTrack = async (trackUris, deviceId, trackToPlayUri) => 
   try {
     const response = await axios.put(`https://api.spotify.com/v1/me/player/play?${params}`, body, config)
 
-    return response.data
+    return response
   } catch (error) {
     console.error(error)
     return error.response;
@@ -91,7 +91,7 @@ export const startPlayingAlbumOrPlaylist = async (contextUri, deviceId, trackToP
   try {
     const response = await axios.put(`https://api.spotify.com/v1/me/player/play?${params}`, body, config)
 
-    return response.data
+    return response
   } catch (error) {
     console.error(error)
     return error.response;

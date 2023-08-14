@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import TrackList from "./TrackList";
 import { getRecommendations } from "@/services/spotifyService";
 import LoadingEqualizer from "./Loader/LoadingEqualizer";
+import { checkUserSession } from "@/utils/liveSession";
 
 const HomeFiltersPage = () => {
   const genres = ['jazz', 'tango', 'classical', 'rock-n-roll'];
@@ -12,10 +13,10 @@ const HomeFiltersPage = () => {
       let tracksObject = {}
 
       for (const g of genres) {
-        const rocknrollTracks = await getRecommendations({
+        const rocknrollTracks = await checkUserSession(() => getRecommendations({
           genres: [g],
           limit: 5,
-        })
+        }))
         tracksObject[g] = rocknrollTracks?.tracks
       }
 
