@@ -4,9 +4,10 @@ import { useState, useEffect } from 'react';
 import { getNewReleases } from '@/services/spotifyService';
 import AlbumList from '@/components/AlbumList';
 import { useTranslation } from 'next-i18next';
+import LoadingEqualizer from '@/components/Loader/LoadingEqualizer';
 
 const NewReleases = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const [albums, setAlbums] = useState(null)
 
   useEffect(() => {
@@ -19,9 +20,7 @@ const NewReleases = () => {
 
   if (!albums) {
     return (
-      <div>
-        Cargando...
-      </div>
+      <LoadingEqualizer />
     )
   }
 

@@ -8,7 +8,11 @@
         "name": "Nombre",
         "email": "Email",
         "phone": "Telefono",
-        "about": "Sobre mi"
+        "about": "Sobre mi",
+        "licence": "Licencia",
+        "logout": "Cerrar sesión",
+        "edit": "Editar perfil",
+        "title": "Mi perfil"
     },
     "search": {
         "button": "Buscar",
@@ -39,22 +43,22 @@
         "passwordMinLength": "La contraseña es demasiado corta",
         "passwordRequired": "El campo contraseña es obligatorio.",
         "phoneRequired": "Tu numero de telefono es obligatorio.",
-        "passwordMatch":"Ambas contraseñas deben ser iguales.",
-        "rpasswordRequired" : "Debe repetir la contraseña aquí."
-        
+        "passwordMatch": "Ambas contraseñas deben ser iguales.",
+        "rpasswordRequired": "Debe repetir la contraseña aquí."
     },
     "sidebar": {
         "userList": "Tus listas"
     },
     "sidebarSavedSongs": {
         "userLikeSongs": "Canciones que te gustan",
-        "list":"Lista.",
-        "song":"canción",
-        "songs":"canciónes"
+        "list": "Lista.",
+        "song": "canción",
+        "songs": "canciónes"
     },
     "radio": {
-      "title": "Estaciones de radio"
+        "title": "Estaciones de radio"
+    },
+    "loader": {
+        "loading": "Cargando . ."
     }
-    
-
-  }
+}

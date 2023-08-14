@@ -2,7 +2,7 @@
 import './layout-main.styles.css'
 import Header from '@/components/Header';
 import SideBar from '@/components/Sidebar';
-import Player from '@/components/playerComponents/Player';
+import Player from '@/components/playerComponents/BottomPlayer';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const client = new QueryClient();

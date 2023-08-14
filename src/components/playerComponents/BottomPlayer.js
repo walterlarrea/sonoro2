@@ -6,13 +6,8 @@ import ProgressBarFixed from "./ProgressBarFixed";
 
 const Player = () => {
   const {
-    player,
-    activeContext,
-    setActiveContext,
     isActive,
-    setIsActive,
-    isPlaying,
-    setIsPlaying,
+    togglePlayPause,
   } = usePlayerProvider();
 
   const containerStyle = ` 
@@ -31,7 +26,7 @@ const Player = () => {
 
   const handleClick = () => {
     if (isActive) {
-      setIsPlaying(!isPlaying);
+      togglePlayPause();
     }
   }
 
@@ -42,7 +37,6 @@ const Player = () => {
           <ProgressBarFixed />
           <PlayPauseButton
             thisIsActive={true}
-            isPlaying={isPlaying}
             handleClick={handleClick}
             containerStyle={containerStyle}
             iconStyle={iconStyle} />

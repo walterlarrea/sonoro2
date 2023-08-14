@@ -49,7 +49,7 @@ export const getCurrentUser = async () => {
 
 export const logout = async () => {
   removeStore("sonoro-session");
-  // removeStore("sonoro-refresh");
+  removeStore("sonoro-refresh");
 }
 
 export const searchResults = async ({ searchText, types, market, genre, limit, offset }) => {

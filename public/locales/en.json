@@ -1,59 +1,63 @@
 {
   "aside": {
-      "home": "Home",
-      "search": "Search",
-      "ultimate": "Latest releases"
+    "home": "Home",
+    "search": "Search",
+    "ultimate": "Latest releases"
   },
   "profile": {
-      "name": "Name",
-      "email": "Email",
-      "phone": "Phone",
-      "about": "About me"
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "about": "About me",
+    "licence": "Licence",
+    "logout": "Sign out",
+    "edit": "Edit profile",
+    "title": "My profile"
   },
   "search": {
     "button": "Search",
     "placeholder": "Albums, Artists, Tracks"
-},
-"login": {
-  "email": "Your email",
-  "password": "Password",
-  "rem": "Remember",
-  "registerEnter": "Register me",
-  "backHome": "Return",
-  "haveAccountAnswer": "You do not have an account?",
-  "recoveryPassword": "Forgot your password?",
-  "enterButton": "Enter"
-},
-"register": {
-  "name": "Name",
-  "email": "Email",
-  "password": "Password",
-  "password-repeat": "Repeat password",
-  "phone": "Phone",
-  "haveUser": "I have user",
-  "registerButton": "Register me",
-  "nameRequired": "The field name is required.",
-  "emailInvalid": "Wrong email format",
-  "emailRequired": "The field email is required",
-  "passwordMinLength": "The password is to short",
-  "passwordRequired": "The password field is required.",
-  "phoneRequired": "Your phone number is required.",
-  "passwordMatch": "Both passwords must be the same.",
-  "rpasswordRequired" : "You need to repeat the password here"
-  
-},
-"sidebar": {
+  },
+  "login": {
+    "email": "Your email",
+    "password": "Password",
+    "rem": "Remember",
+    "registerEnter": "Register me",
+    "backHome": "Return",
+    "haveAccountAnswer": "You do not have an account?",
+    "recoveryPassword": "Forgot your password?",
+    "enterButton": "Enter"
+  },
+  "register": {
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "password-repeat": "Repeat password",
+    "phone": "Phone",
+    "haveUser": "I have user",
+    "registerButton": "Register me",
+    "nameRequired": "The field name is required.",
+    "emailInvalid": "Wrong email format",
+    "emailRequired": "The field email is required",
+    "passwordMinLength": "The password is to short",
+    "passwordRequired": "The password field is required.",
+    "phoneRequired": "Your phone number is required.",
+    "passwordMatch": "Both passwords must be the same.",
+    "rpasswordRequired": "You need to repeat the password here"
+  },
+  "sidebar": {
     "userList": "Your lists"
-},
-"sidebarSavedSongs": {
+  },
+  "sidebarSavedSongs": {
     "userLikeSongs": "Songs you like",
-    "list":"List.",
-    "song":"song",
-    "songs":"songs"    
-},
-"radio": {
-  "title": "Radio stations"
+    "list": "List.",
+    "song": "song",
+    "songs": "songs"
+  },
+  "radio": {
+    "title": "Radio stations"
+  },
+  "loader": {
+    "loading": "Loading . ."
+  }
 }
-
-}
-
