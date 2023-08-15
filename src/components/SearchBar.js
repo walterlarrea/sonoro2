@@ -87,13 +87,13 @@ const SearchBar = () => {
         <>
           <h3
             className="text-[2rem] text-zinc-100 font-bold">
-            Canciones
+            {t('search.songs')}
           </h3>
           <TrackList tracks={results.tracks?.items} />
 
           <h3
             className="text-[2rem] text-zinc-100 font-bold">
-            Álbumes
+            {t('search.albums')}
           </h3>
           <AlbumList albums={results.albums} withAccess={true} />
         </>
