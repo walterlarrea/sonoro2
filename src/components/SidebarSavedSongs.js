@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { getUserSavedSongs } from "@/services/spotifyService";
 import SidebarItem from "./SidebarItem";
 import { useTranslation } from "next-i18next";
-import { checkUserSession } from "@/utils/liveSession";
+// import { checkUserSession } from "@/utils/liveSession";
 
 const SidebarSavedSongs = () => {
   const { t } = useTranslation();
@@ -13,14 +13,14 @@ const SidebarSavedSongs = () => {
 
   useEffect(() => {
     const getSavedSongs = async () => {
-      const response = await checkUserSession(() => getUserSavedSongs({}));
+      const response = await getUserSavedSongs({});
+      const savedSongsObject = response.data;
 
-      if (response?.status && response.status === 401) {
+      if (savedSongsObject?.status && savedSongsObject.status === 401) {
         setUserSavedSongs(null)
         return;
       }
 
-      const savedSongsObject = response;
       setUserSavedSongs(savedSongsObject);
     };
     getSavedSongs();

@@ -6,7 +6,7 @@ import { getAlbum } from '@/services/spotifyService';
 import { ClockIcon } from "@heroicons/react/24/solid";
 import SongListItem from "@/components/SongListItems";
 import LoadingEqualizer from '@/components/Loader/LoadingEqualizer';
-import { checkUserSession } from '@/utils/liveSession';
+// import { checkUserSession } from '@/utils/liveSession';
 import { useTranslation } from 'react-i18next';
 
 const Album = () => {
@@ -19,13 +19,13 @@ const Album = () => {
   useEffect(() => {
     const albumDetails = async () => {
       if (albumId) {
-        const response = await checkUserSession(() => getAlbum(albumId));
+        const response = await getAlbum(albumId);
+        const albumObject = response.data;
 
-        if (response?.status && response.status === 401) {
+        if (albumObject?.status && albumObject.status === 401) {
           setAlbum(null)
           return;
         }
-        const albumObject = response;
 
         setAlbum(albumObject);
       }

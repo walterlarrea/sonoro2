@@ -6,7 +6,7 @@ import { getPlaylistDetail } from "@/services/spotifyService";
 import { ClockIcon } from "@heroicons/react/24/solid";
 import SongListItem from "@/components/SongListItems";
 import LoadingEqualizer from "@/components/Loader/LoadingEqualizer";
-import { checkUserSession } from "@/utils/liveSession";
+// import { checkUserSession } from "@/utils/liveSession";
 import { useTranslation } from "react-i18next";
 
 const Playlist = () => {
@@ -18,14 +18,14 @@ const Playlist = () => {
 
   useEffect(() => {
     const getPlaylist = async () => {
-      const response = await checkUserSession(() => getPlaylistDetail({ playlistId }));
+      const response = await getPlaylistDetail({ playlistId });
+      const playlistObject = response.data
 
-      if (response?.status && response.status === 401) {
+      if (playlistObject?.status && playlistObject.status === 401) {
         setPlaylist(null)
         return;
       }
 
-      const playlistObject = response;
       setPlaylist(playlistObject);
     };
     getPlaylist();

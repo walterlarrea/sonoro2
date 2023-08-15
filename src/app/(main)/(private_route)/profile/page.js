@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { getCurrentUser, logout } from '@/services/spotifyService';
 import { useTranslation } from 'react-i18next';
 import LoadingEqualizer from '@/components/Loader/LoadingEqualizer';
-import { checkUserSession } from '@/utils/liveSession';
+// import { checkUserSession } from '@/utils/liveSession';
 import i18n from 'i18next';
 import { getStore, setStore } from '@/services/localStore';
 
@@ -35,15 +35,17 @@ const Profile = () => {
     uppercase`)
 
   useEffect(() => {
-    const userProfile = async () => {
-      const response = await checkUserSession(getCurrentUser);
-      if (response?.status && response.status === 401) {
+    const getUserProfile = async () => {
+      const response = await getCurrentUser();
+      const userProfile = response.data
+
+      if (userProfile?.status && userProfile.status === 401) {
         router.push('/spotify-auth')
         return;
       }
-      setProfile(response);
+      setProfile(userProfile);
     }
-    userProfile();
+    getUserProfile();
   }, [])
 
   if (!profile) {

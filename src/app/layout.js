@@ -2,6 +2,7 @@ import './globals.css'
 import Translator from '@/config/i18nProvider';
 import { PlayerProvider } from '@/context/playerProvider';
 import { ThemeProvider } from '@/context/themeProvider';
+import { QueryProvider } from '@/context/queryProvider';
 
 export const metadata = {
   title: 'Sonoro',
@@ -15,11 +16,13 @@ function RootLayout({ children }) {
     <html lang="es">
       <body>
         <Translator>
-          <ThemeProvider>
-            <PlayerProvider>
-              {children}
-            </PlayerProvider>
-          </ThemeProvider>
+          <QueryProvider>
+            <ThemeProvider>
+              <PlayerProvider>
+                {children}
+              </PlayerProvider>
+            </ThemeProvider>
+          </QueryProvider>
         </Translator>
       </body>
     </html>

@@ -1,48 +1,55 @@
-import { CLIENT_ID } from '@/utils/constantes';
-import { getStore, setStore } from '@/services/localStore';
-import { refreshAccessToken, redirectToAuthCodeFlow } from '@/utils/spotifyAuthClient';
+// import { CLIENT_ID } from '@/utils/constantes';
+// import { getStore, setStore } from '@/services/localStore';
+// import { refreshAccessToken, redirectToAuthCodeFlow } from '@/utils/spotifyAuthClient';
+// import { useQueryClient } from '@tanstack/react-query';
 
-const renewUserSession = async () => {
-  const refreshToken = getStore('sonoro-refresh')
-  const clientId = CLIENT_ID;
+export const isValidSession = (email) => email !== null && email !== undefined;
 
-  if (refreshToken) {
-    const authResponse = await refreshAccessToken(clientId, refreshToken);
+// const renewUserSession = async () => {
+//   const client = useQueryClient()
+//   const refreshToken = getStore('sonoro-refresh')
+//   const clientId = CLIENT_ID;
 
-    if (authResponse.access_token) {
-      setStore("sonoro-session", authResponse.access_token)
-      setStore("sonoro-refresh", authResponse.refresh_token)
+//   if (refreshToken) {
+//     const authResponse = await refreshAccessToken(clientId, refreshToken);
 
-      return true
-    }
-  }
+//     if (authResponse.access_token) {
+//       client.setQueryData(["session"], authResponse);
 
-  redirectToAuthCodeFlow(clientId);
-  return false
-} // This function will try refreshing the JWT using a refresh token previously provided
-// In case of failure, locally sotred JWTs will be deleted and browser be redirected to Login options.
+//       setStore("sonoro-session", authResponse.access_token)
+//       setStore("sonoro-refresh", authResponse.refresh_token)
 
-export const checkUserSession = async (callbackFn) => {
-  const firstResponse = await callbackFn();
+//       return true
+//     }
+//   }
 
-  if (firstResponse.status >= 200 && firstResponse.status <= 299) {
-    return firstResponse.data;
-  }
+//   redirectToAuthCodeFlow(clientId);
+//   return false
+// } // This function will try refreshing the JWT using a refresh token previously provided
+// // In case of failure, locally sotred JWTs will be deleted and browser be redirected to Login options.
 
-  if (firstResponse.status === 401) {
-    await renewUserSession()
+// export const checkUserSession = async (callbackFn) => {
+//   const firstResponse = await callbackFn();
 
-    try {
-      const response = await callbackFn();
+//   if (firstResponse.status >= 200 && firstResponse.status <= 299) {
+//     return firstResponse.data;
+//   }
 
-      console.error("User's session restored")
-      return response.data
-    } catch (error) {
-      console.error(error)
-      return error.response;
-    }
-  }
+//   if (firstResponse.status === 401) {
+//     await renewUserSession()
 
-  console.error(firstResponse)
-  return firstResponse;
-}
+//     try {
+//       const response = await callbackFn();
+
+//       console.error("User's session restored")
+//       return response.data
+//     } catch (error) {
+//       console.error(error)
+//       return error.response;
+//     }
+//   }
+
+//   console.error(firstResponse)
+//   return firstResponse;
+// }
+

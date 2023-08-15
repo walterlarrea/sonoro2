@@ -2,17 +2,19 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation';
 import { useSearchParams } from 'next/navigation'
+import { useQueryClient } from '@tanstack/react-query';
 import { getAccessToken, refreshAccessToken, redirectToAuthCodeFlow } from '@/utils/spotifyAuthClient';
 import { getStore, setStore } from '@/services/localStore';
 import { CLIENT_ID } from '@/utils/constantes';
 
 const AccesoApi = () => {
+  const clientId = CLIENT_ID;
   const router = useRouter()
   const params = useSearchParams()
+  const client = useQueryClient()
   const code = params.get("code") || undefined;
   const error = params.get("error") || undefined;
   const refreshToken = getStore('sonoro-refresh');
-  const clientId = CLIENT_ID;
 
   useEffect(() => {
     if (error) {
@@ -27,6 +29,8 @@ const AccesoApi = () => {
         if (authResponse.access_token) {
           setStore("sonoro-session", authResponse.access_token)
           setStore("sonoro-refresh", authResponse.refresh_token)
+
+          client.setQueryData(["session"], authResponse);
           router.push('/')
           return
         }
@@ -38,6 +42,8 @@ const AccesoApi = () => {
         const authResponse = await getAccessToken(clientId, code);
 
         if (authResponse.access_token) {
+          client.setQueryData(["session"], authResponse);
+
           setStore("sonoro-session", authResponse.access_token)
           setStore("sonoro-refresh", authResponse.refresh_token)
           router.push('/')

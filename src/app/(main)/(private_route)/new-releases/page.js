@@ -1,11 +1,10 @@
 'use client';
-
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'next-i18next';
 import AlbumList from '@/components/AlbumList';
 import LoadingEqualizer from '@/components/Loader/LoadingEqualizer';
 import { getNewReleases } from '@/services/spotifyService';
-import { checkUserSession } from '@/utils/liveSession';
+// import { checkUserSession } from '@/utils/liveSession';
 
 const NewReleases = () => {
   const { t } = useTranslation();
@@ -13,8 +12,10 @@ const NewReleases = () => {
 
   useEffect(() => {
     const newReleases = async () => {
-      const response = await checkUserSession(getNewReleases);
-      setAlbums(response.albums);
+      const response = await getNewReleases();
+      const albumsList = response.data;
+
+      setAlbums(albumsList.albums);
     }
     newReleases();
   }, [])

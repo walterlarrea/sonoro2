@@ -5,7 +5,7 @@ import Image from "next/image";
 import { getUserPlaylists } from "@/services/spotifyService";
 import { useEffect } from "react";
 import SidebarItem from "./SidebarItem";
-import { checkUserSession } from "@/utils/liveSession";
+// import { checkUserSession } from "@/utils/liveSession";
 
 const SidebarPlaylist = () => {
   const router = useRouter()
@@ -13,13 +13,13 @@ const SidebarPlaylist = () => {
 
   useEffect(() => {
     const getSavedSongs = async () => {
-      const response = await checkUserSession(() => getUserPlaylists({}));
+      const response = await getUserPlaylists({});
+      const userPlaylists = response.data;
 
-      if (response?.status && response.status === 401) {
+      if (userPlaylists?.status && userPlaylists.status === 401) {
         setPlaylists(null)
         return;
       }
-      const userPlaylists = response;
       setPlaylists(userPlaylists);
     };
     getSavedSongs();
