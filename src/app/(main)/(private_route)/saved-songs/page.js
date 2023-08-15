@@ -5,22 +5,24 @@ import { ClockIcon } from "@heroicons/react/24/solid";
 import SongListItem from "@/components/SongListItems";
 import { usePlayerProvider } from "@/context/playerProvider";
 import LoadingEqualizer from "@/components/Loader/LoadingEqualizer";
-import { checkUserSession } from "@/utils/liveSession";
+// import { checkUserSession } from "@/utils/liveSession";
+import { useTranslation } from "react-i18next";
 
 const SavedSongs = () => {
+  const { t } = useTranslation();
   const { setActiveContext } = usePlayerProvider();
   const [savedSongsObj, setSavedSongsObj] = useState(null);
 
   useEffect(() => {
     const getSavedSongs = async () => {
-      const response = await checkUserSession(() => getUserSavedSongs({}));
+      const response = await getUserSavedSongs({});
+      const savedSongsObject = response.data;
 
-      if (response?.status && response.status === 401) {
+      if (savedSongsObject?.status && savedSongsObject.status === 401) {
         setSavedSongsObj(null)
         return;
       }
 
-      const savedSongsObject = response;
       setSavedSongsObj(savedSongsObject);
     };
     getSavedSongs();
@@ -45,8 +47,8 @@ const SavedSongs = () => {
         <thead>
           <tr>
             <th className="text-start font-normal text-zinc-300 ms-4">#</th>
-            <th className="text-start font-normal text-zinc-300">Título</th>
-            <th className="text-start font-normal text-zinc-300">Álbum</th>
+            <th className="text-start font-normal text-zinc-300">{t('songListHeaders.title')}</th>
+            <th className="text-start font-normal text-zinc-300">{t('songListHeaders.album')}</th>
             <th className="text-start font-normal text-zinc-300"></th>
             <th className="text-start font-normal text-zinc-300">
               <ClockIcon className="h-6 w-6" />

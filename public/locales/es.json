@@ -17,7 +17,9 @@
     },
     "search": {
         "button": "Buscar",
-        "placeholder": "Albums, Artistas, Temas"
+        "placeholder": "Albums, Artistas, Temas",
+        "songs": "Canciones",
+        "albums": "Álbumes"
     },
     "login": {
         "email": "Correo electronico",
@@ -61,5 +63,9 @@
     },
     "loader": {
         "loading": "Cargando . ."
+    },
+    "songListHeaders": {
+        "title": "Título",
+        "album": "Álbum"
     }
 }

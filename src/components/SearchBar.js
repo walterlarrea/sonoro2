@@ -5,14 +5,17 @@ import { useState } from "react";
 import AlbumList from "./AlbumList";
 import { useTranslation } from "next-i18next";
 import TrackList from "./TrackList";
-import { checkUserSession } from "@/utils/liveSession";
+// import { checkUserSession } from "@/utils/liveSession";
 
 const SearchBar = () => {
   const { t } = useTranslation();
   const [searchText, setSearchText] = useState(null);
   const { data: results, error, refetch, isLoading } = useQuery({
     queryKey: ['searchData'],
-    queryFn: () => checkUserSession(() => searchResults({ searchText, types: ['album', 'track', 'artist'] })),
+    queryFn: async () => {
+      const res = await searchResults({ searchText, types: ['album', 'track', 'artist'] })
+      return res.data
+    },
     enabled: false,
   })
 
@@ -87,13 +90,13 @@ const SearchBar = () => {
         <>
           <h3
             className="text-[2rem] text-zinc-100 font-bold">
-            Canciones
+            {t('search.songs')}
           </h3>
           <TrackList tracks={results.tracks?.items} />
 
           <h3
             className="text-[2rem] text-zinc-100 font-bold">
-            Álbumes
+            {t('search.albums')}
           </h3>
           <AlbumList albums={results.albums} withAccess={true} />
         </>

@@ -30,7 +30,7 @@ const ProgressBarFixed = () => {
   }
 
   return (
-    <>
+    <div className="flex items-center gap-2 mx-4">
       {millisToMinutesAndSeconds(value)}
 
       <input
@@ -41,7 +41,7 @@ const ProgressBarFixed = () => {
         onChange={handleSeekTo} />
 
       {millisToMinutesAndSeconds(duration)}
-    </>
+    </div>
   )
 }
 

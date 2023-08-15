@@ -17,7 +17,9 @@
   },
   "search": {
     "button": "Search",
-    "placeholder": "Albums, Artists, Tracks"
+    "placeholder": "Albums, Artists, Tracks",
+    "songs": "Songs",
+    "albums": "Albums"
   },
   "login": {
     "email": "Your email",
@@ -60,5 +62,9 @@
   },
   "loader": {
     "loading": "Loading . ."
+  },
+  "songListHeaders": {
+    "title": "Title",
+    "album": "Album"
   }
 }

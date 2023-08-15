@@ -6,24 +6,26 @@ import { getAlbum } from '@/services/spotifyService';
 import { ClockIcon } from "@heroicons/react/24/solid";
 import SongListItem from "@/components/SongListItems";
 import LoadingEqualizer from '@/components/Loader/LoadingEqualizer';
-import { checkUserSession } from '@/utils/liveSession';
+// import { checkUserSession } from '@/utils/liveSession';
+import { useTranslation } from 'react-i18next';
 
 const Album = () => {
   const router = useParams()
   const { setActiveContext } = usePlayerProvider();
+  const { t } = useTranslation();
   const albumId = router["albumId"]
   const [album, setAlbum] = useState(null)
 
   useEffect(() => {
     const albumDetails = async () => {
       if (albumId) {
-        const response = await checkUserSession(() => getAlbum(albumId));
+        const response = await getAlbum(albumId);
+        const albumObject = response.data;
 
-        if (response?.status && response.status === 401) {
+        if (albumObject?.status && albumObject.status === 401) {
           setAlbum(null)
           return;
         }
-        const albumObject = response;
 
         setAlbum(albumObject);
       }
@@ -54,8 +56,8 @@ const Album = () => {
         <thead>
           <tr>
             <th className="text-center font-normal text-zinc-300 ms-4">#</th>
-            <th className="text-start font-normal text-zinc-300">Título</th>
-            {/* <th className="text-start font-normal text-zinc-300">Álbum</th> */}
+            <th className="text-start font-normal text-zinc-300">{t('songListHeaders.title')}</th>
+            {/* <th className="text-start font-normal text-zinc-300">{t('songListHeaders.album')}</th> */}
             <th className="text-start font-normal text-zinc-300"></th>
             <th className="text-start font-normal text-zinc-300">
               <ClockIcon className="h-6 w-6" />
