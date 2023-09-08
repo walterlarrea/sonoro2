@@ -2,9 +2,10 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import HeaderProfileButton from "./HeaderProfileButton";
 import Navbar from "./Navbar";
+import TextSizeChange from "./textSizeChange";
 
 export default function Header() {
-  const router = useRouter()
+  const router = useRouter();
 
   return (
     <header>
@@ -14,9 +15,10 @@ export default function Header() {
           className="mx-5 cursor-pointer"
           title='Inicio'
         >
-          <Image src='/images/icon.png' width={64} height={64} alt="Logo" />
+          <Image src='/images/icon.png' width={90} height={72} alt="Logo" />
         </div>
-
+        <div className="flex-grow" /> {/* Espacio flexible para empujar TextSizeChange a la derecha */}
+        <TextSizeChange/>
         <div className="mx-5">
           <HeaderProfileButton />
         </div>
