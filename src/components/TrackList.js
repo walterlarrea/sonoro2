@@ -14,7 +14,7 @@ const TrackList = ({ tracks, withAccess }) => {
   return (
     <div style={{
       display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minMax(145px, 1fr))',
+      gridTemplateColumns: 'repeat(auto-fit, minMax(195px, 1fr))',
       justifyItems: 'center',
       gap: '1em',
     }}

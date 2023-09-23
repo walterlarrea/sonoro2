@@ -43,7 +43,7 @@ const HomeFiltersPage = () => {
       {genres.map(genre =>
         <div key={genre}>
           <h3
-            className="text-[2rem] text-zinc-100 font-bold">
+            className="text-[2rem] text-gray-900 font-bold">
             {capitalizeFirstLetter(genre)}
           </h3>
 

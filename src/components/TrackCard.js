@@ -12,12 +12,13 @@ const TrackCard = ({ track, onClick }) => {
 
   return (
     <div className="
-      group
+      group 
       rounded-lg 
       p-3 
       h-full 
-      bg-zinc-900 
-      hover:bg-zinc-800"
+      bg-[#fee2b0] 
+      hover:bg-[#fff3dd] 
+      shadow-neobrutalism"
       onClick={onClick}>
 
       <div className="relative">

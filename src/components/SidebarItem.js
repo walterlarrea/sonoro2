@@ -9,12 +9,13 @@ const SidebarItem = ({ title, description, thumbnailSource, descriptionIcon, han
         w-full
         h-[4rem]
         p-[0.5rem]
-        bg-zinc-900
-        hover:bg-zinc-800
-        active:bg-black
+        mb-2
+        bg-[#c8d0ba]
+        hover:bg-[#f6ffe8]
+        active:bg-[#cdee93]
         rounded-md
         cursor-pointer
-        ">
+        shadow-neobrutalism">
       {thumbnailSource &&
         <img
           src={thumbnailSource}

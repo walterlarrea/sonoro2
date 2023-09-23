@@ -20,10 +20,11 @@ const SideBar = () => {
       justify-start 
       items-center 
       rounded-lg
-      text-zinc-100 
-      bg-zinc-900 
+      text-[#080808] 
+      bg-[#c9dea3] 
       p-[8px] 
-      overflow-y-auto">
+      overflow-y-auto
+      shadow-neobrutalism">
         <h2 className="mb-3">{t('sidebar.userList')}</h2>
         <SidebarSavedSongs />
         <SidebarPlaylist />

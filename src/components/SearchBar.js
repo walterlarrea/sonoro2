@@ -52,6 +52,7 @@ const SearchBar = () => {
 
           <input
             className="
+              shadow-neobrutalism
               outline-none
               bg-gray-100
               h-12
@@ -59,7 +60,8 @@ const SearchBar = () => {
               text-zinc-900
               rounded-s-full
               align-middle
-              px-4"
+              px-4
+              me-0"
             type='search'
             name='search-bar'
             placeholder={t('search.placeholder')}
@@ -71,12 +73,10 @@ const SearchBar = () => {
               h-12
               text-2xl
               text-zinc-900
-              border-solid
-              border-2
-              border-l-zinc-400
               rounded-e-full
               align-middle
               px-4
+              shadow-neobrutalism
               "
             onClick={refetch}
             type='submit'
@@ -89,13 +89,13 @@ const SearchBar = () => {
       {results &&
         <>
           <h3
-            className="text-[2rem] text-zinc-100 font-bold">
+            className="text-[2rem] text-grey-900 font-bold">
             {t('search.songs')}
           </h3>
           <TrackList tracks={results.tracks?.items} />
 
           <h3
-            className="text-[2rem] text-zinc-100 font-bold">
+            className="text-[2rem] text-grey-900 font-bold">
             {t('search.albums')}
           </h3>
           <AlbumList albums={results.albums} withAccess={true} />

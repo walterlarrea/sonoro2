@@ -18,12 +18,13 @@ const Navbar = ({ background, column, row }) => {
         flex 
         ${flexDir} 
         rounded-lg 
-        text-zinc-100 
-        bg-zinc-900 
+        text-[#080808] 
+        bg-[#c9dea3] 
         pe-3
         pb-3
         whitespace-nowrap
-        flex-wrap`}>
+        flex-wrap
+        shadow-neobrutalism`}>
 
       <Link
         className={linkClassNames}

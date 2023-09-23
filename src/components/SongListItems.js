@@ -19,8 +19,8 @@ const SongListItem = ({ track, listNumber, handleClick, handlePlayAlbumPlaylist 
         py-[0.5rem]
         px-[16px]
         bg-transparent 
-        hover:bg-zinc-800
-        active:bg-black
+        hover:bg-[#f6ffe8] 
+        active:bg-[#cdee93] 
         rounded-md
         cursor-pointer
         ">
@@ -61,7 +61,7 @@ const SongListItem = ({ track, listNumber, handleClick, handlePlayAlbumPlaylist 
           }
           <div className="flex flex-col gap-[2px] justify-center min-w-[48px]">
             <h4 className="font-bold">{track.name}</h4>
-            <span className="text-[0.9rem] text-zinc-300">
+            <span className="text-[0.9rem] text-gray-900">
               {track.artists?.map(artist => artist.name).join(', ')}
             </span>
           </div>
@@ -69,7 +69,7 @@ const SongListItem = ({ track, listNumber, handleClick, handlePlayAlbumPlaylist 
       </td>
 
       {track.album &&
-        <td className="items-center text-[0.9rem] text-zinc-300">
+        <td className="items-center text-[0.9rem] text-gray-900">
           {track.album?.name}
         </td>
       }

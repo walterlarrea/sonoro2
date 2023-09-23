@@ -14,7 +14,7 @@ const AlbumList = ({ albums, withAccess }) => {
   return (
     <div style={{
       display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minMax(145px, 1fr))',
+      gridTemplateColumns: 'repeat(auto-fit, minMax(175px, 1fr))',
       justifyItems: 'center',
       gap: '1em',
     }}
