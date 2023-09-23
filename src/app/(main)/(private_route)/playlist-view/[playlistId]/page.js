@@ -68,7 +68,7 @@ const Playlist = () => {
               <SongListItem
                 key={track.id}
                 track={track}
-                listNumber={index}
+                listNumber={index + 1}
                 handlePlayAlbumPlaylist={handlePlayPlaylist(track)}
               />
             )}
