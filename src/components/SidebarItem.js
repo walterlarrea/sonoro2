@@ -8,14 +8,17 @@ const SidebarItem = ({ title, description, thumbnailSource, descriptionIcon, han
         gap-[0.8rem]
         w-full
         h-[4rem]
-        p-[0.5rem]
+        p-[0.2rem]
+        mr-0
         mb-2
         bg-[#c8d0ba]
         hover:bg-[#f6ffe8]
         active:bg-[#cdee93]
-        rounded-md
         cursor-pointer
-        shadow-neobrutalism">
+        rounded-lg
+        border-2
+        border-gray-800
+        dark:border-gray-200">
       {thumbnailSource &&
         <img
           src={thumbnailSource}
@@ -26,7 +29,7 @@ const SidebarItem = ({ title, description, thumbnailSource, descriptionIcon, han
             m-0
             " />
       }
-      <div className="flex flex-col gap-[2px] justify-center">
+      <div className="flex flex-col gap-[2px]">
         <h4 className="font-bold">{title}</h4>
         {descriptionIcon &&
           "ICON"
