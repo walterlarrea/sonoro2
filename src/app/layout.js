@@ -1,4 +1,7 @@
+
 import './globals.css'
+
+
 import Translator from '@/config/i18nProvider';
 import { PlayerProvider } from '@/context/playerProvider';
 import { ThemeProvider } from '@/context/themeProvider';

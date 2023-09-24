@@ -26,7 +26,7 @@ const TextSizeChange = () => {
         alt=""
         width={42}
         height={42}
-        className="mr-2 cursor-pointer text-white"
+        className="mr-2 cursor-pointer text-white border rounded-full"
         onClick={(e) => {
           e.preventDefault();
           handleTextSizeChange(textSize + 0.5);
@@ -37,7 +37,7 @@ const TextSizeChange = () => {
         alt=""
         width={42}
         height={42}
-        className="cursor-pointer text-white"
+        className="cursor-pointer text-white border rounded-full"
         onClick={(e) => {
           e.preventDefault();
           handleTextSizeChange(textSize - 0.5);

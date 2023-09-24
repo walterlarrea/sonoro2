@@ -19,7 +19,7 @@ export default function MainLayout({ children }) {
           className='rounded-lg bg-zinc-950 bg-gradient-to-b from-[#131313] overflow-y-auto p-3'
         >
           {children}
-          <TextSizeChange/>
+         
 
         </div>
       </div>
