@@ -13,11 +13,12 @@ export default function MainLayout({ children }) {
         <SideBar />
         <div className='
             rounded-lg
-            bg-zinc-950
+            bg-[#e5fdba]
             bg-gradient-to-b 
-            from-[#131313]
+            from-[#cee1ab]
             overflow-y-auto
-            p-3'>
+            p-3
+            shadow-neobrutalism'>
           {children}
         </div>
       </div>

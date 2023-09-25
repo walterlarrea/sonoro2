@@ -12,10 +12,11 @@ const AlbumCard = ({ album, onClickCard }) => {
     <div className="
     group
     rounded-lg 
-    p-3 
     h-full 
-    bg-zinc-900 
-    hover:bg-zinc-800"
+    bg-[#fee2b0] 
+    hover:bg-[#fff3dd] 
+    overflow-hidden 
+    shadow-neobrutalism"
       onClick={onClickCard}>
 
       <div className="relative">
@@ -26,7 +27,7 @@ const AlbumCard = ({ album, onClickCard }) => {
         <img
           src={album?.images[0]?.url}
           alt={`Cover of the ${album.album_type} ${album.name}`}
-          className="rounded-md"
+          className="border-b-2 border-gray-900"
         />
       </div>
 

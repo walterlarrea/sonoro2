@@ -46,11 +46,11 @@ const SavedSongs = () => {
       <table className="w-full">
         <thead>
           <tr>
-            <th className="text-start font-normal text-zinc-300 ms-4">#</th>
-            <th className="text-start font-normal text-zinc-300">{t('songListHeaders.title')}</th>
-            <th className="text-start font-normal text-zinc-300">{t('songListHeaders.album')}</th>
-            <th className="text-start font-normal text-zinc-300"></th>
-            <th className="text-start font-normal text-zinc-300">
+            <th className="text-center font-normal text-gray-900 ms-4">#</th>
+            <th className="text-start font-normal text-gray-900">{t('songListHeaders.title')}</th>
+            <th className="text-start font-normal text-gray-900">{t('songListHeaders.album')}</th>
+            <th className="text-start font-normal text-gray-900"></th>
+            <th className="text-start font-normal text-gray-900">
               <ClockIcon className="h-6 w-6" />
             </th>
           </tr>
@@ -61,7 +61,7 @@ const SavedSongs = () => {
               <SongListItem
                 key={track.id}
                 track={track}
-                listNumber={index}
+                listNumber={index + 1}
                 handlePlayAlbumPlaylist={handlePlayTracks(track)}
               />
             )}
