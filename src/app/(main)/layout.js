@@ -14,8 +14,10 @@ export default function MainLayout({ children }) {
         <div className='
             rounded-lg
             bg-[#e5fdba]
+            dark:bg-[#34392A]
             bg-gradient-to-b 
             from-[#cee1ab]
+            dark:from-[#363D29]
             overflow-y-auto
             p-3
             shadow-neobrutalism'>

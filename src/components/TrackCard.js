@@ -18,8 +18,9 @@ const TrackCard = ({ track, onClick }) => {
       h-full 
       bg-[#fee2b0] 
       hover:bg-[#fff3dd] 
+      dark:bg-[#271900] 
+      dark:hover:bg-[#3E2800] 
       border-2
-      border-gray-800
       shadow-neobrutalism"
       onClick={onClick}>
 

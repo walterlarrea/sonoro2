@@ -21,7 +21,9 @@ const SideBar = () => {
       items-center 
       rounded-lg
       text-[#080808] 
+      dark:text-[#e5fdba] 
       bg-[#c9dea3] 
+      dark:bg-[#34392A] 
       p-[8px] 
       overflow-y-auto
       shadow-neobrutalism">

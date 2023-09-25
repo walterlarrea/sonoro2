@@ -46,11 +46,11 @@ const SavedSongs = () => {
       <table className="w-full">
         <thead>
           <tr>
-            <th className="text-center font-normal text-gray-900 ms-4">#</th>
-            <th className="text-start font-normal text-gray-900">{t('songListHeaders.title')}</th>
-            <th className="text-start font-normal text-gray-900">{t('songListHeaders.album')}</th>
-            <th className="text-start font-normal text-gray-900"></th>
-            <th className="text-start font-normal text-gray-900">
+            <th className="text-center font-normal ms-4">#</th>
+            <th className="text-start font-normal">{t('songListHeaders.title')}</th>
+            <th className="text-start font-normal">{t('songListHeaders.album')}</th>
+            <th className="text-start font-normal"></th>
+            <th className="text-start font-normal">
               <ClockIcon className="h-6 w-6" />
             </th>
           </tr>

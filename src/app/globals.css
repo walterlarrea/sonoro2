@@ -1,5 +1,9 @@
  @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+ @tailwind base;
+ @tailwind components;
+ @tailwind utilities;
+
  body {
      margin: 0;
      padding: 0;
@@ -9,9 +13,10 @@
      font-size: 16px;
  }
 
- @tailwind base;
- @tailwind components;
- @tailwind utilities;
+ body.dark {
+     background: #34392A;
+     color: #e5fdba;
+ }
 
  @layer components {
      .shadow-neobrutalism {
@@ -20,6 +25,11 @@
          margin-bottom: 4px;
          box-shadow: 4px 4px 0 0 #080808;
      }
+ }
+
+ body.dark .shadow-neobrutalism {
+     border: solid 2px #e5fdba;
+     box-shadow: 4px 4px 0 0 #e5fdba;
  }
 
  ::-webkit-scrollbar {

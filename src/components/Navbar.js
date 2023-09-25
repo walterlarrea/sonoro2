@@ -19,7 +19,9 @@ const Navbar = ({ background, column, row }) => {
         ${flexDir} 
         rounded-lg 
         text-[#080808] 
-        bg-[#c9dea3] 
+      dark:text-[#e5fdba] 
+      bg-[#c9dea3] 
+      dark:bg-[#34392A] 
         pe-3
         pb-3
         whitespace-nowrap

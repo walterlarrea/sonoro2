@@ -12,13 +12,15 @@ const SidebarItem = ({ title, description, thumbnailSource, descriptionIcon, han
         mr-0
         mb-2
         bg-[#c8d0ba]
+        dark:bg-[#4C543E]
         hover:bg-[#f6ffe8]
+        dark:hover:bg-[#5D6B45]
         active:bg-[#cdee93]
+        dark:active:bg-[#34392A]
         cursor-pointer
         rounded-lg
         border-2
-        border-gray-800
-        dark:border-gray-200">
+        border-inherit">
       {thumbnailSource &&
         <img
           src={thumbnailSource}
