@@ -11,6 +11,10 @@
         "about": "Sobre mi",
         "licence": "Licencia",
         "language": "Lenguaje",
+        "theme": "Tema de colores",
+        "light": "Claro",
+        "dark": "Oscuro",
+        "system": "Usar tema definido por el sistema",
         "logout": "Cerrar sesión",
         "edit": "Editar perfil",
         "title": "Mi perfil"

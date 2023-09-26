@@ -1,10 +1,13 @@
 'use client'
 import './layout-main.styles.css'
+import { initTheme } from '@/utils/themeHandler'
 import Header from '@/components/Header';
 import SideBar from '@/components/Sidebar';
 import Player from '@/components/playerComponents/BottomPlayer';
+import { useEffect } from 'react';
 
 export default function MainLayout({ children }) {
+  useEffect(initTheme, [])
 
   return (
     <div className='app-layout'>
