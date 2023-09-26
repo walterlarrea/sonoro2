@@ -53,7 +53,8 @@
     "rpasswordRequired": "You need to repeat the password here"
   },
   "sidebar": {
-    "userList": "Your lists"
+    "userList": "Your lists",
+    "albums": "Albums"
   },
   "sidebarSavedSongs": {
     "userLikeSongs": "Songs you like",

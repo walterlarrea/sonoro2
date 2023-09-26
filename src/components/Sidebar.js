@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import SidebarSavedSongs from "./SidebarSavedSongs";
 import React from 'react';
 import { appWithTranslation, useTranslation } from 'next-i18next'; // Asegúrate de importar appWithTranslation
+import SidebarSavedAlbums from "./SidebarSavedAlbums";
 
 const SideBar = () => {
 
@@ -30,6 +31,7 @@ const SideBar = () => {
         <h2 className="mb-3">{t('sidebar.userList')}</h2>
         <SidebarSavedSongs />
         <SidebarPlaylist />
+        <SidebarSavedAlbums />
       </div>
 
     </div>

@@ -145,6 +145,25 @@ export const getUserPlaylists = async ({ limit, offset }) => {
   }
 }
 
+export const getUserSavedAlbums = async ({ limit, offset }) => {
+  const params = new URLSearchParams();
+  params.append("limit", limit || 20);
+  params.append("offset", offset || 0);
+
+  try {
+    const response = await axios.get(
+      `https://api.spotify.com/v1/me/albums?${params}`,
+      {
+        headers: { "Authorization": getToken() }
+      })
+
+    return response
+  } catch (error) {
+    console.error(error)
+    return error.response;
+  }
+}
+
 export const getPlaylistDetail = async ({ playlistId, market, fields }) => {
   const params = new URLSearchParams();
   if (market !== undefined) {
