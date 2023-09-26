@@ -11,6 +11,10 @@
     "about": "About me",
     "licence": "Licence",
     "language": "Language",
+    "theme": "Color theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "Use system's preference",
     "logout": "Sign out",
     "edit": "Edit profile",
     "title": "My profile"
@@ -49,13 +53,18 @@
     "rpasswordRequired": "You need to repeat the password here"
   },
   "sidebar": {
-    "userList": "Your lists"
+    "userList": "Your lists",
+    "albums": "Albums"
   },
   "sidebarSavedSongs": {
     "userLikeSongs": "Songs you like",
-    "list": "List.",
+    "list": "List",
     "song": "song",
     "songs": "songs"
+  },
+  "home": {
+    "recommendationsByHistory": "Based on your history",
+    "recommendationsBy": ""
   },
   "radio": {
     "title": "Radio stations"

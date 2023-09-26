@@ -1,7 +1,6 @@
 'use-client';
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import { getUserPlaylists } from "@/services/spotifyService";
 import { useEffect } from "react";
 import SidebarItem from "./SidebarItem";
@@ -12,7 +11,7 @@ const SidebarPlaylist = () => {
   const [playlists, setPlaylists] = useState(null);
 
   useEffect(() => {
-    const getSavedSongs = async () => {
+    const getPlaylists = async () => {
       const response = await getUserPlaylists({});
       const userPlaylists = response.data;
 
@@ -22,7 +21,7 @@ const SidebarPlaylist = () => {
       }
       setPlaylists(userPlaylists);
     };
-    getSavedSongs();
+    getPlaylists();
   }, [])
 
   if (!playlists) {

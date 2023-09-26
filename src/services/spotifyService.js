@@ -79,12 +79,14 @@ export const searchResults = async ({ searchText, types, market, genre, limit, o
   }
 }
 
-export const getRecommendations = async ({ genres, market, limit, offset }) => {
+export const getRecommendations = async ({ seedGenres, seedTracks, seedArtists, market, limit, offset }) => {
   const params = new URLSearchParams();
-  params.append('seed_genres', genres);
-  if (market !== undefined) {
-    params.append("market", market);
-  }
+  if (seedGenres !== undefined) params.append('seed_genres', seedGenres);
+  if (seedTracks !== undefined) params.append("seed_tracks", seedTracks)
+  if (seedArtists !== undefined) params.append("seed_artists", seedArtists)
+
+  if (market !== undefined) params.append("market", market);
+
   params.append("limit", limit || 20);
   params.append("offset", offset || 0);
 
@@ -143,6 +145,25 @@ export const getUserPlaylists = async ({ limit, offset }) => {
   }
 }
 
+export const getUserSavedAlbums = async ({ limit, offset }) => {
+  const params = new URLSearchParams();
+  params.append("limit", limit || 20);
+  params.append("offset", offset || 0);
+
+  try {
+    const response = await axios.get(
+      `https://api.spotify.com/v1/me/albums?${params}`,
+      {
+        headers: { "Authorization": getToken() }
+      })
+
+    return response
+  } catch (error) {
+    console.error(error)
+    return error.response;
+  }
+}
+
 export const getPlaylistDetail = async ({ playlistId, market, fields }) => {
   const params = new URLSearchParams();
   if (market !== undefined) {
@@ -155,6 +176,23 @@ export const getPlaylistDetail = async ({ playlistId, market, fields }) => {
   try {
     const response = await axios.get(
       `https://api.spotify.com/v1/playlists/${playlistId}?${params}`,
+      {
+        headers: { "Authorization": getToken() }
+      })
+    return response
+  } catch (error) {
+    console.error(error)
+    return error.response;
+  }
+}
+
+export const getRecentlyPlayedTracks = async ({ limit }) => {
+  const params = new URLSearchParams();
+  params.append("limit", limit || 20);
+
+  try {
+    const response = await axios.get(
+      `https://api.spotify.com/v1/me/player/recently-played?${params}`,
       {
         headers: { "Authorization": getToken() }
       })

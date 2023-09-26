@@ -7,6 +7,7 @@ import LoadingEqualizer from '@/components/Loader/LoadingEqualizer';
 // import { checkUserSession } from '@/utils/liveSession';
 import i18n from 'i18next';
 import { getStore, setStore } from '@/services/localStore';
+import { changeTheme } from '@/utils/themeHandler';
 
 const Profile = () => {
 
@@ -14,6 +15,7 @@ const Profile = () => {
   const router = useRouter();
   const [profile, setProfile] = useState(null)
   const storedLanguage = getStore('sonoro_language')
+  const storedTheme = getStore('sonoro_theme')
 
   const logoutButtonClassNames = useRef(`
     rounded-full 
@@ -57,8 +59,13 @@ const Profile = () => {
   const handleLanguageChange = (event) => {
     const selectedLanguage = event.target.value
 
-    console.log(selectedLanguage)
     i18n.changeLanguage(selectedLanguage).then((t) => setStore('sonoro_language', selectedLanguage))
+  }
+
+  const handleThemeChange = (event) => {
+    const selectedTheme = event.target.value
+
+    changeTheme(selectedTheme)
   }
 
   const handleLogout = () => {
@@ -114,6 +121,18 @@ const Profile = () => {
                 <select onChange={handleLanguageChange} defaultValue={storedLanguage || 'es'}>
                   <option value='es' >Español</option>
                   <option value='en' >Inglés</option>
+                </select>
+              </dd>
+            </div>
+            <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">
+                {t('profile.theme')}
+              </dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                <select onChange={handleThemeChange} defaultValue={storedTheme || 'system'}>
+                  <option value='light' >{t('profile.light')}</option>
+                  <option value='dark' >{t('profile.dark')}</option>
+                  <option value='system' >{t('profile.system')}</option>
                 </select>
               </dd>
             </div>

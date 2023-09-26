@@ -11,6 +11,10 @@
         "about": "Sobre mi",
         "licence": "Licencia",
         "language": "Lenguaje",
+        "theme": "Tema de colores",
+        "light": "Claro",
+        "dark": "Oscuro",
+        "system": "Usar tema definido por el sistema",
         "logout": "Cerrar sesión",
         "edit": "Editar perfil",
         "title": "Mi perfil"
@@ -50,13 +54,18 @@
         "rpasswordRequired": "Debe repetir la contraseña aquí."
     },
     "sidebar": {
-        "userList": "Tus listas"
+        "userList": "Tus listas",
+        "albums": "Álbumes"
     },
     "sidebarSavedSongs": {
         "userLikeSongs": "Canciones que te gustan",
-        "list": "Lista.",
+        "list": "Lista",
         "song": "canción",
         "songs": "canciónes"
+    },
+    "home": {
+        "recommendationsByHistory": "Basado en tu historial",
+        "recommendationsBy": ""
     },
     "radio": {
         "title": "Estaciones de radio"

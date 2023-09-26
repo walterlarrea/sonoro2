@@ -1,7 +1,8 @@
 import { usePlayerProvider } from "@/context/playerProvider";
-import { HeartIcon } from "@heroicons/react/24/solid";
-import IconPlayButtonSmallTd from "./playerComponents/IconPlayButtonSmallTd";
 import { millisToMinutesAndSeconds } from '@/utils/playerUtils';
+import IconPlayButtonSmallTd from "./playerComponents/IconPlayButtonSmallTd";
+import { HeartIcon as HeartIconFill } from "@heroicons/react/24/solid";
+import { HeartIcon } from "@heroicons/react/24/outline";
 
 const SongListItem = ({ track, listNumber, handleClick, handlePlayAlbumPlaylist }) => {
   const { currentPlayingTrack } = usePlayerProvider();
@@ -21,6 +22,8 @@ const SongListItem = ({ track, listNumber, handleClick, handlePlayAlbumPlaylist 
         bg-transparent 
         hover:bg-[#f6ffe8] 
         active:bg-[#cdee93] 
+        dark:hover:bg-[#505741] 
+        dark:active:bg-[#40482E] 
         rounded-md
         cursor-pointer
         ">
@@ -61,7 +64,7 @@ const SongListItem = ({ track, listNumber, handleClick, handlePlayAlbumPlaylist 
           }
           <div className="flex flex-col gap-[2px] justify-center min-w-[48px]">
             <h4 className="font-bold">{track.name}</h4>
-            <span className="text-[0.9rem] text-gray-900">
+            <span className="text-[0.9rem]">
               {track.artists?.map(artist => artist.name).join(', ')}
             </span>
           </div>
@@ -69,7 +72,7 @@ const SongListItem = ({ track, listNumber, handleClick, handlePlayAlbumPlaylist 
       </td>
 
       {track.album &&
-        <td className="items-center text-[0.9rem] text-gray-900">
+        <td className="items-center text-[0.9rem]">
           {track.album?.name}
         </td>
       }

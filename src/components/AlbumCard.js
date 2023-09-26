@@ -15,6 +15,8 @@ const AlbumCard = ({ album, onClickCard }) => {
     h-full 
     bg-[#fee2b0] 
     hover:bg-[#fff3dd] 
+    dark:bg-[#271900] 
+    dark:hover:bg-[#3E2800] 
     overflow-hidden 
     shadow-neobrutalism"
       onClick={onClickCard}>
@@ -27,7 +29,7 @@ const AlbumCard = ({ album, onClickCard }) => {
         <img
           src={album?.images[0]?.url}
           alt={`Cover of the ${album.album_type} ${album.name}`}
-          className="border-b-2 border-gray-900"
+          className="border-b-2 border-[#080808] dark:border-[#e5fdba]"
         />
       </div>
 

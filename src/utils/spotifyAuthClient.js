@@ -39,7 +39,9 @@ export async function redirectToAuthCodeFlow(clientId) {
     playlist-read-collaborative
     user-read-playback-state
     user-modify-playback-state
-    user-read-currently-playing`);
+    user-read-currently-playing
+    user-read-recently-played
+    user-top-read`);
   params.append("code_challenge_method", "S256");
   params.append("code_challenge", challenge);
 
