@@ -1,38 +1,35 @@
 import { useEffect, useState } from "react";
 import TrackList from "./TrackList";
-import { getRecommendations } from "@/services/spotifyService";
+import { getRecommendations, getRecentlyPlayedTracks } from "@/services/spotifyService";
 import LoadingEqualizer from "./Loader/LoadingEqualizer";
+import { useTranslation } from "react-i18next";
 // import { checkUserSession } from "@/utils/liveSession";
 
 const HomeFiltersPage = () => {
-  const genres = ['jazz', 'tango', 'classical', 'rock-n-roll'];
-  const [tracksByGenre, setTracksByGenre] = useState(null);
+  const { t } = useTranslation();
+  const [tracksByHistory, setTracksByHistory] = useState(null)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchTracksByGenre = async () => {
-      let tracksObject = {}
+      setLoading(true)
 
-      for (const g of genres) {
-        const rocknrollTracks = await getRecommendations({
-          genres: [g],
-          limit: 5,
-        })
-        tracksObject[g] = rocknrollTracks?.data?.tracks
-      }
+      const recentlyPlayed = await getRecentlyPlayedTracks({ limit: 5 })
 
-      setTracksByGenre(tracksObject);
+      const ids = recentlyPlayed.data.items.map(({ track }) => track.id)
+
+      const tracksByRecentlyPlayed = await getRecommendations({ limit: 10, seedTracks: ids })
+
+      setLoading(false)
+      setTracksByHistory(tracksByRecentlyPlayed.data.tracks);
     }
     fetchTracksByGenre();
   }, [])
 
-  if (!tracksByGenre) {
+  if (loading) {
     return (
       <LoadingEqualizer />
     )
-  }
-
-  const capitalizeFirstLetter = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
   return (
@@ -40,16 +37,15 @@ const HomeFiltersPage = () => {
       {/* <h2 className="text-[2rem] text-zinc-100">
         Recomendaciones
       </h2> */}
-      {genres.map(genre =>
-        <div key={genre}>
+      {tracksByHistory &&
+        <>
           <h3
             className="text-[2rem] font-bold">
-            {capitalizeFirstLetter(genre)}
+            {t('home.recommendationsByHistory')}
           </h3>
-
-          <TrackList tracks={tracksByGenre[genre]} />
-        </div>
-      )}
+          <TrackList tracks={tracksByHistory} />
+        </>
+      }
     </>
   )
 };

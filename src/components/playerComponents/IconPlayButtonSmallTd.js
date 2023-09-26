@@ -1,5 +1,4 @@
 import { usePlayerProvider } from "@/context/playerProvider";
-import { PlayIcon, PauseIcon } from "@heroicons/react/24/solid";
 import PlayPauseButton from "./PlayPauseButton";
 
 const IconPlayButtonSmallTd = ({ thisIsActive, handleSetTrack }) => {

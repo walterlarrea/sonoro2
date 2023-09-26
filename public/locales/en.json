@@ -57,9 +57,13 @@
   },
   "sidebarSavedSongs": {
     "userLikeSongs": "Songs you like",
-    "list": "List.",
+    "list": "List",
     "song": "song",
     "songs": "songs"
+  },
+  "home": {
+    "recommendationsByHistory": "Based on your history",
+    "recommendationsBy": ""
   },
   "radio": {
     "title": "Radio stations"

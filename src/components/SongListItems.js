@@ -1,7 +1,8 @@
 import { usePlayerProvider } from "@/context/playerProvider";
-import { HeartIcon } from "@heroicons/react/24/solid";
-import IconPlayButtonSmallTd from "./playerComponents/IconPlayButtonSmallTd";
 import { millisToMinutesAndSeconds } from '@/utils/playerUtils';
+import IconPlayButtonSmallTd from "./playerComponents/IconPlayButtonSmallTd";
+import { HeartIcon as HeartIconFill } from "@heroicons/react/24/solid";
+import { HeartIcon } from "@heroicons/react/24/outline";
 
 const SongListItem = ({ track, listNumber, handleClick, handlePlayAlbumPlaylist }) => {
   const { currentPlayingTrack } = usePlayerProvider();

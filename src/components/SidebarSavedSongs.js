@@ -37,7 +37,7 @@ const SidebarSavedSongs = () => {
         <SidebarItem
           title={t("sidebarSavedSongs.userLikeSongs")}
           // Utilizar las variables en lugar de t('etc') directamente
-          description={`Lista. ${userSavedSongs.total} ${userSavedSongs.total === 1 ? songText : songsText}`}
+          description={`${t('sidebarSavedSongs.list')}. ${userSavedSongs.total} ${userSavedSongs.total === 1 ? songText : songsText}`}
           thumbnailSource="/images/saved-songs-playlist.png"
           handleClick={() => router.push("/saved-songs")}
         />

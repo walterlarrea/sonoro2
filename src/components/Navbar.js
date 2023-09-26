@@ -18,7 +18,7 @@ const Navbar = ({ background, column, row }) => {
         flex 
         ${flexDir} 
         rounded-lg 
-        text-[#080808] 
+      text-[#080808] 
       dark:text-[#e5fdba] 
       bg-[#c9dea3] 
       dark:bg-[#34392A] 
@@ -44,16 +44,16 @@ const Navbar = ({ background, column, row }) => {
 
       <Link
         className={linkClassNames}
-        href='/new-releases'>
-        <HeartIcon className="h-6 w-6 me-4 inline-block" />
-        {t('aside.ultimate')}
+        href='/radio'>
+        <RadioIcon className="h-6 w-6 me-4 inline-block" />
+        Radio
       </Link>
 
       <Link
         className={linkClassNames}
-        href='/radio'>
-        <RadioIcon className="h-6 w-6 me-4 inline-block" />
-        Radio
+        href='/new-releases'>
+        <HeartIcon className="h-6 w-6 me-4 inline-block" />
+        {t('aside.ultimate')}
       </Link>
 
     </nav>
