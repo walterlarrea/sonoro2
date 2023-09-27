@@ -186,9 +186,10 @@ export const getPlaylistDetail = async ({ playlistId, market, fields }) => {
   }
 }
 
-export const getRecentlyPlayedTracks = async ({ limit }) => {
+export const getRecentlyPlayedTracks = async ({ limit, before }) => {
   const params = new URLSearchParams();
   params.append("limit", limit || 20);
+  if (before) params.append("before", before);
 
   try {
     const response = await axios.get(

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import TrackList from "./TrackList";
 import { getRecommendations, getRecentlyPlayedTracks } from "@/services/spotifyService";
 import LoadingEqualizer from "./Loader/LoadingEqualizer";
@@ -8,10 +9,11 @@ import { useTranslation } from "react-i18next";
 const HomeFiltersPage = () => {
   const { t } = useTranslation();
   const [tracksByHistory, setTracksByHistory] = useState(null)
+  const [trackHistory, setTrackHistory] = useState(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const fetchTracksByGenre = async () => {
+    const fetchTrackRecommendations = async () => {
       setLoading(true)
 
       const recentlyPlayed = await getRecentlyPlayedTracks({ limit: 5 })
@@ -22,8 +24,9 @@ const HomeFiltersPage = () => {
 
       setLoading(false)
       setTracksByHistory(tracksByRecentlyPlayed.data.tracks);
+      setTrackHistory(recentlyPlayed.data.items.map((item) => item.track));
     }
-    fetchTracksByGenre();
+    fetchTrackRecommendations();
   }, [])
 
   if (loading) {
@@ -44,6 +47,20 @@ const HomeFiltersPage = () => {
             {t('home.recommendationsByHistory')}
           </h3>
           <TrackList tracks={tracksByHistory} />
+        </>
+      }
+      {trackHistory &&
+        <>
+          <h3
+            className="text-[2rem] font-bold inline-block">
+            {t('home.playerHistory')}
+          </h3>
+          <Link
+            className='ms-3 mt-3'
+            href='/history'>
+            {t('home.seeMore')}
+          </Link>
+          <TrackList tracks={trackHistory} />
         </>
       }
     </>

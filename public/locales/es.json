@@ -65,7 +65,8 @@
     },
     "home": {
         "recommendationsByHistory": "Basado en tu historial",
-        "recommendationsBy": ""
+        "playerHistory": "Últimas reproducidas",
+        "seeMore": "Ver más.."
     },
     "radio": {
         "title": "Estaciones de radio"
@@ -75,6 +76,7 @@
     },
     "songListHeaders": {
         "title": "Título",
-        "album": "Álbum"
+        "album": "Álbum",
+        "playlist": "Lista"
     }
 }
