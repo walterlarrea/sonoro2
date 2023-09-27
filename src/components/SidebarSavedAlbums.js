@@ -15,7 +15,6 @@ const SidebarSavedAlbums = () => {
     const getSavedAlbums = async () => {
       const response = await getUserSavedAlbums({});
       const userAlbums = response.data;
-      console.log(userAlbums)
 
       if (userAlbums?.status && userAlbums.status === 401) {
         setAlbums(null)
@@ -36,7 +35,9 @@ const SidebarSavedAlbums = () => {
 
   return (
     <>
-      <h3>{t('sidebar.albums')}</h3>
+      {albums?.items?.length > 0 &&
+        <h3>{t('sidebar.albums')}</h3>
+      }
       {albums?.items?.length > 0 && albums?.items?.map(({ album }) => (
         <SidebarItem
           key={album.id}
