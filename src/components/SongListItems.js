@@ -4,13 +4,14 @@ import IconPlayButtonSmallTd from "./playerComponents/IconPlayButtonSmallTd";
 import { HeartIcon as HeartIconFill } from "@heroicons/react/24/solid";
 import { HeartIcon } from "@heroicons/react/24/outline";
 
-const SongListItem = ({ track, listNumber, handleClick, handlePlayAlbumPlaylist }) => {
+const SongListItem = ({ track, listNumber, refLastItem, handleClick, handlePlayAlbumPlaylist }) => {
   const { currentPlayingTrack } = usePlayerProvider();
 
   const currentlyPlayingThisTrack = currentPlayingTrack?.id === track?.id;
 
   return (
     <tr
+      ref={refLastItem}
       onClick={handleClick}
       className="
         group
