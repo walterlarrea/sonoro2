@@ -4,7 +4,7 @@ import IconPlayButtonSmallTd from "./playerComponents/IconPlayButtonSmallTd";
 import { HeartIcon as HeartIconFill } from "@heroicons/react/24/solid";
 import { HeartIcon } from "@heroicons/react/24/outline";
 
-const SongListItem = ({ track, listNumber, refLastItem, handleClick, handlePlayAlbumPlaylist }) => {
+const SongListItem = ({ track, listNumber, refLastItem, handleClick, handlePlayAlbumPlaylist, handleSaveOrRemoveTrack }) => {
   const { currentPlayingTrack } = usePlayerProvider();
 
   const currentlyPlayingThisTrack = currentPlayingTrack?.id === track?.id;
@@ -78,8 +78,14 @@ const SongListItem = ({ track, listNumber, refLastItem, handleClick, handlePlayA
         </td>
       }
       <td>
-        <HeartIcon
-          className="h-6 w-6 me-4 inline-block hover:scale-[110%] text-green-500" />
+        {track.saved ?
+          <HeartIconFill
+            onClick={handleSaveOrRemoveTrack}
+            className="h-6 w-6 me-4 inline-block hover:scale-[110%] text-green-500" />
+          : <HeartIcon
+            onClick={handleSaveOrRemoveTrack}
+            className="h-6 w-6 me-4 inline-block hover:scale-[110%] text-green-500" />
+        }
       </td>
       <td>
         {millisToMinutesAndSeconds(track.duration_ms)}

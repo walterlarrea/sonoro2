@@ -203,3 +203,57 @@ export const getRecentlyPlayedTracks = async ({ limit, before }) => {
     return error.response;
   }
 }
+
+export const checkSavedTracks = async ({ trackIds }) => {
+  const params = new URLSearchParams();
+  params.append('ids', trackIds)
+
+  try {
+    const response = await axios.get(
+      `https://api.spotify.com/v1/me/tracks/contains?${params}`,
+      {
+        headers: { "Authorization": getToken() }
+      })
+
+    return response
+  } catch (error) {
+    console.error(error)
+    return error.response;
+  }
+}
+
+export const saveTrack = async ({ trackIds }) => {
+  const params = new URLSearchParams();
+  params.append('ids', trackIds)
+
+  try {
+    const response = await axios.put(
+      `https://api.spotify.com/v1/me/tracks?${params}`, {},
+      {
+        headers: { "Authorization": getToken() }
+      })
+
+    return response
+  } catch (error) {
+    console.error(error)
+    return error.response;
+  }
+}
+
+export const removeSavedTrack = async ({ trackIds }) => {
+  const params = new URLSearchParams();
+  params.append('ids', trackIds)
+
+  try {
+    const response = await axios.delete(
+      `https://api.spotify.com/v1/me/tracks?${params}`,
+      {
+        headers: { "Authorization": getToken() }
+      })
+
+    return response
+  } catch (error) {
+    console.error(error)
+    return error.response;
+  }
+}

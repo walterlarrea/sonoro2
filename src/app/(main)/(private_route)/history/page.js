@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import { getRecentlyPlayedTracks } from "@/services/spotifyService";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { ClockIcon } from "@heroicons/react/24/solid";
@@ -15,7 +15,7 @@ const playerHistory = () => {
   const { setActiveContext } = usePlayerProvider();
   // const [offset, setOffset] = useState(undefined)
 
-  const { data: trackHistoryObj, error, fetchNextPage, isRefetching } = useInfiniteQuery({
+  const { data: trackHistoryObj, error, fetchNextPage, isRefetching, hasNextPage } = useInfiniteQuery({
     queryKey: ['searchData'],
     queryFn: async ({ pageParam = undefined }) => {
       const res = await getRecentlyPlayedTracks({ limit: ITEM_COUNT_BY_PAGE, before: pageParam })
@@ -98,6 +98,13 @@ const playerHistory = () => {
             )}
         </tbody>
       </table>
+      {hasNextPage &&
+        <div className="flex justify-center m-8">
+          <span>
+            {t('loader.loading')}
+          </span>
+        </div>
+      }
     </>
   )
 }

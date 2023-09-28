@@ -2,17 +2,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { usePlayerProvider } from "@/context/playerProvider";
-import { getPlaylistDetail } from "@/services/spotifyService";
-import { ClockIcon } from "@heroicons/react/24/solid";
-import SongListItem from "@/components/SongListItems";
+import { getPlaylistDetail, checkSavedTracks, saveTrack, removeSavedTrack } from "@/services/spotifyService";
 import LoadingEqualizer from "@/components/Loader/LoadingEqualizer";
-// import { checkUserSession } from "@/utils/liveSession";
-import { useTranslation } from "react-i18next";
+import SongList from "@/components/SongList";
 
 const Playlist = () => {
   const router = useParams()
   const { setActiveContext } = usePlayerProvider();
-  const { t } = useTranslation();
   const playlistId = router["playlistId"]
   const [playlist, setPlaylist] = useState(null);
 
@@ -26,7 +22,19 @@ const Playlist = () => {
         return;
       }
 
-      setPlaylist(playlistObject);
+      const trackIds = playlistObject.tracks.items.map(({ track }) => track.id)
+      const savedCheckResponse = await checkSavedTracks({ trackIds })
+
+      if (savedCheckResponse.status === 200) {
+        const likes = savedCheckResponse.data
+        const trackListWithSavedStatus = playlistObject.tracks.items.map((item, index) => {
+          return { ...item, track: { ...item.track, saved: likes[index] } }
+        })
+
+        setPlaylist({ ...playlistObject, tracks: { ...playlistObject.tracks, items: trackListWithSavedStatus } });
+      } else {
+        setPlaylist(playlistObject);
+      }
     };
     getPlaylist();
   }, [playlistId])
@@ -44,36 +52,41 @@ const Playlist = () => {
     )
   }
 
+  const updateTrackListSavedStatus = (trackId, newState) => {
+    setPlaylist(playlist => {
+      return {
+        ...playlist,
+        tracks: {
+          ...playlist.tracks,
+          items: playlist.tracks.items.map(item => {
+            return trackId !== item.track.id ? item : { ...item, track: { ...item.track, saved: newState } }
+          })
+        }
+      }
+    })
+  }
+
+  const handleTrackSavedState = (trackId, savedState) => async () => {
+    if (savedState === undefined) return
+    if (savedState) {
+      const response = await removeSavedTrack({ trackIds: [trackId] })
+    } else {
+      const response = await saveTrack({ trackIds: [trackId] })
+    }
+
+    updateTrackListSavedStatus(trackId, !savedState)
+  }
+
   const handlePlayPlaylist = (track) => () => {
     setActiveContext([{ ...playlist, trackToPlay: track.uri }]);
   }
 
   return (
     <>
-      <table className="w-full">
-        <thead>
-          <tr>
-            <th className="text-center font-normal ms-4">#</th>
-            <th className="text-start font-normal">{t('songListHeaders.title')}</th>
-            <th className="text-start font-normal">{t('songListHeaders.album')}</th>
-            <th className="text-start font-normal"></th>
-            <th className="text-start font-normal">
-              <ClockIcon className="h-6 w-6" />
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {playlist?.tracks &&
-            playlist.tracks?.items?.map(({ track }, index) =>
-              <SongListItem
-                key={track.id}
-                track={track}
-                listNumber={index + 1}
-                handlePlayAlbumPlaylist={handlePlayPlaylist(track)}
-              />
-            )}
-        </tbody>
-      </table>
+      <SongList
+        tracks={playlist.tracks.items.map(item => item.track)}
+        updateSavedStatus={handleTrackSavedState}
+        handlePlayPlaylist={handlePlayPlaylist} />
     </>
   )
 };
