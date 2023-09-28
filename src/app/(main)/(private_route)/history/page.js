@@ -25,7 +25,6 @@ const playerHistory = () => {
     getNextPageParam: (lastPage) => lastPage?.cursors?.before,
     enabled: false,
   })
-  console.log(hasNextPage)
 
   const observer = useRef()
   const lastTrackElementRef = useCallback(node => {
