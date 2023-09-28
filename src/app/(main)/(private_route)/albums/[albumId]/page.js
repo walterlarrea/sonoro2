@@ -2,17 +2,13 @@
 import { useState, useEffect } from 'react';
 import { useParams } from "next/navigation";
 import { usePlayerProvider } from "@/context/playerProvider";
-import { getAlbum } from '@/services/spotifyService';
-import { ClockIcon } from "@heroicons/react/24/solid";
-import SongListItem from "@/components/SongListItems";
+import { checkSavedTracks, getAlbum, removeSavedTrack, saveTrack } from '@/services/spotifyService';
 import LoadingEqualizer from '@/components/Loader/LoadingEqualizer';
-// import { checkUserSession } from '@/utils/liveSession';
-import { useTranslation } from 'react-i18next';
+import SongList from '@/components/SongList';
 
 const Album = () => {
   const router = useParams()
   const { setActiveContext } = usePlayerProvider();
-  const { t } = useTranslation();
   const albumId = router["albumId"]
   const [album, setAlbum] = useState(null)
 
@@ -27,9 +23,21 @@ const Album = () => {
           return;
         }
 
-        setAlbum(albumObject);
+        const trackIds = albumObject.tracks.items.map(track => track.id)
+        const savedCheckResponse = await checkSavedTracks({ trackIds })
+
+        if (savedCheckResponse.status === 200) {
+          const likes = savedCheckResponse.data
+          const trackListWithSavedStatus = albumObject.tracks.items.map((track, index) => {
+            return { ...track, saved: likes[index] }
+          })
+
+          setAlbum({ ...albumObject, tracks: { ...albumObject.tracks, items: trackListWithSavedStatus } });
+        } else {
+          setAlbum(albumObject);
+        }
       }
-    }
+    };
     albumDetails();
   }, [albumId])
 
@@ -46,53 +54,42 @@ const Album = () => {
     )
   }
 
+  const updateTrackListSavedStatus = (trackId, newState) => {
+    setAlbum(album => {
+      return {
+        ...album,
+        tracks: {
+          ...album.tracks,
+          items: album.tracks.items.map(track => {
+            return trackId !== track.id ? track : { ...track, saved: newState }
+          })
+        }
+      }
+    })
+  }
+
+  const handleTrackSavedState = (trackId, savedState) => async () => {
+    if (savedState === undefined) return
+    if (savedState) {
+      const response = await removeSavedTrack({ trackIds: [trackId] })
+    } else {
+      const response = await saveTrack({ trackIds: [trackId] })
+    }
+
+    updateTrackListSavedStatus(trackId, !savedState)
+  }
+
   const handlePlayAlbum = (track) => () => {
     setActiveContext([{ ...album, trackToPlay: track.uri }]);
   }
 
   return (
     <>
-      <table className="w-full">
-        <thead>
-          <tr>
-            <th className="text-center font-normal ms-4">#</th>
-            <th className="text-start font-normal">{t('songListHeaders.title')}</th>
-            {/* <th className="text-start font-normal text-zinc-300">{t('songListHeaders.album')}</th> */}
-            <th className="text-start font-normal"></th>
-            <th className="text-start font-normal">
-              <ClockIcon className="h-6 w-6" />
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {album?.tracks &&
-            album.tracks?.items?.map((track, index) =>
-              <SongListItem
-                key={track.id}
-                track={track}
-                listNumber={index + 1}
-                handlePlayAlbumPlaylist={handlePlayAlbum(track)}
-              />
-            )}
-        </tbody>
-      </table>
-      {/* <div className="relative w-content" >
-
-      <div className="absolute z-10 flex flex-col justify-end w-full bg-gradient-to-b from-gray-900 p-3 text-[1.25em]">
-        TEMONES en este album:
-        {album.tracks.items.map(t =>
-          <span key={t.id}>
-            {t.name}
-          </span>
-        )}
-      </div>
-
-      <img
-        src={album.images[0].url}
-        alt={`Cover of the ${album.album_type} ${album.name}`}
-        className='relative top-0 left-0 min-w-full w-full min-h-screen aspect-square'
-      />
-    </div> */}
+      <SongList
+        tracks={album.tracks.items}
+        updateSavedStatus={handleTrackSavedState}
+        handlePlayPlaylist={handlePlayAlbum}
+        isAlbum={true} />
     </>
   )
 }
