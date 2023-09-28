@@ -56,7 +56,7 @@ const HomeFiltersPage = () => {
             {t('home.playerHistory')}
           </h3>
           <Link
-            className='ms-3 mt-3'
+            className='ms-3 mt-3 hover:underline'
             href='/history'>
             {t('home.seeMore')}
           </Link>
