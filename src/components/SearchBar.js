@@ -17,11 +17,11 @@ const SearchBar = () => {
       return res.data
     },
     enabled: false,
-
   })
 
   const handleSearch = (e) => {
     e.preventDefault();
+
     if (!searchText || searchText === '') return
 
     refetch();
@@ -82,7 +82,6 @@ const SearchBar = () => {
               border-s-zinc-300 
               ps-2
               pe-4"
-            onClick={refetch}
             type='submit'
           >
             {t('search.button')}
