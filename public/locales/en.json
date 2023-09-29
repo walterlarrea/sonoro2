@@ -21,7 +21,7 @@
   },
   "search": {
     "button": "Search",
-    "placeholder": "Albums, Artists, Tracks",
+    "placeholder": "Albums, Tracks",
     "songs": "Songs",
     "albums": "Albums"
   },

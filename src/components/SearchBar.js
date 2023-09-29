@@ -13,7 +13,7 @@ const SearchBar = () => {
   const { data: results, error, refetch, isLoading } = useQuery({
     queryKey: ['searchData'],
     queryFn: async () => {
-      const res = await searchResults({ searchText, types: ['album', 'track', 'artist'] })
+      const res = await searchResults({ searchText, types: ['album', 'track'] })
       return res.data
     },
     enabled: false,
@@ -23,6 +23,7 @@ const SearchBar = () => {
   const handleSearch = (e) => {
     e.preventDefault();
     if (!searchText || searchText === '') return
+
     refetch();
     setSearchText(null)
   }
