@@ -1,5 +1,4 @@
 import { usePlayerProvider } from "@/context/playerProvider";
-import { PlayIcon, PauseIcon } from "@heroicons/react/24/solid";
 import PlayPauseButton from "./PlayPauseButton";
 
 const IconPlayButtonBig = ({ thisIsActive, handleSetTrack }) => {
@@ -22,8 +21,7 @@ const IconPlayButtonBig = ({ thisIsActive, handleSetTrack }) => {
     p-3 
     rounded-full 
     bg-green-500 
-    hover:bg-green-400
-    text-black
+    hover:bg-green-400 
     hover:scale-[107%]`
 
   const handleClick = () => {

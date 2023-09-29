@@ -9,10 +9,9 @@ const VolumeRockerFixed = () => {
   }
 
   return (
-    <div className="flex items-center group gap-2 mx-4">
-      <SpeakerWaveIcon className="w-5 h-5 text-[#ffffff] group-hover:text-[#22C55E]" />
+    <div className="flex items-center gap-2">
+      <SpeakerWaveIcon className="w-5 h-5 text-[#181818] dark:text-[#eeeeee]" />
       <input
-        className="group"
         type='range'
         min='0'
         max='100'

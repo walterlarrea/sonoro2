@@ -30,10 +30,11 @@ const ProgressBarFixed = () => {
   }
 
   return (
-    <div className="flex items-center gap-2 mx-4">
+    <div className="flex items-center gap-2">
       {millisToMinutesAndSeconds(value)}
 
       <input
+        className="w-full md:w-[300px]"
         type='range'
         min='0'
         max={duration}
