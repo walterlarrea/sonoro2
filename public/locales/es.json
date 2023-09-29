@@ -21,7 +21,7 @@
     },
     "search": {
         "button": "Buscar",
-        "placeholder": "Albums, Artistas, Temas",
+        "placeholder": "Albums, Temas",
         "songs": "Canciones",
         "albums": "Álbumes"
     },
