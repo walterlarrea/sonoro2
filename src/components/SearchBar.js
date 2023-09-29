@@ -5,11 +5,11 @@ import { useState } from "react";
 import AlbumList from "./AlbumList";
 import { useTranslation } from "next-i18next";
 import TrackList from "./TrackList";
-// import { checkUserSession } from "@/utils/liveSession";
 
 const SearchBar = () => {
   const { t } = useTranslation();
   const [searchText, setSearchText] = useState(null);
+
   const { data: results, error, refetch, isLoading } = useQuery({
     queryKey: ['searchData'],
     queryFn: async () => {
@@ -17,13 +17,12 @@ const SearchBar = () => {
       return res.data
     },
     enabled: false,
+
   })
 
   const handleSearch = (e) => {
     e.preventDefault();
-    if (!searchText || searchText === '') {
-      return
-    }
+    if (!searchText || searchText === '') return
     refetch();
     setSearchText(null)
   }
@@ -46,38 +45,42 @@ const SearchBar = () => {
   // }
 
   return (
-    <div className="text-center">
-      <div className="mb-8 whitespace-nowrap">
-        <form onSubmit={handleSearch}>
+    <>
+      <div className="flex justify-center mb-8 whitespace-nowrap">
+        <form onSubmit={handleSearch} className="relative max-w-md flex-grow">
 
           <input
             className="
               shadow-neobrutalism
               outline-none
               bg-gray-100
-              h-12
-              text-2xl
-              text-zinc-900
-              rounded-s-full
+              h-12 
+              w-full 
+              text-2xl 
+              text-zinc-900 
+              rounded-full
               align-middle
-              px-4
-              me-0"
+              px-4"
             type='search'
             name='search-bar'
             placeholder={t('search.placeholder')}
             onChange={(e) => setSearchText(e.target.value)}
           />
           <button
-            className="
-              bg-zinc-100
-              h-12
+            className=" 
+              absolute 
+              right-0 
+              origin-center  
+              bg-zinc-100 
+              h-12 
               text-2xl
               text-zinc-900
               rounded-e-full
               align-middle
-              px-4
-              shadow-neobrutalism
-              "
+              border-2 
+              border-s-zinc-300 
+              ps-2
+              pe-4"
             onClick={refetch}
             type='submit'
           >
@@ -102,7 +105,7 @@ const SearchBar = () => {
         </>
       }
 
-    </div>
+    </>
   )
 };
 
