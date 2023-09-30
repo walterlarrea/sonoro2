@@ -1,7 +1,6 @@
 'use client';
 import React from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-import 'regenerator-runtime/runtime'; // Importa regenerator-runtime aquí
 import { searchResults } from "@/services/spotifyService";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
