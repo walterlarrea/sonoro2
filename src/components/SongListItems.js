@@ -26,8 +26,7 @@ const SongListItem = ({ track, listNumber, refLastItem, handleClick, handlePlayA
         dark:hover:bg-[#505741] 
         dark:active:bg-[#40482E] 
         rounded-md
-        cursor-pointer
-        ">
+        cursor-pointer">
       <td>
         <div className="flex m-auto w-8 justify-center align-center">
           <IconPlayButtonSmallTd
@@ -37,9 +36,9 @@ const SongListItem = ({ track, listNumber, refLastItem, handleClick, handlePlayA
           {!currentlyPlayingThisTrack &&
             <span
               className={`
-            hidden 
-            md:block 
-            group-hover:hidden`}>
+                hidden 
+                md:block 
+                group-hover:hidden`}>
               {listNumber}
             </span>
           }
@@ -55,7 +54,7 @@ const SongListItem = ({ track, listNumber, refLastItem, handleClick, handlePlayA
           ">
           {track.album?.images &&
             <img
-              src={track.album?.images[2]?.url}
+              src={track.album?.images[2]?.url || track.album?.images[0]?.url}
               alt={track.name}
               className="
                 w-[3rem]

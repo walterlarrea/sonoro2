@@ -17,12 +17,13 @@ export default function Header() {
           <Image src='/images/icon.png' width={64} height={64} alt="Logo" />
         </div>
 
+        <div className="hidden md:flex flex-row justify-center items-center">
+          <Navbar background={'bg-white'} />
+        </div>
+
         <div className="mx-5">
           <HeaderProfileButton />
         </div>
-      </div>
-      <div className="flex flex-row justify-center items-center md:hidden mx-[8px] mb-[8px]">
-        <Navbar background={'bg-white'} row={true} />
       </div>
     </header>
   );

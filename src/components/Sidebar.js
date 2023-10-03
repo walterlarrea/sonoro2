@@ -1,41 +1,32 @@
-
 import SidebarPlaylist from "./SidebarPlaylist";
-import Navbar from "./Navbar";
 import SidebarSavedSongs from "./SidebarSavedSongs";
 import React from 'react';
 import { appWithTranslation, useTranslation } from 'next-i18next'; // Asegúrate de importar appWithTranslation
 import SidebarSavedAlbums from "./SidebarSavedAlbums";
 
 const SideBar = () => {
-
   const { t } = useTranslation();
+
+  // <div className="hidden md:block text-sm w-full h-full gap-[8px] overflow-y-auto">
+  {/* <Navbar column={true} /> */ }
   return (
-    // <div className="hidden md:flex flex-col text-sm w-full gap-[8px]">
-    <div className="hidden md:grid grid-cols-1 grid-rows-[min-content] text-sm w-full gap-[8px] overflow-y-auto">
-
-      <Navbar column={true} />
-
-      <div className="
-      inline-flex 
+    <div className="
+      inline-flex  
       flex-col 
       justify-start 
       items-center 
-      rounded-lg
       text-[#080808] 
       dark:text-[#e5fdba] 
       bg-[#c9dea3] 
       dark:bg-[#34392A] 
-      p-[8px] 
-      overflow-y-auto
-      shadow-neobrutalism">
-        <h2 className="mb-3">{t('sidebar.userList')}</h2>
-        <SidebarSavedSongs />
-        <SidebarPlaylist />
-        <SidebarSavedAlbums />
-      </div>
-
+      overflow-y-auto">
+      <h2 className="mb-3">{t('sidebar.userLibrary')}</h2>
+      <SidebarSavedSongs />
+      <SidebarPlaylist />
+      <SidebarSavedAlbums />
     </div>
   );
+  // </div>
 }
 
 export default appWithTranslation(SideBar)

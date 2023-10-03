@@ -8,7 +8,7 @@ const IconPlayButtonSmallTd = ({ thisIsActive, handleSetTrack }) => {
   block 
   md:${thisIsActive ? 'block' : 'hidden'} 
   group-hover:block`
-  const iconStyle = `h-[1rem]`
+  const iconStyle = `h-[1.5rem]`
 
   const handleClick = () => {
     if (thisIsActive) {

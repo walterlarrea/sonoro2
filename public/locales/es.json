@@ -54,8 +54,9 @@
         "rpasswordRequired": "Debe repetir la contraseña aquí."
     },
     "sidebar": {
-        "userList": "Tus listas",
-        "albums": "Álbumes"
+        "userLibrary": "Tu biblioteca",
+        "album": "Álbum",
+        "playlist": "Lista"
     },
     "sidebarSavedSongs": {
         "userLikeSongs": "Canciones que te gustan",

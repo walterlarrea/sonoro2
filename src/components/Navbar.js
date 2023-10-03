@@ -1,9 +1,10 @@
 import React from "react";
 import Link from "next/link";
+import styles from './NavBar.module.css'
 import { HomeIcon, HeartIcon, MagnifyingGlassIcon, RadioIcon } from "@heroicons/react/24/solid";
 import { useTranslation } from "react-i18next";
 
-const Navbar = ({ background, column, row }) => {
+const Navbar = ({ column }) => {
   const { t } = useTranslation();
 
   const flexDir = column ?
@@ -25,11 +26,10 @@ const Navbar = ({ background, column, row }) => {
         pe-3
         pb-3
         whitespace-nowrap
-        flex-wrap
-        shadow-neobrutalism`}>
+        flex-wrap`}>
 
       <Link
-        className={linkClassNames}
+        className={`${linkClassNames} ${styles.active}`}
         href='/'>
         <HomeIcon className="h-6 w-6 me-4 inline-block" />
         {t('aside.home')}

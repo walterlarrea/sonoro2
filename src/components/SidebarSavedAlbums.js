@@ -1,8 +1,7 @@
 'use-client';
-import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 import { getUserSavedAlbums } from "@/services/spotifyService";
-import { useEffect } from "react";
 import SidebarItem from "./SidebarItem";
 import { t } from "i18next";
 // import { checkUserSession } from "@/utils/liveSession";
@@ -35,14 +34,14 @@ const SidebarSavedAlbums = () => {
 
   return (
     <>
-      {albums?.items?.length > 0 &&
-        <h3>{t('sidebar.albums')}</h3>
-      }
       {albums?.items?.length > 0 && albums?.items?.map(({ album }) => (
         <SidebarItem
           key={album.id}
           title={album.name}
-          description={album.owner?.display_name}
+          description={
+            `${t('sidebar.album')} • ${album.artists?.map((artist, index) =>
+              `${artist.name}${album.artists.length !== index + 1 ? ',' : ''} `)}`
+          }
           thumbnailSource={album.images?.[0]?.url}
           handleClick={() => router.push(`/albums/${album.id}`)}
         />

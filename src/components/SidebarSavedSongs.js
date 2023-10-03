@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { getUserSavedSongs } from "@/services/spotifyService";
 import SidebarItem from "./SidebarItem";
 import { useTranslation } from "next-i18next";
-// import { checkUserSession } from "@/utils/liveSession";
 
 const SidebarSavedSongs = () => {
   const { t } = useTranslation();
@@ -26,9 +25,7 @@ const SidebarSavedSongs = () => {
     getSavedSongs();
   }, [])
 
-  // Almacenar el resultado de t('sidebarSavedSongs.song') en una variable
   const songText = t("sidebarSavedSongs.song");
-  // Almacenar el resultado de t('sidebarSavedSongs.songs') en una variable
   const songsText = t("sidebarSavedSongs.songs");
 
   return (
@@ -37,7 +34,7 @@ const SidebarSavedSongs = () => {
         <SidebarItem
           title={t("sidebarSavedSongs.userLikeSongs")}
           // Utilizar las variables en lugar de t('etc') directamente
-          description={`${t('sidebarSavedSongs.list')}. ${userSavedSongs.total} ${userSavedSongs.total === 1 ? songText : songsText}`}
+          description={`${t('sidebarSavedSongs.list')} • ${userSavedSongs?.total} ${userSavedSongs?.total === 1 ? songText : songsText}`}
           thumbnailSource="/images/saved-songs-playlist.png"
           handleClick={() => router.push("/saved-songs")}
         />

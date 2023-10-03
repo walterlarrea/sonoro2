@@ -2,10 +2,12 @@
 import { useRouter } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import { getCurrentUser } from "@/services/spotifyService";
-// import { checkUserSession } from "@/utils/liveSession";
+import SideMenuMobile from "./SideMenuMobile";
 
 const HeaderProfileButton = () => {
   const [currentUser, setCurrentUser] = useState(null)
+  const [showSideMenu, setShowSideMenu] = useState(false)
+
   const router = useRouter();
 
   const userButtonClassNames = useRef(`
@@ -14,7 +16,7 @@ const HeaderProfileButton = () => {
     pe-4 
     py-1 
     text-md 
-    font-semibold 
+    font-semibold
     text-zinc-900 
     bg-zinc-200 
     border-solid 
@@ -66,19 +68,31 @@ const HeaderProfileButton = () => {
     getUser()
   }, [])
 
+  const handleOpenMenu = () => {
+    setShowSideMenu(true)
+    // router.push('/profile')
+  }
+
+  const handleCloseMenu = () => {
+    setShowSideMenu(false)
+  }
+
   return (
     <>
       {currentUser ?
-        <button
-          key='profile-button'
-          onClick={() => router.push('/profile')}
-          className={userButtonClassNames.current}>
-          <img
-            className={imgClassNames.current}
-            src={currentUser?.images?.length > 0 ? currentUser?.images[0]?.url : '/images/userIcon-dark.png'}
-            alt='Profile picture' />
-          {currentUser.display_name}
-        </button>
+        <>
+          <button
+            key='profile-button'
+            onClick={handleOpenMenu}
+            className={userButtonClassNames.current}>
+            <img
+              className={imgClassNames.current}
+              src={currentUser?.images?.length > 0 ? currentUser?.images[0]?.url : '/images/userIcon-dark.png'}
+              alt='Profile picture' />
+            {currentUser.display_name}
+          </button>
+          <SideMenuMobile visible={showSideMenu} closeHandler={handleCloseMenu} />
+        </>
         :
         <button
           key='login-button'
