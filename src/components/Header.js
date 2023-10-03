@@ -11,7 +11,7 @@ export default function Header() {
       <div className="custom-header top-0 z-50 flex flex-row items-center justify-between p-3">
         <div
           onClick={() => router.push('/')}
-          className="mx-5 cursor-pointer"
+          className="cursor-pointer"
           title='Inicio'
         >
           <Image src='/images/icon.png' width={64} height={64} alt="Logo" />
@@ -21,7 +21,7 @@ export default function Header() {
           <Navbar background={'bg-white'} />
         </div>
 
-        <div className="mx-5">
+        <div className="">
           <HeaderProfileButton />
         </div>
       </div>

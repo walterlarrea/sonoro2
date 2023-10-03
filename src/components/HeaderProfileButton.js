@@ -11,39 +11,33 @@ const HeaderProfileButton = () => {
   const router = useRouter();
 
   const userButtonClassNames = useRef(`
-    rounded-full 
+    rounded-lg
     ps-1 
     pe-4 
     py-1 
     text-md 
     font-semibold
     text-zinc-900 
-    bg-zinc-200 
-    border-solid 
-    border-2 
-    border-zinc-900 
+    bg-green-500 
     hover:border-zinc-200 
     transition 
     duration-200 
-    hover:bg-zinc-900 
-    hover:text-zinc-200`)
+    hover:bg-green-400 
+    shadow-neobrutalism`)
 
   const loginButtonClassNames = useRef(`
-    rounded-full 
+    rounded-lg
     px-6
     py-4 
     text-md 
     font-semibold 
     text-zinc-900 
-    bg-zinc-200 
-    border-solid 
-    border-2 
-    border-zinc-900 
+    bg-green-500 
     hover:border-zinc-200 
     transition 
     duration-200 
-    hover:bg-zinc-900 
-    hover:text-zinc-200 
+    hover:bg-green-400 
+    shadow-neobrutalism 
     uppercase`)
 
   const imgClassNames = useRef(`
