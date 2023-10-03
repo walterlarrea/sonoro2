@@ -13,13 +13,11 @@ const SideBar = () => {
     <div className="
       inline-flex  
       flex-col 
+      w-full
       justify-start 
       items-center 
       text-[#080808] 
-      dark:text-[#e5fdba] 
-      bg-[#c9dea3] 
-      dark:bg-[#34392A] 
-      overflow-y-auto">
+      dark:text-[#e5fdba]">
       <h2 className="mb-3">{t('sidebar.userLibrary')}</h2>
       <SidebarSavedSongs />
       <SidebarPlaylist />
