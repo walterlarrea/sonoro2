@@ -79,5 +79,9 @@
         "title": "Título",
         "album": "Álbum",
         "playlist": "Lista"
+    },
+    "customAlert": {
+        "loginTitle": "Iniciar sesión",
+        "loginText": "Debe iniciar sesión para utlizar esta función."
     }
 }

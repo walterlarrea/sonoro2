@@ -1,7 +1,6 @@
 'use client';
 import { useEffect } from 'react'
-import { useRouter } from 'next/navigation';
-import { useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useQueryClient } from '@tanstack/react-query';
 import { getAccessToken, refreshAccessToken, redirectToAuthCodeFlow } from '@/utils/spotifyAuthClient';
 import { getStore, setStore } from '@/services/localStore';
@@ -9,9 +8,11 @@ import { CLIENT_ID } from '@/utils/constantes';
 
 const AccesoApi = () => {
   const clientId = CLIENT_ID;
+
   const router = useRouter()
   const params = useSearchParams()
   const client = useQueryClient()
+  
   const code = params.get("code") || undefined;
   const error = params.get("error") || undefined;
   const refreshToken = getStore('sonoro-refresh');
