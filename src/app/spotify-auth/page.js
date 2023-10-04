@@ -7,12 +7,10 @@ import { getStore, setStore } from '@/services/localStore';
 import { CLIENT_ID } from '@/utils/constantes';
 
 const AccesoApi = () => {
-  const clientId = CLIENT_ID;
-
   const router = useRouter()
   const params = useSearchParams()
   const client = useQueryClient()
-  
+
   const code = params.get("code") || undefined;
   const error = params.get("error") || undefined;
   const refreshToken = getStore('sonoro-refresh');
@@ -26,7 +24,7 @@ const AccesoApi = () => {
 
     const apiAuth = async () => {
       if (refreshToken) {
-        const authResponse = await refreshAccessToken(clientId, refreshToken);
+        const authResponse = await refreshAccessToken(CLIENT_ID, refreshToken);
         if (authResponse.access_token) {
           setStore("sonoro-session", authResponse.access_token)
           setStore("sonoro-refresh", authResponse.refresh_token)
@@ -38,9 +36,9 @@ const AccesoApi = () => {
       }
 
       if (!code) {
-        redirectToAuthCodeFlow(clientId);
+        redirectToAuthCodeFlow(CLIENT_ID);
       } else {
-        const authResponse = await getAccessToken(clientId, code);
+        const authResponse = await getAccessToken(CLIENT_ID, code);
 
         if (authResponse.access_token) {
           client.setQueryData(["session"], authResponse);
