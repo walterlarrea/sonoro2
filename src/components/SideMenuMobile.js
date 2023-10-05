@@ -47,8 +47,8 @@ const SideMenuMobile = ({ visible, closeHandler }) => {
           <button
             className="
             rounded-lg
-            px-6
-            py-4 
+            px-3
+            py-2 
             text-md 
             font-semibold 
             hover:border-zinc-200 
