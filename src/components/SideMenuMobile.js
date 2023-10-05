@@ -1,9 +1,14 @@
+'use client'
 import { useRouter } from "next/navigation"
+import { usePathname } from 'next/navigation';
 import Navbar from "./Navbar"
 import Sidebar from "./Sidebar"
 import { UserCircleIcon } from "@heroicons/react/24/solid";
+import { useTranslation } from "react-i18next";
 
 const SideMenuMobile = ({ visible, closeHandler }) => {
+  const { t } = useTranslation()
+  const currentPathName = usePathname()
   const router = useRouter();
 
   return (
@@ -51,15 +56,29 @@ const SideMenuMobile = ({ visible, closeHandler }) => {
             duration-200 
             shadow-neobrutalism 
             uppercase"
-            onClick={closeHandler}>cerrar</button>
+            onClick={closeHandler}>{t('aside.close')}</button>
         </div>
 
         <div className="flex flex-col overflow-auto w-full">
           <button
-            className="px-4 py-2 mt-4 mx-3 text-left rounded-lg hover:bg-gray-900"
+            className={`
+            px-4 
+            py-2 
+            mt-4 
+            mx-3 
+            text-left 
+            rounded-3xl 
+            border-2 
+            dark:border-[#e5fdba] 
+            border-[#080808] 
+            active:dark:bg-black 
+            active:bg-white 
+            dark:hover:bg-gray-900 
+            hover:bg-gray-100
+            ${currentPathName === '/profile' && 'dark:bg-black bg-white'}`}
             onClick={() => router.push('/profile')}>
             <UserCircleIcon className="h-6 w-6 me-4 inline-block" />
-            Mi perfil
+            {t('aside.profile')}
           </button>
 
           <Navbar background={'bg-white'} column={true} />
