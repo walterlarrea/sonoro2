@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { getStore, setStore } from "@/services/localStore";
 import { usePlayerProvider } from '@/context/playerProvider';
 import { startPlayingAlbumOrPlaylist, startPlayingTrack } from '@/services/playerService';
+import { useSessionContext } from '@/context/sessionProvider';
 // import { checkUserSession } from '@/utils/liveSession';
 
 const track = {
@@ -28,9 +29,10 @@ function WebPlayback() {
     setIsPlaying,
     setLocalVolume,
   } = usePlayerProvider();
-  const token = useRef(getStore("sonoro-session"));
+  const { session } = useSessionContext()
 
   useEffect(() => {
+    if (!session) return
 
     const script = document.createElement("script");
     script.src = "https://sdk.scdn.co/spotify-player.js";
@@ -42,7 +44,7 @@ function WebPlayback() {
 
       const newPlayer = new window.Spotify.Player({
         name: 'Sonoro Playback',
-        getOAuthToken: cb => { cb(token.current); },
+        getOAuthToken: cb => { cb(getStore("sonoro-session")); },
         volume: 0.5
       });
 
@@ -80,7 +82,7 @@ function WebPlayback() {
 
       newPlayer.connect();
     };
-  }, []);
+  }, [session]);
 
   useEffect(() => {
     if (activeContext?.[0]?.uri) {

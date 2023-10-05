@@ -1,6 +1,9 @@
-const PlayingTrackDetails = ({ track }) => {
-  const artists = track.artists.map((artist, index) => `${artist.name}${track.artists.length !== index + 1 ? ',' : ''} `)
+import { useRouter } from 'next/navigation';
 
+const PlayingTrackDetails = ({ track }) => {
+  const router = useRouter()
+  const artists = track.artists.map((artist, index) => `${artist.name}${track.artists.length !== index + 1 ? ',' : ''} `)
+  const albumId = track?.album.uri.split(':')[2]
 
   return (
     <div className="
@@ -19,10 +22,11 @@ const PlayingTrackDetails = ({ track }) => {
       </div>
 
       <img
-        className="rounded-md"
+        className="rounded-md cursor-pointer hover:scale-[110%]"
+        title='Ver álbum'
+        onClick={() => router.push(`/albums/${albumId}`)}
         src={track.album.images[1].url || track.album.images[0].url}
         alt={`Album cover for ${track.album.name} of ${artists}`} />
-      {/* {track.album.images[1] || track.album.images[1]} */}
     </div>
   )
 }

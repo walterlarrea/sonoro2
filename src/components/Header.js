@@ -11,18 +11,19 @@ export default function Header() {
       <div className="custom-header top-0 z-50 flex flex-row items-center justify-between p-3">
         <div
           onClick={() => router.push('/')}
-          className="mx-5 cursor-pointer"
+          className="cursor-pointer"
           title='Inicio'
         >
           <Image src='/images/icon.png' width={64} height={64} alt="Logo" />
         </div>
 
-        <div className="mx-5">
+        <div className="hidden md:flex flex-row justify-center items-center">
+          <Navbar background={'bg-white'} />
+        </div>
+
+        <div className="">
           <HeaderProfileButton />
         </div>
-      </div>
-      <div className="flex flex-row justify-center items-center md:hidden mx-[8px] mb-[8px]">
-        <Navbar background={'bg-white'} row={true} />
       </div>
     </header>
   );

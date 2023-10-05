@@ -13,7 +13,9 @@ export default function MainLayout({ children }) {
     <div className='app-layout'>
       <Header />
       <div className='grid-layout gap-[8px]'>
-        <SideBar />
+        <div className='hidden md:block p-[8px] rounded-lg overflow-y-auto shadow-neobrutalism'>
+          <SideBar />
+        </div>
         <div className='
             rounded-lg
             bg-[#e5fdba]

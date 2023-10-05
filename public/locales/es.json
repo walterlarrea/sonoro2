@@ -54,8 +54,9 @@
         "rpasswordRequired": "Debe repetir la contraseña aquí."
     },
     "sidebar": {
-        "userList": "Tus listas",
-        "albums": "Álbumes"
+        "userLibrary": "Tu biblioteca",
+        "album": "Álbum",
+        "playlist": "Lista"
     },
     "sidebarSavedSongs": {
         "userLikeSongs": "Canciones que te gustan",
@@ -78,5 +79,9 @@
         "title": "Título",
         "album": "Álbum",
         "playlist": "Lista"
+    },
+    "customAlert": {
+        "loginTitle": "Iniciar sesión",
+        "loginText": "Debe iniciar sesión para utlizar esta función."
     }
 }

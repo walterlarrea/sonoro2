@@ -1,44 +1,43 @@
 'use client';
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { isValidSession } from "@/utils/liveSession";
-import { getCurrentUser } from "@/services/spotifyService";
+import { useRouter, usePathname } from 'next/navigation';
+import { useSessionRefresh } from '@/hooks/useSessionRefresh'
+import { useSessionContext } from '@/context/sessionProvider';
+import { useTranslation } from 'react-i18next';
 import swal from 'sweetalert';
-import { useState } from 'react';
 
 const SessionErrorAlert = ({ children }) => {
-  const router = useRouter();
-  const [loading, setLoading] = useState(true)
+  const { t } = useTranslation()
+  const { session } = useSessionContext()
+  const { refreshed, loading } = useSessionRefresh()
+  const router = useRouter()
+  const pathname = usePathname()
 
   useEffect(() => {
+    if (loading) return
+    if (refreshed) return
+
     const promptMessage = async () => {
-      const session = await getCurrentUser();
-
-      if (!isValidSession(session?.data?.email)) {
-        const loginOrGoHome = await swal({
-          title: "Error",
-          text: "You need to be logged in to access this feature",
-          icon: "warning",
-          dangerMode: true,
-          buttons: {
-            cancel: "Go Home",
-            confirm: "Log in",
-          }
-        });
-
-        if (loginOrGoHome) {
-          router.push('/spotify-auth')
-        } else {
-          router.push('/')
+      const loginOrGoHome = await swal({
+        title: t('customAlert.loginTitle'),
+        text: t('customAlert.loginText'),
+        type: "info",
+        icon: "info",
+        // dangerMode: true,
+        buttons: {
+          // cancel: "Go Home",
+          confirm: "OK",
         }
-      }
+      });
 
-      setLoading(false)
+      if (loginOrGoHome) {
+        router.push('/spotify-auth')
+      }
     }
     promptMessage();
-  }, [])
+  }, [pathname, refreshed, loading])
 
-  if (loading) {
+  if (!session) {
     return (
       <></>
     )

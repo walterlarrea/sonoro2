@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation";
 import { usePlayerProvider } from "@/context/playerProvider";
 import { millisToMinutesAndSeconds } from '@/utils/playerUtils';
 import IconPlayButtonSmallTd from "./playerComponents/IconPlayButtonSmallTd";
@@ -5,6 +6,7 @@ import { HeartIcon as HeartIconFill } from "@heroicons/react/24/solid";
 import { HeartIcon } from "@heroicons/react/24/outline";
 
 const SongListItem = ({ track, listNumber, refLastItem, handleClick, handlePlayAlbumPlaylist, handleSaveOrRemoveTrack }) => {
+  const router = useRouter()
   const { currentPlayingTrack } = usePlayerProvider();
 
   const currentlyPlayingThisTrack = currentPlayingTrack?.id === track?.id;
@@ -25,9 +27,7 @@ const SongListItem = ({ track, listNumber, refLastItem, handleClick, handlePlayA
         active:bg-[#cdee93] 
         dark:hover:bg-[#505741] 
         dark:active:bg-[#40482E] 
-        rounded-md
-        cursor-pointer
-        ">
+        rounded-md">
       <td>
         <div className="flex m-auto w-8 justify-center align-center">
           <IconPlayButtonSmallTd
@@ -37,9 +37,9 @@ const SongListItem = ({ track, listNumber, refLastItem, handleClick, handlePlayA
           {!currentlyPlayingThisTrack &&
             <span
               className={`
-            hidden 
-            md:block 
-            group-hover:hidden`}>
+                hidden 
+                md:block 
+                group-hover:hidden`}>
               {listNumber}
             </span>
           }
@@ -55,7 +55,7 @@ const SongListItem = ({ track, listNumber, refLastItem, handleClick, handlePlayA
           ">
           {track.album?.images &&
             <img
-              src={track.album?.images[2]?.url}
+              src={track.album?.images[2]?.url || track.album?.images[0]?.url}
               alt={track.name}
               className="
                 w-[3rem]
@@ -73,18 +73,20 @@ const SongListItem = ({ track, listNumber, refLastItem, handleClick, handlePlayA
       </td>
 
       {track.album &&
-        <td className="items-center text-[0.9rem]">
-          {track.album?.name}
+        <td
+        className="items-center text-[0.9rem] hover:underline cursor-pointer"
+        onClick={() => router.push(`/albums/${track.album.id}`)}>
+          {track.album.name}
         </td>
       }
       <td>
         {track.saved ?
           <HeartIconFill
             onClick={handleSaveOrRemoveTrack}
-            className="h-6 w-6 me-4 inline-block hover:scale-[110%] text-green-500" />
+            className="h-6 w-6 me-4 inline-block cursor-pointer hover:scale-[110%] text-green-500" />
           : <HeartIcon
             onClick={handleSaveOrRemoveTrack}
-            className="h-6 w-6 me-4 inline-block hover:scale-[110%] text-green-500" />
+            className="h-6 w-6 me-4 inline-block cursor-pointer hover:scale-[110%] text-green-500" />
         }
       </td>
       <td>

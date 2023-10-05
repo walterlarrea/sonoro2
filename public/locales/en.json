@@ -53,8 +53,9 @@
     "rpasswordRequired": "You need to repeat the password here"
   },
   "sidebar": {
-    "userList": "Your lists",
-    "albums": "Albums"
+    "userLibrary": "Your library",
+    "album": "Album",
+    "playlist": "Playlist"
   },
   "sidebarSavedSongs": {
     "userLikeSongs": "Songs you like",
@@ -77,5 +78,9 @@
     "title": "Title",
     "album": "Album",
     "playlist": "Playlist"
+  },
+  "customAlert": {
+      "loginTitle": "Log in",
+      "loginText": "You need to be logged in to access this feature."
   }
 }

@@ -1,4 +1,5 @@
 import { usePlayerProvider } from "@/context/playerProvider";
+import { useSessionContext } from "@/context/sessionProvider";
 import WebPlayback from "../WebPlayback";
 import VolumeRockerFixed from "./VolumeRockerFixed";
 import PlayPauseButton from "./PlayPauseButton";
@@ -11,6 +12,7 @@ const Player = () => {
     togglePlayPause,
     currentPlayingTrack
   } = usePlayerProvider();
+  const { session } = useSessionContext()
 
   const containerStyle = ` 
     block 
@@ -34,7 +36,7 @@ const Player = () => {
 
   return (
     <div className="relative custom-bottom-player left-0 right-0 bottom-0 mb-2 mx-4">
-      {isActive &&
+      {(isActive && session) &&
         <div className="flex flex-col gap-4 justify-between items-center md:flex-row">
           <div className="flex flex-nowrap gap-4">
             <PlayPauseButton

@@ -3,6 +3,7 @@ import Translator from '@/config/i18nProvider';
 import { PlayerProvider } from '@/context/playerProvider';
 import { ThemeProvider } from '@/context/themeProvider';
 import { QueryProvider } from '@/context/queryProvider';
+import { SessionProvider } from '@/context/sessionProvider';
 
 export const metadata = {
   title: 'Sonoro',
@@ -17,11 +18,13 @@ function RootLayout({ children }) {
       <body>
         <Translator>
           <QueryProvider>
-            <ThemeProvider>
-              <PlayerProvider>
-                {children}
-              </PlayerProvider>
-            </ThemeProvider>
+            <SessionProvider>
+              <ThemeProvider>
+                <PlayerProvider>
+                  {children}
+                </PlayerProvider>
+              </ThemeProvider>
+            </SessionProvider>
           </QueryProvider>
         </Translator>
       </body>

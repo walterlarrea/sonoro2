@@ -1,9 +1,9 @@
 'use-client';
-import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 import { getUserPlaylists } from "@/services/spotifyService";
-import { useEffect } from "react";
 import SidebarItem from "./SidebarItem";
+import { t } from "i18next";
 // import { checkUserSession } from "@/utils/liveSession";
 
 const SidebarPlaylist = () => {
@@ -38,7 +38,7 @@ const SidebarPlaylist = () => {
         <SidebarItem
           key={data.id}
           title={data.name}
-          description={data.owner?.display_name}
+          description={`${t('sidebar.playlist')} • ${data.owner?.display_name}`}
           thumbnailSource={data.images?.[0]?.url}
           handleClick={() => router.push(`/playlist-view/${data.id}`)}
         />
