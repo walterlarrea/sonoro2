@@ -3,9 +3,11 @@ import SidebarSavedSongs from "./SidebarSavedSongs";
 import React from 'react';
 import { appWithTranslation, useTranslation } from 'next-i18next'; // Asegúrate de importar appWithTranslation
 import SidebarSavedAlbums from "./SidebarSavedAlbums";
+import { useSessionContext } from "@/context/sessionProvider";
 
 const SideBar = () => {
   const { t } = useTranslation();
+  const { session } = useSessionContext()
 
   // <div className="hidden md:block text-sm w-full h-full gap-[8px] overflow-y-auto">
   {/* <Navbar column={true} /> */ }
@@ -18,10 +20,14 @@ const SideBar = () => {
       items-center 
       text-[#080808] 
       dark:text-[#e5fdba]">
-      <h2 className="mb-3">{t('sidebar.userLibrary')}</h2>
-      <SidebarSavedSongs />
-      <SidebarPlaylist />
-      <SidebarSavedAlbums />
+      {session &&
+        <>
+          <h2 className="mb-3">{t('sidebar.userLibrary')}</h2>
+          <SidebarSavedSongs />
+          <SidebarPlaylist />
+          <SidebarSavedAlbums />
+        </>
+      }
     </div>
   );
   // </div>

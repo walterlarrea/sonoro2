@@ -1,20 +1,21 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import { useSession, useSessionRefresh } from '@/hooks/useSession'
-import { isValidSession } from "@/utils/liveSession";
+import { useSessionRefresh } from '@/hooks/useSessionRefresh'
+import { useSessionContext } from '@/context/sessionProvider';
 import { useTranslation } from 'react-i18next';
 import swal from 'sweetalert';
 
 const SessionErrorAlert = ({ children }) => {
   const { t } = useTranslation()
-  const session = useSession()
-  const refresher = useSessionRefresh()
+  const { session } = useSessionContext()
+  const { refreshed, loading } = useSessionRefresh()
   const router = useRouter()
   const pathname = usePathname()
 
   useEffect(() => {
-    console.log('effect')
+    if (loading) return
+    if (refreshed) return
 
     const promptMessage = async () => {
       const loginOrGoHome = await swal({
@@ -28,18 +29,18 @@ const SessionErrorAlert = ({ children }) => {
           confirm: "OK",
         }
       });
-      
+
       if (loginOrGoHome) {
         router.push('/spotify-auth')
       }
     }
-    ///promptMessage();
-  }, [pathname])
-  
+    promptMessage();
+  }, [pathname, refreshed, loading])
+
   if (!session) {
     return (
       <></>
-      )
+    )
   }
 
   return children
