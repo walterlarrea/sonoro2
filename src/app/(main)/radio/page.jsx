@@ -10,8 +10,8 @@ const RadioContainer = (props) => {
   const {t} = useTranslation();
   return (
     <section className='radio_section'>
-        <h1 className='radio_title'>{t('radio.title')}</h1>
-        <div className='radio_container'>
+        <h1 className='text-[2rem] font-bold inline-block'>{t('radio.title')}</h1>
+        <div className='radio_container mt-4'>
          {data.map( radio=>
                <Radio 
                   key={radio.name}
