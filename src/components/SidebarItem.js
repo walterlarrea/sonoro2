@@ -31,12 +31,12 @@ const SidebarItem = ({ title, description, thumbnailSource, descriptionIcon, han
             m-0
             " />
       }
-      <div className="flex flex-col gap-[2px] shrink overflow-hidden">
-        <h4 className="font-bold truncate ...">{title}</h4>
+      <div className="flex flex-col gap-[2px] overflow-hidden">
+        <h4 className="font-bold truncate">{title}</h4>
         {descriptionIcon &&
           "ICON"
         }
-        <span className="text-[0.8rem] truncate ...">{description}</span>
+        <span className="text-[0.8rem] truncate">{description}</span>
       </div>
     </div>
   )
