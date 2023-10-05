@@ -19,7 +19,7 @@ const Navbar = ({ column }) => {
     'flex-col' // space-y-3'
     : 'flex-row' // space-x-3'
 
-  const linkClassNames = 'py-2 px-4 rounded-lg hover:bg-gray-900'
+  const linkClassNames = 'py-2 px-4 rounded-3xl border-2 dark:border-[#e5fdba] border-[#080808] active:dark:bg-black active:bg-white dark:hover:bg-gray-900 hover:bg-gray-100'
 
   return (
     <nav
@@ -29,35 +29,34 @@ const Navbar = ({ column }) => {
         gap-3
       text-[#080808] 
       dark:text-[#e5fdba] 
-      bg-[#c9dea3] 
       dark:bg-[#34392A] 
-        p-3
+        p-3 
         whitespace-nowrap
         flex-wrap`}>
 
       <Link
-        className={`${linkClassNames} ${selecteditem === '/' && 'bg-black'}`}
+        className={`${linkClassNames} ${selecteditem === '/' && 'dark:bg-black bg-white'}`}
         href='/'>
         <HomeIcon className="h-6 w-6 me-4 inline-block" />
         {t('aside.home')}
       </Link>
 
       <Link
-        className={`${linkClassNames} ${selecteditem === '/search' && 'bg-black'}`}
+        className={`${linkClassNames} ${selecteditem === '/search' && 'dark:bg-black bg-white'}`}
         href='/search'>
         <MagnifyingGlassIcon className="h-6 w-6 me-4 inline-block" />
         {t('aside.search')}
       </Link>
 
       <Link
-        className={`${linkClassNames} ${selecteditem === '/radio' && 'bg-black'}`}
+        className={`${linkClassNames} ${selecteditem === '/radio' && 'dark:bg-black bg-white'}`}
         href='/radio'>
         <RadioIcon className="h-6 w-6 me-4 inline-block" />
         Radio
       </Link>
 
       <Link
-        className={`${linkClassNames} ${selecteditem === '/new-releases' && 'bg-black'}`}
+        className={`${linkClassNames} ${selecteditem === '/new-releases' && 'dark:bg-black bg-white'}`}
         href='/new-releases'>
         <HeartIcon className="h-6 w-6 me-4 inline-block" />
         {t('aside.ultimate')}

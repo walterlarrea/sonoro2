@@ -20,7 +20,8 @@ const SidebarItem = ({ title, description, thumbnailSource, descriptionIcon, han
         cursor-pointer
         rounded-lg
         border-2
-        border-inherit">
+        border-[#080808]
+        dark:border-[#e5fdba]">
       {thumbnailSource &&
         <img
           src={thumbnailSource}

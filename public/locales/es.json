@@ -1,8 +1,10 @@
 {
     "aside": {
+        "profile": "Mi perfil",
         "home": "Inicio",
         "search": "Buscar",
-        "ultimate": "Últimos lanzamientos"
+        "ultimate": "Últimos lanzamientos",
+        "close": "Cerrar"
     },
     "profile": {
         "name": "Nombre",

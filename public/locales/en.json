@@ -1,8 +1,10 @@
 {
   "aside": {
+    "profile": "My profile",
     "home": "Home",
     "search": "Search",
-    "ultimate": "Latest releases"
+    "ultimate": "Latest releases",
+    "close": "Close"
   },
   "profile": {
     "name": "Name",
@@ -80,7 +82,7 @@
     "playlist": "Playlist"
   },
   "customAlert": {
-      "loginTitle": "Log in",
-      "loginText": "You need to be logged in to access this feature."
+    "loginTitle": "Log in",
+    "loginText": "You need to be logged in to access this feature."
   }
 }
