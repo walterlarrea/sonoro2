@@ -19,7 +19,7 @@ const Navbar = ({ column }) => {
     'flex-col' // space-y-3'
     : 'flex-row' // space-x-3'
 
-  const linkClassNames = 'py-2 px-4 rounded-lg active:dark:bg-black active:bg-white dark:hover:bg-gray-900 hover:bg-gray-100'
+  const linkClassNames = 'py-2 px-4 rounded-3xl border-2 dark:border-[#e5fdba] border-[#080808] active:dark:bg-black active:bg-white dark:hover:bg-gray-900 hover:bg-gray-100'
 
   return (
     <nav
@@ -30,7 +30,7 @@ const Navbar = ({ column }) => {
       text-[#080808] 
       dark:text-[#e5fdba] 
       dark:bg-[#34392A] 
-        p-3
+        p-3 
         whitespace-nowrap
         flex-wrap`}>
 
