@@ -10,8 +10,10 @@ const HeaderAccButton = () => {
 
     return (
         <>
-        <button className="hover:scale-110 hover:underline" onClick={handleMenuOpenClose} >Accessibility</button>
-        <SideMenuAcc visible={showMenu} handleClose={handleMenuOpenClose} />
+            <button className="hover:scale-110 hover:underline" onClick={handleMenuOpenClose} >Accessibility</button>
+            {showMenu &&
+                <SideMenuAcc handleClose={handleMenuOpenClose} />
+            }
         </>
     )
 }

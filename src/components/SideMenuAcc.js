@@ -4,7 +4,7 @@ import { getStore, setStore } from '@/services/localStore';
 import { changeTheme } from '@/utils/themeHandler';
 import i18n from 'i18next';
 
-const SideMenuAcc = ({ visible, handleClose }) => {
+const SideMenuAcc = ({ handleClose }) => {
   const { t } = useTranslation()
   const storedLanguage = getStore('sonoro_language')
   const storedTheme = getStore('sonoro_theme')
@@ -26,6 +26,7 @@ const SideMenuAcc = ({ visible, handleClose }) => {
       <div
         className={`
         absolute 
+        block
         translate-x-[-50%]
         translate-y-[-50%]
         top-1/2
@@ -39,8 +40,7 @@ const SideMenuAcc = ({ visible, handleClose }) => {
         rounded-xl
         transition-all
         bg-[#e5fdba]
-        dark:bg-[#34392A]
-        ${visible ? 'block' : 'hidden'}`}>
+        dark:bg-[#34392A]`}>
         <div className="text-end mb-3">
           <button
             className="
@@ -88,15 +88,15 @@ const SideMenuAcc = ({ visible, handleClose }) => {
       </div>
       <div
         className={`
-            absolute 
-            z-20
-            top-0 
-            left-0 
-            h-full 
-            w-full
-            bg-black 
-            opacity-80
-            ${visible ? 'block' : 'hidden'}`}>
+          block
+          absolute 
+          z-20
+          top-0 
+          left-0 
+          h-full 
+          w-full
+          bg-black 
+          opacity-80`}>
       </div>
     </>
   )

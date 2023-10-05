@@ -113,7 +113,7 @@ const Profile = () => {
                 {profile.about || '-'}
               </dd>
             </div>
-            <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            {/* <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt className="text-sm font-medium text-gray-500">
                 {t('profile.language')}
               </dt>
@@ -135,7 +135,7 @@ const Profile = () => {
                   <option value='system' >{t('profile.system')}</option>
                 </select>
               </dd>
-            </div>
+            </div> */}
             <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt className="text-sm font-medium text-gray-500">
                 {t('profile.licence')}
