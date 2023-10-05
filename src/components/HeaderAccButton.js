@@ -1,7 +1,10 @@
 import { useState } from "react"
+import { useTranslation } from 'react-i18next'
+import { BsUniversalAccessCircle } from 'react-icons/bs'
 import SideMenuAcc from "./SideMenuAcc"
 
 const HeaderAccButton = () => {
+    const { t } = useTranslation()
     const [showMenu, setShowMenu] = useState(false)
 
     const handleMenuOpenClose = () => {
@@ -10,7 +13,12 @@ const HeaderAccButton = () => {
 
     return (
         <>
-            <button className="hover:scale-110 hover:underline" onClick={handleMenuOpenClose} >Accessibility</button>
+            <button
+                className="border-2 rounded-lg border-transparent hover:border-[#e5fdba] p-2 h-fit whitespace-nowrap align-baseline"
+                onClick={handleMenuOpenClose} >
+                <BsUniversalAccessCircle className="h-6 w-6 me-4 inline-block" />
+                {t('accessibility.title')}
+            </button>
             {showMenu &&
                 <SideMenuAcc handleClose={handleMenuOpenClose} />
             }

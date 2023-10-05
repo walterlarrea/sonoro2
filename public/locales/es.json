@@ -6,6 +6,9 @@
         "ultimate": "Últimos lanzamientos",
         "close": "Cerrar"
     },
+    "accessibility": {
+        "title": "Accesibilidad"
+    },
     "profile": {
         "name": "Nombre",
         "email": "Email",

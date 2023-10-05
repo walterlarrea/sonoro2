@@ -22,7 +22,7 @@ export default function Header() {
           <Navbar background={'bg-white'} />
         </div>
 
-        <div className="flex gap-4">
+        <div className="flex items-center gap-4">
           <HeaderAccButton />
           <HeaderProfileButton />
         </div>

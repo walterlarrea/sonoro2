@@ -6,6 +6,9 @@
     "ultimate": "Latest releases",
     "close": "Close"
   },
+  "accessibility": {
+      "title": "Accessibility"
+  },
   "profile": {
     "name": "Name",
     "email": "Email",
