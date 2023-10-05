@@ -2,7 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
-import { HomeIcon, HeartIcon, MagnifyingGlassIcon, RadioIcon } from "@heroicons/react/24/solid";
+import { HomeIcon, HeartIcon, RocketLaunchIcon, MagnifyingGlassIcon, RadioIcon } from "@heroicons/react/24/solid";
 import { useTranslation } from "react-i18next";
 import { useState, useEffect } from "react";
 
@@ -42,13 +42,6 @@ const Navbar = ({ column }) => {
       </Link>
 
       <Link
-        className={`${linkClassNames} ${selecteditem === '/search' && 'dark:bg-black bg-white'}`}
-        href='/search'>
-        <MagnifyingGlassIcon className="h-6 w-6 me-4 inline-block" />
-        {t('aside.search')}
-      </Link>
-
-      <Link
         className={`${linkClassNames} ${selecteditem === '/radio' && 'dark:bg-black bg-white'}`}
         href='/radio'>
         <RadioIcon className="h-6 w-6 me-4 inline-block" />
@@ -58,8 +51,15 @@ const Navbar = ({ column }) => {
       <Link
         className={`${linkClassNames} ${selecteditem === '/new-releases' && 'dark:bg-black bg-white'}`}
         href='/new-releases'>
-        <HeartIcon className="h-6 w-6 me-4 inline-block" />
+        <RocketLaunchIcon className="h-6 w-6 me-4 inline-block" />
         {t('aside.ultimate')}
+      </Link>
+
+      <Link
+        className={`${linkClassNames} ${selecteditem === '/search' && 'dark:bg-black bg-white'}`}
+        href='/search'>
+        <MagnifyingGlassIcon className="h-6 w-6 me-4 inline-block" />
+        {t('aside.search')}
       </Link>
 
     </nav>
