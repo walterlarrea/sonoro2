@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import HeaderProfileButton from "./HeaderProfileButton";
 import Navbar from "./Navbar";
+import HeaderAccButton from "./HeaderAccButton";
 
 export default function Header() {
   const router = useRouter()
@@ -21,7 +22,8 @@ export default function Header() {
           <Navbar background={'bg-white'} />
         </div>
 
-        <div className="">
+        <div className="flex gap-4">
+          <HeaderAccButton />
           <HeaderProfileButton />
         </div>
       </div>
