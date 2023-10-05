@@ -1,7 +1,6 @@
 'use-client';
 import { useRouter } from "next/navigation";
-import { useState, useEffect, useRef } from "react";
-import { getCurrentUser } from "@/services/spotifyService";
+import { useState, useRef } from "react";
 import { useSessionContext } from "@/context/sessionProvider";
 import SideMenuMobile from "./SideMenuMobile";
 
@@ -49,8 +48,11 @@ const HeaderProfileButton = () => {
     bg-zinc-200`)
 
   const handleOpenMenu = () => {
-    setShowSideMenu(true)
-    // router.push('/profile')
+    if (window.innerWidth < 768) {
+      setShowSideMenu(true)
+    } else {
+      router.push('/profile')
+    }
   }
 
   const handleCloseMenu = () => {
