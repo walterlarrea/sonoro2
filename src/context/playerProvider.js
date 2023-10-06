@@ -24,9 +24,10 @@ export function PlayerProvider({ children }) {
   const [localVolume, setVolume] = useState(0.3);
 
   const togglePlayPause = () => {
-    player?.togglePlay().then(p =>
+    player?.togglePlay().then(p => {
+      player.getCurrentState().then(s => console.log(s))
       setPlayingState(state => !state)
-    )
+    })
   }
 
   const setIsPlaying = (newState) => {

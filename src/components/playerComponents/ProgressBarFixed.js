@@ -3,7 +3,7 @@ import { usePlayerProvider } from "@/context/playerProvider";
 import { millisToMinutesAndSeconds } from '@/utils/playerUtils';
 
 const ProgressBarFixed = () => {
-  const { player, activeContext, isPlaying } = usePlayerProvider();
+  const { player, activeContext, currentPlayingTrack, isPlaying } = usePlayerProvider();
   const [duration, setDuration] = useState(0)
   const [value, setValue] = useState(0)
   const [updateTime, setUpdateTime] = useState(true)
@@ -13,7 +13,7 @@ const ProgressBarFixed = () => {
       setDuration(state.duration)
       setValue(state.position)
     })
-  }, [activeContext])
+  }, [activeContext, currentPlayingTrack])
 
   if (updateTime && value < duration) {
     player.getCurrentState().then(state => {
