@@ -12,7 +12,10 @@ const SideMenuAcc = ({ handleClose }) => {
   const handleLanguageChange = (event) => {
     const selectedLanguage = event.target.value
 
-    i18n.changeLanguage(selectedLanguage).then((t) => setStore('sonoro_language', selectedLanguage))
+    i18n.changeLanguage(selectedLanguage).then((t) => {
+      setStore('sonoro_language', selectedLanguage)
+      window.document.documentElement.lang = selectedLanguage ?? 'es'
+    })
   }
 
   const handleThemeChange = (event) => {

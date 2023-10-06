@@ -13,6 +13,7 @@ function Translator({ children }) {
     } else {
       setStore('sonoro_language', 'es')
     }
+    window.document.documentElement.lang = currentLanguage ?? 'es'
   }, [])
 
   return (
