@@ -66,17 +66,6 @@ const Playlist = () => {
     })
   }
 
-  const handleTrackSavedState = (trackId, savedState) => async () => {
-    if (savedState === undefined) return
-    if (savedState) {
-      const response = await removeSavedTrack({ trackIds: [trackId] })
-    } else {
-      const response = await saveTrack({ trackIds: [trackId] })
-    }
-
-    updateTrackListSavedStatus(trackId, !savedState)
-  }
-
   const handlePlayPlaylist = (track) => () => {
     setActiveContext([{ ...playlist, trackToPlay: track.uri }]);
   }
@@ -85,7 +74,7 @@ const Playlist = () => {
     <>
       <SongList
         tracks={playlist.tracks.items.map(item => item.track)}
-        updateSavedStatus={handleTrackSavedState}
+        updateSavedStatus={updateTrackListSavedStatus}
         handlePlayPlaylist={handlePlayPlaylist} />
     </>
   )

@@ -25,7 +25,6 @@ export function PlayerProvider({ children }) {
 
   const togglePlayPause = () => {
     player?.togglePlay().then(p => {
-      player.getCurrentState().then(s => console.log(s))
       setPlayingState(state => !state)
     })
   }

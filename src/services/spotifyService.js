@@ -204,6 +204,20 @@ export const getRecentlyPlayedTracks = async ({ limit, before }) => {
   }
 }
 
+export const getPlayerQueue = async () => {
+  try {
+    const response = axios.get(
+      `https://api.spotify.com/v1/me/player/queue`,
+      {
+        headers: { "Authorization": getToken() }
+      })
+    return response
+  } catch (error) {
+    console.error(error)
+    return error.response;
+  }
+}
+
 export const checkSavedTracks = async ({ trackIds }) => {
   const params = new URLSearchParams();
   params.append('ids', trackIds)

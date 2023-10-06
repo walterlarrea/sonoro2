@@ -24,7 +24,9 @@ const HomeFiltersPage = () => {
 
       setLoading(false)
       setTracksByHistory(tracksByRecentlyPlayed.data.tracks);
-      setTrackHistory(recentlyPlayed.data.items.map((item) => item.track));
+      setTrackHistory(recentlyPlayed.data.items.map((item) => {
+        return { ...item.track, played_at: item.played_at }
+      }));
     }
     fetchTrackRecommendations();
   }, [])
