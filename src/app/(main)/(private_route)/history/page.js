@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useCallback, useState } from "react";
 import { getRecentlyPlayedTracks } from "@/services/spotifyService";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { ClockIcon } from "@heroicons/react/24/solid";
@@ -13,18 +13,29 @@ const ITEM_COUNT_BY_PAGE = 20
 const playerHistory = () => {
   const { t } = useTranslation();
   const { setActiveContext } = usePlayerProvider();
-  // const [offset, setOffset] = useState(undefined)
+  const [allTracks, setAlltracks] = useState(undefined)
 
   const { data: trackHistoryObj, error, fetchNextPage, isRefetching, hasNextPage } = useInfiniteQuery({
     queryKey: ['searchData'],
     queryFn: async ({ pageParam = undefined }) => {
       const res = await getRecentlyPlayedTracks({ limit: ITEM_COUNT_BY_PAGE, before: pageParam })
-      // setOffset(res.data.cursors.before)
       return res.data
     },
     getNextPageParam: (lastPage) => lastPage?.cursors?.before,
     enabled: false,
   })
+
+  useEffect(() => {
+    let tracks = []
+    
+    trackHistoryObj?.pages.map((page) => {
+      page.items?.map(({track, played_at}) => {
+        tracks.push({...track, played_at})
+      })
+    })
+
+    setAlltracks(tracks)
+  }, [trackHistoryObj])
 
   const observer = useRef()
   const lastTrackElementRef = useCallback(node => {
@@ -52,8 +63,11 @@ const playerHistory = () => {
 
   const handlePlayTracks = (track) => () => {
     if (trackHistoryObj) {
-      // const tracks = trackHistoryObj.pages[0].items.map(({ track: song }) => { return { ...song.track, trackToPlay: track.uri } })
-      // setActiveContext(tracks)
+      const tracks = allTracks.map((song) => {
+        return { ...song, trackToPlay: track.uri }
+      })
+
+      setActiveContext(tracks)
     }
   }
 
@@ -72,30 +86,30 @@ const playerHistory = () => {
           </tr>
         </thead>
         <tbody>
-          {trackHistoryObj.pages.length > 0 &&
-            trackHistoryObj.pages.map((page, pageIndex) => page.items?.map(({ track }, index) => {
-              if (trackHistoryObj.pages.length === pageIndex + 1 && page.items.length === index + 1) {
+          {allTracks &&
+            allTracks.map((track, index) => {
+              if ( allTracks.length === index + 1) {
                 return (
                   <SongListItem
-                    key={track.id}
+                    key={track.played_at}
                     refLastItem={lastTrackElementRef}
                     track={track}
-                    listNumber={(pageIndex * ITEM_COUNT_BY_PAGE) + index + 1}
+                    listNumber={index + 1}
                     handlePlayAlbumPlaylist={handlePlayTracks(track)}
                   />
                 )
               } else {
                 return (
                   <SongListItem
-                    key={track.id}
+                    key={track.played_at}
                     track={track}
-                    listNumber={(pageIndex * ITEM_COUNT_BY_PAGE) + index + 1}
+                    listNumber={index + 1}
                     handlePlayAlbumPlaylist={handlePlayTracks(track)}
                   />
                 )
               }
             })
-            )}
+          }
         </tbody>
       </table>
       {hasNextPage &&

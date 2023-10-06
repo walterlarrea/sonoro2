@@ -1,3 +1,4 @@
+import { removeSavedTrack, saveTrack } from "@/services/spotifyService";
 import SongListItem from "./SongListItems"
 import { ClockIcon } from "@heroicons/react/24/solid";
 
@@ -5,6 +6,17 @@ import { useTranslation } from "react-i18next";
 
 const SongList = ({ tracks, updateSavedStatus, handlePlayPlaylist, isAlbum }) => {
   const { t } = useTranslation();
+
+  const handleTrackSavedState = (trackId, savedState) => async () => {
+    if (savedState === undefined) return
+    if (savedState) {
+      const response = await removeSavedTrack({ trackIds: [trackId] })
+    } else {
+      const response = await saveTrack({ trackIds: [trackId] })
+    }
+
+    updateSavedStatus(trackId, !savedState)
+  }
 
   return (
     <>
@@ -30,7 +42,7 @@ const SongList = ({ tracks, updateSavedStatus, handlePlayPlaylist, isAlbum }) =>
                 track={track}
                 listNumber={index + 1}
                 handlePlayAlbumPlaylist={handlePlayPlaylist(track)}
-                handleSaveOrRemoveTrack={updateSavedStatus(track.id, track.saved)}
+                handleSaveOrRemoveTrack={handleTrackSavedState(track.id, track.saved)}
               />
             )}
         </tbody>
