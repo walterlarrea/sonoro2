@@ -66,7 +66,6 @@ function WebPlayback() {
         }
 
         setCurrentPlayingTrack(state.track_window.current_track)
-        // setIsPlaying(true);
 
         newPlayer.getCurrentState().then(state => {
           (!state) ? setIsActive(false) : setIsActive(true)
