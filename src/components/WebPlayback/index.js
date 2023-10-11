@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { getStore, setStore } from "@/services/localStore";
 import { usePlayerProvider } from '@/context/playerProvider';
 import { startPlayingAlbumOrPlaylist, startPlayingTrack } from '@/services/playerService';
@@ -39,46 +39,46 @@ function WebPlayback() {
     script.async = true;
 
     document.body.appendChild(script);
-
+    
     window.onSpotifyWebPlaybackSDKReady = () => {
-
+      
       const newPlayer = new window.Spotify.Player({
         name: 'Sonoro Playback',
         getOAuthToken: cb => { cb(getStore("sonoro-session")); },
         volume: 0.5
       });
-
+      
       setPlayer(newPlayer);
-
+      
       newPlayer.addListener('ready', async ({ device_id }) => {
         console.log('Ready with Device ID', device_id);
-
+        
         setStore("device_id", device_id)
       });
 
       newPlayer.addListener('not_ready', ({ device_id }) => {
         console.log('Device ID has gone offline', device_id);
       });
-
+      
       newPlayer.addListener('player_state_changed', (state => {
         if (!state) {
           return;
         }
 
         setCurrentPlayingTrack(state.track_window.current_track)
-
+        
         newPlayer.getCurrentState().then(state => {
           (!state) ? setIsActive(false) : setIsActive(true)
         });
       }));
-
+      
       const setPlayerInitialStatus = async () => {
         const mainVolume = await newPlayer.getVolume()
-
+        
         setLocalVolume(mainVolume)
       }
       setPlayerInitialStatus()
-
+      
       newPlayer.connect();
     };
   }, [session]);

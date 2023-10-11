@@ -8,8 +8,8 @@ import { useTranslation } from "react-i18next";
 
 const HomeFiltersPage = () => {
   const { t } = useTranslation();
-  const [tracksByHistory, setTracksByHistory] = useState(null)
-  const [trackHistory, setTrackHistory] = useState(null)
+  const [tracksByHistory, setTracksByHistory] = useState(undefined)
+  const [trackHistory, setTrackHistory] = useState(undefined)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -18,13 +18,13 @@ const HomeFiltersPage = () => {
 
       const recentlyPlayed = await getRecentlyPlayedTracks({ limit: 5 })
 
-      const ids = recentlyPlayed.data.items.map(({ track }) => track.id)
+      const ids = recentlyPlayed.data?.items?.map(({ track }) => track.id)
 
       const tracksByRecentlyPlayed = await getRecommendations({ limit: 10, seedTracks: ids })
 
       setLoading(false)
-      setTracksByHistory(tracksByRecentlyPlayed.data.tracks);
-      setTrackHistory(recentlyPlayed.data.items.map((item) => {
+      setTracksByHistory(tracksByRecentlyPlayed.data?.tracks);
+      setTrackHistory(recentlyPlayed.data?.items?.map((item) => {
         return { ...item.track, played_at: item.played_at }
       }));
     }
