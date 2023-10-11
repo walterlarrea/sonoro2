@@ -5,7 +5,7 @@ import { refreshAccessToken } from "@/utils/spotifyAuthClient";
 import { useSessionContext } from "@/context/sessionProvider";
 import { CLIENT_ID } from "@/utils/constantes";
 
-async function renewSessionAuto(refreshToken) {
+async function renewSession(refreshToken) {
   if (!refreshToken)
     return { error: 'No refresh token' }
 
@@ -27,13 +27,16 @@ export const useSessionRefresh = () => {
 
   useEffect(() => {
     const refreshToken = async () => {
+      setLoading(true)
+      
       const storedRefreshToken = getStore('sonoro-refresh');
-      const renewement = await renewSessionAuto(storedRefreshToken)
+      const renewement = await renewSession(storedRefreshToken)
 
       if (renewement.error) setRefreshed(false)
       if (renewement.data) {
         checkSession()
         setRefreshed(true)
+        console.log('Automatic session refresh')
       }
       setLoading(false)
     }
@@ -53,17 +56,18 @@ export const useSessionRefresh = () => {
     };
 
     isTokenExpired().then(expired => {
+      console.log('Session check for automatic refresh, expired status: ', expired)
       if (expired) {
         refreshToken();
+      } else {
+        setLoading(false)
+        setRefreshed(true)
       }
     })
 
     const tokenRefreshInterval = setInterval(() => {
       refreshToken();
-    }, 3000000); // Verifica cada 50 minutos
-
-    setLoading(false)
-    setRefreshed(true)
+    }, 3000000); // 3000000 Verifica cada 50 minutos
 
     return () => {
       clearInterval(tokenRefreshInterval);

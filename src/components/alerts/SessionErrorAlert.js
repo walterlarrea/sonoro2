@@ -35,7 +35,7 @@ const SessionErrorAlert = ({ children }) => {
       }
     }
     promptMessage();
-  }, [pathname, refreshed, loading])
+  }, [pathname, session, refreshed, loading])
 
   if (!session) {
     return (
