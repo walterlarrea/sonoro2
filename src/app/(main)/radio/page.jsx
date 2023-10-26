@@ -1,31 +1,82 @@
-'use client';
-import React from 'react' //se puede borrar
+"use client"
 
-import "./page.css"
-import { Radio } from './Radio'
-import data from "@/utils/radio.json";
-import { useTranslation, UseTranslation } from 'next-i18next';
+import { useState } from "react";
 
-const RadioContainer = (props) => {
-  const {t} = useTranslation();
+import Navigation from "@/components/radio/Nav";
+import Products from "@/components/radio/Products";
+import products from "@/utils/data";
+import Recommended from "@/components/radio/Recommended";
+
+import Card from "@/components/radio/Card";
+
+
+function App() {
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  // ----------- Input Filter -----------
+  const [query, setQuery] = useState("");
+
+  const handleInputChange = (event) => {
+    setQuery(event.target.value);
+  };
+
+  const filteredItems = products.filter(
+    (product) => product.title.toLowerCase().indexOf(query.toLowerCase()) !== 
+    -1
+  );
+
+ 
+
+  // ------------ Button Filtering -----------
+  const handleClick = (event) => {
+    setSelectedCategory(event.target.value);
+  };
+
+  function filteredData(products, selected, query) {
+    let filteredProducts = products;
+
+    // Filtering Input Items
+    if (query) {
+      filteredProducts = filteredItems;
+    }
+
+    // Applying selected filter
+    if (selected) {
+      filteredProducts = filteredProducts.filter(
+        ({  country,  title }) =>
+          
+          
+          country === selected ||
+          
+          title === selected
+      );
+    }
+
+    return filteredProducts.map(
+      ({ img, title,  station, url }) => (
+        <Card
+          key={Math.random()}
+          img={img}
+          name={title}
+          url={url}
+          
+          station={station}
+          
+        />
+      )
+    );
+  }
+
+  const result = filteredData(products, selectedCategory, query);
+
   return (
-    <section className='radio_section'>
-        <h1 className='text-[2rem] font-bold inline-block'>{t('radio.title')}</h1>
-        <div className='radio_container mt-4'>
-         {data.map( radio=>
-               <Radio 
-                  key={radio.name}
-                  name={radio.name}
-                  image={radio.image}
-                  url={radio.url}
-                  
-                  
-               />
-            )}
-
-        </div>
-    </section>
-  )
+    <>
+      
+      <Navigation query={query} handleInputChange={handleInputChange} />
+      <Recommended handleClick={handleClick} />
+      <Products result={result} />
+    </>
+  );
 }
 
-export default RadioContainer
+export default App;
