@@ -5,6 +5,9 @@
 
 Sonoro is an alternative to Spotify's UI, for +70yrs elders with accessibility in mind. Built with [Next.js](https://nextjs.org/) and hosted on [Vercel](https://vercel.com/).
 
+## Architecture diagram
+
+  ![sonoro](https://github.com/walterlarrea/sonoro2/assets/85652281/d583b4c5-cbcd-4655-9af9-55de457c5b00)
 
 ## Features
 
